@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -131,15 +133,20 @@ export default function MobilityDashboard() {
         });
         
         // Step 3: Install MiniKit (required by World App)
-        if (typeof window.MiniKit.install === 'function') {
+        if (typeof window !== 'undefined' && window.MiniKit && typeof window.MiniKit.install === 'function') {
           try {
             console.log('🔧 [INSTALL] Calling MiniKit.install() with options object...');
-            await Promise.race([
-              window.MiniKit.install({ 
-                appId: 'app_f0adeaeec4971994facf4c0be33a878f'
-              }),
-              new Promise((_, reject) => setTimeout(() => reject(new Error('Install timeout after 10s')), 10000))
-            ]);
+            const miniKit = (window as any).MiniKit;
+            if (miniKit && miniKit.install) {
+              await Promise.race([
+                miniKit.install({ 
+                  appId: 'app_f0adeaeec4971994facf4c0be33a878f'
+                }),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('Install timeout after 10s')), 10000))
+              ]);
+            } else {
+              throw new Error('MiniKit not available');
+            }
             console.log('✅ [INSTALL] MiniKit.install() completed successfully');
           } catch (installError) {
             console.error('❌ [INSTALL] Failed:', installError);
@@ -159,10 +166,10 @@ export default function MobilityDashboard() {
         }
         
         // Step 4: Check if commands.verify is now available
-        const hasVerifyCommand = typeof window.MiniKit.commands?.verify === 'function';
+        const hasVerifyCommand = typeof window !== 'undefined' && window.MiniKit?.commands?.verify && typeof window.MiniKit.commands.verify === 'function';
         
         console.log(`🎯 [VERIFY_CHECK] Commands ready:`, {
-          hasCommands: typeof window.MiniKit.commands !== 'undefined',
+          hasCommands: typeof window !== 'undefined' && typeof window.MiniKit?.commands !== 'undefined',
           hasVerify: hasVerifyCommand
         });
         
@@ -177,9 +184,9 @@ export default function MobilityDashboard() {
         if (attempts >= maxAttempts) {
           console.error('❌ [TIMEOUT] MiniKit commands.verify never became available');
           console.error('🔍 [DEBUG] Final state:', {
-            MiniKit: typeof window.MiniKit,
-            commands: typeof window.MiniKit?.commands,
-            verify: typeof window.MiniKit?.commands?.verify
+            MiniKit: typeof window !== 'undefined' ? typeof window.MiniKit : 'window not available',
+            commands: typeof window !== 'undefined' ? typeof window.MiniKit?.commands : 'window not available',
+            verify: typeof window !== 'undefined' ? typeof window.MiniKit?.commands?.verify : 'window not available'
           });
           setIsMiniApp(true);
           setSdkReady(false);
@@ -320,17 +327,17 @@ export default function MobilityDashboard() {
       console.log('🚀 [VERIFY START] Initiating WorldID verification...');
       
       // Get action from environment (must match World Developer Portal)
-      const action = import.meta.env.VITE_WLD_ACTION || 'verify-human';
+      const action = process.env.NEXT_PUBLIC_VITE_WLD_ACTION || process.env.VITE_WLD_ACTION || 'verify-human';
 
       // RESTORED WORKING CODE: Use subscribe + commands pattern (not commandsAsync)
       // World App's MiniKit uses the subscribe/command pattern, not async/await
       
       // CRITICAL: Validate SDK is ready before attempting verification
-      if (!window.MiniKit?.commands?.verify) {
+      if (typeof window === 'undefined' || !window.MiniKit?.commands?.verify) {
         console.error('🔴 [SDK ERROR] MiniKit SDK not loaded or commands not ready');
-        console.error('🔍 [DEBUG] window.MiniKit:', typeof window.MiniKit);
-        console.error('🔍 [DEBUG] window.MiniKit.commands:', typeof window.MiniKit?.commands);
-        console.error('🔍 [DEBUG] window.MiniKit.commands.verify:', typeof window.MiniKit?.commands?.verify);
+        console.error('🔍 [DEBUG] window.MiniKit:', typeof window !== 'undefined' ? typeof window.MiniKit : 'window not available');
+        console.error('🔍 [DEBUG] window.MiniKit.commands:', typeof window !== 'undefined' ? typeof window.MiniKit?.commands : 'window not available');
+        console.error('🔍 [DEBUG] window.MiniKit.commands.verify:', typeof window !== 'undefined' ? typeof window.MiniKit?.commands?.verify : 'window not available');
         
         throw new Error(
           'World ID SDK not ready. ' +
@@ -343,8 +350,13 @@ export default function MobilityDashboard() {
 
       // Create a promise that will resolve when MiniKit responds
       return new Promise((resolve, reject) => {
+        if (typeof window === 'undefined' || !window.MiniKit) {
+          reject(new Error('MiniKit not available'));
+          return;
+        }
+        const miniKit = (window as any).MiniKit;
         // Subscribe to verification responses using official ResponseEvent constant
-        const unsubscribe = window.MiniKit.subscribe(
+        const unsubscribe = miniKit.subscribe(
           ResponseEvent.MiniAppVerifyAction,
           async (response: any) => {
             console.log('📦 [RAW RESPONSE]', JSON.stringify(response, null, 2));
@@ -433,14 +445,18 @@ export default function MobilityDashboard() {
 
         // Trigger the verification modal
         console.log('🎯 [TRIGGER] Calling window.MiniKit.commands.verify...');
-        window.MiniKit.commands.verify({
-          action,
-          signal: '',
-          verification_level: 'device',
-        });
+        if (typeof window !== 'undefined' && miniKit?.commands?.verify) {
+          miniKit.commands.verify({
+            action,
+            signal: '',
+            verification_level: 'device',
+          });
+        } else {
+          reject(new Error('MiniKit commands not available'));
+        }
       });
     },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       console.log('✅ Verification onSuccess called');
       
       // Add null checking before accessing data
@@ -1039,7 +1055,7 @@ export default function MobilityDashboard() {
         </Card>
 
         {/* Country Opportunities Section */}
-        {mobilityScore && mobilityScore.composite_score >= 300 && (
+        {score && score.composite_score >= 300 && (
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-center">
@@ -1047,7 +1063,7 @@ export default function MobilityDashboard() {
                 Country Opportunities
               </CardTitle>
               <CardDescription className="text-sm">
-                Based on your {mobilityScore.composite_score}-point mobility score
+                Based on your {score.composite_score}-point mobility score
               </CardDescription>
             </CardHeader>
             <CardContent>

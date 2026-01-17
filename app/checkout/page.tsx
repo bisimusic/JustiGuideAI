@@ -1,3 +1,5 @@
+"use client";
+
 // JustiGuide Payment Page - Direct Conversion Capture
 import { useState, useEffect } from 'react';
 import { useStripe, Elements, PaymentElement, useElements } from '@stripe/react-stripe-js';
@@ -10,10 +12,11 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Shield, Clock, Users } from "lucide-react";
 
 // Load Stripe
-if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
-  throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
+const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || process.env.VITE_STRIPE_PUBLIC_KEY;
+if (!stripeKey) {
+  console.warn('Stripe public key not found. Payment functionality may not work.');
 }
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+const stripePromise = stripeKey ? loadStripe(stripeKey) : null;
 
 // Service offerings based on revenue calculator pricing
 const services = [

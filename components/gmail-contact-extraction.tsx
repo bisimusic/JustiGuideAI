@@ -47,19 +47,24 @@ interface ExtractionResult {
   error?: string;
 }
 
+interface ContactsResponse {
+  contacts: Contact[];
+  total?: number;
+}
+
 export function GmailContactExtraction() {
   const [maxResults, setMaxResults] = useState(20);
   const [selectedSource, setSelectedSource] = useState<string>('all');
   const queryClient = useQueryClient();
 
   // Fetch all contacts
-  const { data: contactsData, isLoading: contactsLoading } = useQuery({
+  const { data: contactsData, isLoading: contactsLoading } = useQuery<ContactsResponse>({
     queryKey: ['/api/contacts'],
     staleTime: 30000
   });
 
   // Fetch contacts by source
-  const { data: sourceContactsData, isLoading: sourceLoading } = useQuery({
+  const { data: sourceContactsData, isLoading: sourceLoading } = useQuery<ContactsResponse>({
     queryKey: ['/api/contacts', selectedSource],
     enabled: selectedSource !== 'all',
     staleTime: 30000

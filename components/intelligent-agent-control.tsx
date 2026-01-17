@@ -73,7 +73,7 @@ export function IntelligentAgentControl() {
     );
   }
 
-  const status = agentStatus?.agent || {};
+  const status = (agentStatus as any)?.agent || {};
   const isRunning = status?.isRunning;
 
   return (
@@ -189,9 +189,9 @@ export function IntelligentAgentControl() {
         </div>
 
         {/* Status Message */}
-        {agentStatus?.message && (
+        {(agentStatus as any)?.message && (
           <div className="text-sm text-gray-600 bg-gray-50 dark:bg-gray-800 p-3 rounded">
-            {agentStatus.message}
+            {(agentStatus as any).message}
           </div>
         )}
         

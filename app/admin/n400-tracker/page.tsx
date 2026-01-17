@@ -39,7 +39,7 @@ interface N400Analytics {
   conversionRate: number;
 }
 
-export function N400ConversionTracker() {
+export default function N400ConversionTracker() {
   const [selectedView, setSelectedView] = useState('overview');
   const [refreshing, setRefreshing] = useState(false);
 

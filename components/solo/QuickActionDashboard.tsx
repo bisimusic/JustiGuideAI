@@ -170,7 +170,7 @@ export default function QuickActionDashboard() {
         endpoint = '/api/nurturing/conversion-campaign';
       }
       
-      return apiRequest(endpoint, { method: 'POST', body: {} });
+      return apiRequest(endpoint, { method: 'POST', body: JSON.stringify({}) });
     },
     onSuccess: (data, action) => {
       toast({

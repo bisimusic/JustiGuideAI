@@ -64,7 +64,7 @@ export default function StrategicEngagementDashboard() {
 
   const generateMessagesMutation = useMutation({
     mutationFn: async (investorData: any) => {
-      return apiRequest('POST', '/api/investor/personalized-messages', investorData);
+      return apiRequest('/api/investor/personalized-messages', { method: 'POST', body: JSON.stringify(investorData) });
     },
     onSuccess: () => {
       toast({
@@ -107,9 +107,9 @@ export default function StrategicEngagementDashboard() {
     );
   }
 
-  const pipeline = pipelineData?.analysis;
-  const campaigns = campaignsData?.campaigns;
-  const actionPlan = actionPlanData?.actionPlan;
+  const pipeline = (pipelineData as any)?.analysis;
+  const campaigns = (campaignsData as any)?.campaigns;
+  const actionPlan = (actionPlanData as any)?.actionPlan;
 
   return (
     <div className="space-y-6" data-testid="strategic-engagement-dashboard">

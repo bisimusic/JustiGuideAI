@@ -325,7 +325,7 @@ export function OptimizationDashboard() {
                     <Button 
                       variant="outline" 
                       size="sm"
-                      onClick={() => clearCacheMutation.mutate()}
+                      onClick={() => clearCacheMutation.mutate(undefined)}
                       disabled={clearCacheMutation.isPending}
                     >
                       {clearCacheMutation.isPending ? 'Clearing...' : 'Clear All Cache'}

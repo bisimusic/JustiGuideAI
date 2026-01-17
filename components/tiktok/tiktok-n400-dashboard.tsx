@@ -332,7 +332,7 @@ export function TikTokN400Dashboard() {
                     <div>
                       <h4 className="font-medium mb-2">N400 Indicators Found</h4>
                       <div className="space-y-1">
-                        {leadAnalysis.eligibilityIndicators.map((indicator, index) => (
+                        {leadAnalysis.eligibilityIndicators.map((indicator: any, index: number) => (
                           <div key={index} className="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded">
                             {indicator}
                           </div>

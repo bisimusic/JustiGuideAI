@@ -87,11 +87,11 @@ export default function LeverageDashboard() {
     );
   }
 
-  const analysis = analysisData?.analysis;
-  const strategies = strategiesData?.strategies;
-  const targets = targetsData?.targets;
-  const materials = materialsData?.materials;
-  const actionPlan = actionPlanData?.actionPlan;
+  const analysis = (analysisData as any)?.analysis;
+  const strategies = (strategiesData as any)?.strategies;
+  const targets = (targetsData as any)?.targets;
+  const materials = (materialsData as any)?.materials;
+  const actionPlan = (actionPlanData as any)?.actionPlan;
 
   return (
     <div className="space-y-6" data-testid="leverage-dashboard">

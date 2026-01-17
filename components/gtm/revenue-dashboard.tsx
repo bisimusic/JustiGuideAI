@@ -157,7 +157,7 @@ export function RevenueDashboard() {
       return pipeline;
     }
     
-    return pipeline.filter(lead => {
+    return pipeline.filter((lead: any) => {
       const leadService = lead.service;
       return (service === 'n400' && leadService === 'n400') ||
              (service === 'nonimmigrant_worker' && leadService === 'nonimmigrant_worker') ||
@@ -487,9 +487,9 @@ export function RevenueDashboard() {
             <TabsContent value={selectedService} className="space-y-4">
               <div className="grid gap-2 max-h-96 overflow-y-auto">
                 {getPipelineByService(selectedService)
-                  .sort((a, b) => b.expectedValue - a.expectedValue)
+                  .sort((a: any, b: any) => b.expectedValue - a.expectedValue)
                   .slice(0, 20)
-                  .map((lead, index) => (
+                  .map((lead: any, index: number) => (
                   <div key={lead.leadId} className="flex items-center justify-between p-4 border rounded-lg bg-white shadow-sm">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">

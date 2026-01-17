@@ -20,7 +20,7 @@ export function OperationsDashboard() {
 
   const { data: contacts } = useQuery({
     queryKey: ["/api/contacts"],
-    queryFn: () => api.getContacts(),
+    queryFn: () => fetch("/api/contacts").then(res => res.json()),
   });
 
   const dailyMetrics = {

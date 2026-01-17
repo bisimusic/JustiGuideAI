@@ -70,9 +70,9 @@ export default function CurrentInvestorOutreach() {
     );
   }
 
-  const outreach = outreachData?.outreach;
-  const profiles = profilesData?.profiles;
-  const actionPlan = actionPlanData?.actionPlan;
+  const outreach = (outreachData as any)?.outreach;
+  const profiles = (profilesData as any)?.profiles;
+  const actionPlan = (actionPlanData as any)?.actionPlan;
 
   return (
     <div className="space-y-6" data-testid="current-investor-outreach">
@@ -365,7 +365,7 @@ export default function CurrentInvestorOutreach() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      {Object.entries(actionPlan.expectedOutcomes).map(([investor, outcome]: [string, string], index: number) => (
+                      {Object.entries(actionPlan.expectedOutcomes).map(([investor, outcome]: [string, any], index: number) => (
                         <div key={index} className="p-2 border rounded">
                           <div className="font-medium text-sm">{investor}</div>
                           <div className="text-sm text-muted-foreground">{outcome}</div>

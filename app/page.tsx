@@ -49,7 +49,7 @@ export default function LandingPage() {
     mutationFn: async (data: WaitlistForm) => {
       const response = await apiRequest("/api/waitlist", {
         method: "POST",
-        body: data,
+        body: JSON.stringify(data),
       });
       return response;
     },
@@ -802,7 +802,7 @@ export default function LandingPage() {
           </div>
 
           <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-            <p>© 2025 JustiGuide. Built by immigrants, for immigrants.</p>
+            <p>© 2026 JustiGuide. Built by immigrants, for immigrants.</p>
           </div>
         </div>
       </footer>

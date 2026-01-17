@@ -17,7 +17,7 @@ import {
   Zap
 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
-import WebSocketTest from './WebSocketTest';
+// import WebSocketTest from './WebSocketTest'; // Component not found, commented out
 
 interface RealtimeStatsProps {
   onStatsUpdate?: (stats: any) => void;
@@ -227,7 +227,7 @@ export default function RealtimeUpdates({ onStatsUpdate }: RealtimeStatsProps) {
       )}
 
       {/* WebSocket Test Panel */}
-      <WebSocketTest />
+      {/* <WebSocketTest /> */}
 
       {/* Recent Activity */}
       <div className="grid gap-6 md:grid-cols-3">

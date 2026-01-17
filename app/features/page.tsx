@@ -1,5 +1,7 @@
+"use client";
+
 import { Play, Users, Brain, Zap, TrendingUp, Shield, Award, Tv } from "lucide-react";
-import logoImage from "@assets/file-VqtLhVngyJTcoRdkTestqJ-Guarder Icon - Transparent_1759804664573.png";
+const logoImage = "/assets/file-VqtLhVngyJTcoRdkTestqJ-Guarder Icon - Transparent_1759804664573.png";
 
 interface FeatureVideo {
   id: string;

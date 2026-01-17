@@ -268,7 +268,7 @@ export default function LeadsPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <LeadsList leads={filteredLeads} isLoading={isLoading} />
+                    <LeadsList leads={filteredLeads as any} isLoading={isLoading} />
                   </CardContent>
                 </Card>
               ) : (

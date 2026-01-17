@@ -89,12 +89,11 @@ export function SourceValidation() {
 
   // Calculate validation rate from actual API response
   const totalLeads = auditData.totalLeads || 0;
-  const leadsWithValidation = auditData.leadsWithValidation || 0;
-  const validationRate = totalLeads > 0 ? (leadsWithValidation / totalLeads) * 100 : 0;
-  const validSources = leadsWithValidation;
-  const invalidSources = totalLeads - leadsWithValidation;
-  const dataIntegrity = auditData.dataIntegrity || 'Unknown';
-  const lastAudit = auditData.lastAudit;
+  const validSources = auditData.validSources || 0;
+  const invalidSources = auditData.invalidSources || 0;
+  const validationRate = auditData.validationRate || (totalLeads > 0 ? (validSources / totalLeads) * 100 : 0);
+  const dataIntegrity = validationRate >= 95 ? 'Good' : validationRate >= 90 ? 'Fair' : 'Poor';
+  const lastAudit = auditData.lastAuditTime;
   
   // Mock issues and recommendations based on data integrity
   const issues = invalidSources > 0 ? [{

@@ -15,7 +15,7 @@ interface FollowUpStats {
   };
 }
 
-export function InvestorResponseDashboard() {
+export default function InvestorResponseDashboard() {
   const [stats, setStats] = useState<FollowUpStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState(new Date());

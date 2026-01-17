@@ -69,14 +69,14 @@ export function useRealtimeUI() {
       }, 2000);
     };
 
-    window.addEventListener('newLead', handleNewLead);
-    window.addEventListener('showToast', handleToast);
-    window.addEventListener('celebration', handleCelebration);
+    window.addEventListener('newLead', handleNewLead as EventListener);
+    window.addEventListener('showToast', handleToast as EventListener);
+    window.addEventListener('celebration', handleCelebration as EventListener);
 
     return () => {
-      window.removeEventListener('newLead', handleNewLead);
-      window.removeEventListener('showToast', handleToast);
-      window.removeEventListener('celebration', handleCelebration);
+      window.removeEventListener('newLead', handleNewLead as EventListener);
+      window.removeEventListener('showToast', handleToast as EventListener);
+      window.removeEventListener('celebration', handleCelebration as EventListener);
       
       if (wsRef.current) {
         wsRef.current.close();

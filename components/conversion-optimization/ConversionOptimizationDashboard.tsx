@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+"use client";
+
+import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -55,12 +56,14 @@ interface ABTestResult {
   improvement: number;
 }
 
-export function ConversionOptimizationDashboard() {
-  const [selectedVisaType, setSelectedVisaType] = useState<string>('all');
+type VisaType = 'all' | 'h1b' | 'green_card' | 'citizenship' | 'asylum' | 'family_visa' | 'eb5';
+
+export function ConversionOptimizationDashboard(): React.ReactElement {
+  const [selectedVisaType, setSelectedVisaType] = useState<VisaType>('all');
 
   const { data: dashboardData, isLoading } = useQuery({
     queryKey: ['/api/optimization/dashboard'],
-    refetchInterval: 60000 // Refresh every minute
+    refetchInterval: 60000
   });
 
   const { data: abTestResults } = useQuery({
@@ -81,6 +84,36 @@ export function ConversionOptimizationDashboard() {
 
   const data = dashboardData as OptimizationDashboardData;
 
+  // Tab configuration
+  const tabs: { value: VisaType; label: string }[] = [
+    { value: 'all', label: 'All Paths' },
+    { value: 'h1b', label: 'H1B' },
+    { value: 'green_card', label: 'Green Card' },
+    { value: 'citizenship', label: 'Citizenship' },
+    { value: 'asylum', label: 'Asylum' },
+    { value: 'family_visa', label: 'Family' },
+    { value: 'eb5', label: 'EB5' },
+  ];
+
+  // Filter data based on selected visa type
+  const filteredData = useMemo(() => {
+    if (selectedVisaType === 'all') {
+      return data;
+    }
+    return {
+      ...data,
+      visaPathPerformance: data.visaPathPerformance?.filter(path => path.visaType === selectedVisaType) || [],
+      topPerformingPaths: data.topPerformingPaths?.filter(path => path.visaType === selectedVisaType) || [],
+      optimizationOpportunities: data.optimizationOpportunities?.filter(path => path.visaType === selectedVisaType) || [],
+    };
+  }, [data, selectedVisaType]);
+
+  const filteredABTests = useMemo((): ABTestResult[] => {
+    if (!abTestResults || !Array.isArray(abTestResults)) return [];
+    if (selectedVisaType === 'all') return abTestResults as ABTestResult[];
+    return (abTestResults as ABTestResult[]).filter((test) => test.visaType === selectedVisaType);
+  }, [abTestResults, selectedVisaType]);
+
   return (
     <div className="space-y-6" data-testid="optimization-dashboard">
       {/* Overview Cards */}
@@ -92,9 +125,7 @@ export function ConversionOptimizationDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data.totalLeadsOptimized?.toLocaleString() || 0}</div>
-            <p className="text-xs text-muted-foreground">
-              Last 30 days
-            </p>
+            <p className="text-xs text-muted-foreground">Last 30 days</p>
           </CardContent>
         </Card>
 
@@ -107,9 +138,7 @@ export function ConversionOptimizationDashboard() {
             <div className="text-2xl font-bold">
               {data.averageConversionRate?.toFixed(1) || 0}%
             </div>
-            <p className="text-xs text-muted-foreground">
-              Across all visa paths
-            </p>
+            <p className="text-xs text-muted-foreground">Across all visa paths</p>
           </CardContent>
         </Card>
 
@@ -120,9 +149,7 @@ export function ConversionOptimizationDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data.activeOptimizationTests || 0}</div>
-            <p className="text-xs text-muted-foreground">
-              Currently running
-            </p>
+            <p className="text-xs text-muted-foreground">Currently running</p>
           </CardContent>
         </Card>
 
@@ -133,25 +160,33 @@ export function ConversionOptimizationDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data.optimizationOpportunities?.length || 0}</div>
-            <p className="text-xs text-muted-foreground">
-              Paths to improve
-            </p>
+            <p className="text-xs text-muted-foreground">Paths to improve</p>
           </CardContent>
         </Card>
       </div>
 
-      <Tabs value={selectedVisaType} onValueChange={setSelectedVisaType} className="w-full">
-        <TabsList className="grid w-full grid-cols-7">
-          <TabsTrigger value="all">All Paths</TabsTrigger>
-          <TabsTrigger value="h1b">H1B</TabsTrigger>
-          <TabsTrigger value="green_card">Green Card</TabsTrigger>
-          <TabsTrigger value="citizenship">Citizenship</TabsTrigger>
-          <TabsTrigger value="asylum">Asylum</TabsTrigger>
-          <TabsTrigger value="family_visa">Family</TabsTrigger>
-          <TabsTrigger value="eb5">EB5</TabsTrigger>
-        </TabsList>
+      {/* Tab Navigation */}
+      <div className="border-b border-gray-200">
+        <nav className="flex space-x-1 overflow-x-auto" aria-label="Visa type tabs">
+          {tabs.map((tab) => (
+            <button
+              key={tab.value}
+              onClick={() => setSelectedVisaType(tab.value)}
+              className={`px-4 py-2 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
+                selectedVisaType === tab.value
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+      </div>
 
-        <TabsContent value="all" className="space-y-6">
+      {/* Content based on selected tab */}
+      {selectedVisaType === 'all' ? (
+        <>
           {/* Top Performing Paths */}
           <Card data-testid="top-performing-card">
             <CardHeader>
@@ -159,13 +194,11 @@ export function ConversionOptimizationDashboard() {
                 <Target className="h-5 w-5" />
                 Top Performing Visa Paths
               </CardTitle>
-              <CardDescription>
-                Best converting paths in the last 30 days
-              </CardDescription>
+              <CardDescription>Best converting paths in the last 30 days</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {data.topPerformingPaths?.map((path, index) => (
+                {filteredData.topPerformingPaths?.map((path, index) => (
                   <div 
                     key={`${path.visaType}-${path.serviceType}`} 
                     className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
@@ -203,13 +236,11 @@ export function ConversionOptimizationDashboard() {
                 <Zap className="h-5 w-5" />
                 Optimization Opportunities
               </CardTitle>
-              <CardDescription>
-                Visa paths with the highest improvement potential
-              </CardDescription>
+              <CardDescription>Visa paths with the highest improvement potential</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {data.optimizationOpportunities?.map((opportunity, index) => (
+                {filteredData.optimizationOpportunities?.map((opportunity, index) => (
                   <div 
                     key={`${opportunity.visaType}-${opportunity.serviceType}`}
                     className="border border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 dark:border-yellow-800 rounded-lg p-4"
@@ -266,35 +297,28 @@ export function ConversionOptimizationDashboard() {
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
-
-        {/* Individual visa type tabs would show filtered data */}
-        {(['h1b', 'green_card', 'citizenship', 'asylum', 'family_visa', 'eb5'] as const).map(visaType => (
-          <TabsContent key={visaType} value={visaType} className="space-y-6">
-            <VisaTypeOptimizationView 
-              visaType={visaType} 
-              data={data.visaPathPerformance?.filter(path => path.visaType === visaType) || []}
-              abTests={abTestResults?.filter((test: ABTestResult) => test.visaType === visaType) || []}
-            />
-          </TabsContent>
-        ))}
-      </Tabs>
+        </>
+      ) : (
+        <VisaTypeOptimizationView 
+          visaType={selectedVisaType} 
+          data={filteredData.visaPathPerformance || []}
+          abTests={filteredABTests}
+        />
+      )}
 
       {/* Active A/B Tests Section */}
-      {abTestResults && abTestResults.length > 0 && (
+      {filteredABTests && filteredABTests.length > 0 && (
         <Card data-testid="active-ab-tests-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TestTube className="h-5 w-5" />
               Active A/B Tests
             </CardTitle>
-            <CardDescription>
-              Currently running optimization experiments
-            </CardDescription>
+            <CardDescription>Currently running optimization experiments</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {abTestResults.map((test: ABTestResult, index: number) => (
+              {filteredABTests.map((test: ABTestResult, index: number) => (
                 <div 
                   key={test.testId} 
                   className="border rounded-lg p-4"
@@ -353,7 +377,7 @@ function VisaTypeOptimizationView({
   visaType: string; 
   data: VisaPathPerformance[]; 
   abTests: ABTestResult[];
-}) {
+}): React.ReactElement {
   if (data.length === 0) {
     return (
       <Card>

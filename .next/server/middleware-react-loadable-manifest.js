@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST='{"node_modules/viem/_esm/actions/public/call.js -> ../../utils/ccip.js":{"id":16514,"files":["static/chunks/6514.49c83ab64955ce45.js"]},"node_modules/viem/_esm/utils/rpc/webSocket.js -> isows":{"id":null,"files":[]},"node_modules/viem/_esm/utils/signature/recoverPublicKey.js -> @noble/curves/secp256k1":{"id":80969,"files":[]}}';

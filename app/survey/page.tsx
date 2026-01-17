@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'wouter';
+"use client";
+
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -8,8 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle2 } from 'lucide-react';
 import { apiRequest } from '@/lib/queryClient';
 
-export default function Survey() {
-  const [searchParams] = useState(() => new URLSearchParams(window.location.search));
+function SurveyContent() {
+  const searchParams = useSearchParams();
   const email = searchParams.get('email') || '';
   const name = searchParams.get('name') || '';
   
@@ -320,5 +322,13 @@ export default function Survey() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function Survey() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+      <SurveyContent />
+    </Suspense>
   );
 }

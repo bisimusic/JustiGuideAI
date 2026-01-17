@@ -91,8 +91,8 @@ export function LawyerSocialListening() {
     },
   });
 
-  const stats: LawyerStats | undefined = statsData?.stats;
-  const leads: LawyerLead[] = leadsData?.leads || [];
+  const stats: LawyerStats | undefined = (statsData as any)?.stats;
+  const leads: LawyerLead[] = (leadsData as any)?.leads || [];
 
   const getScoreColor = (score: number) => {
     if (score >= 8) return 'text-green-600 dark:text-green-400';

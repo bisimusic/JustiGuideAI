@@ -46,7 +46,7 @@ export default function EnhancedOutreachDashboard() {
 
   const createCampaignMutation = useMutation({
     mutationFn: async (campaignData: any) => {
-      return apiRequest('POST', '/api/investor/outreach/campaign', campaignData);
+      return apiRequest('/api/investor/outreach/campaign', { method: 'POST', body: JSON.stringify(campaignData) });
     },
     onSuccess: () => {
       toast({
@@ -92,9 +92,9 @@ export default function EnhancedOutreachDashboard() {
     );
   }
 
-  const analysis = analysisData?.analysis;
-  const timing = timingData?.timing;
-  const competitive = competitiveData?.intelligence;
+  const analysis = (analysisData as any)?.analysis;
+  const timing = (timingData as any)?.timing;
+  const competitive = (competitiveData as any)?.intelligence;
 
   return (
     <div className="space-y-6" data-testid="enhanced-outreach-dashboard">
@@ -312,7 +312,7 @@ export default function EnhancedOutreachDashboard() {
                   </div>
                   <div>
                     <Label htmlFor="campaign-type">Campaign Type</Label>
-                    <Select value={selectedCampaignType} onValueChange={setSelectedCampaignType}>
+                      <Select value={selectedCampaignType} onValueChange={(value) => setSelectedCampaignType(value as 'initial' | 'followup' | 'update' | 'ask')}>
                       <SelectTrigger data-testid="select-campaign-type">
                         <SelectValue />
                       </SelectTrigger>

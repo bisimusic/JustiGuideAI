@@ -10,7 +10,37 @@ import { Copy, DollarSign, Users, TrendingUp, Mail, ExternalLink } from "lucide-
 import { useToast } from "@/hooks/use-toast";
 import { useUTMTracking } from "@/hooks/useUTMTracking";
 import { PaymentCallToAction } from "@/components/PaymentCallToAction";
-import type { Referral, UserCredits, CreditTransaction } from "@shared/schema";
+// Types for referral system
+interface Referral {
+  id: string;
+  referrerEmail: string;
+  referredEmail: string;
+  status: 'pending' | 'completed' | 'cancelled';
+  creditsAwarded: number;
+  createdAt: string;
+  referralCode?: string;
+  signupDate?: string;
+  referralUrl?: string;
+}
+
+interface UserCredits {
+  total: number;
+  used: number;
+  available: number;
+  balance: number;
+  totalEarned: number;
+}
+
+interface CreditTransaction {
+  id: string;
+  userId: string;
+  amount: number;
+  type: 'earned' | 'used' | 'expired';
+  description: string;
+  createdAt: string;
+  status?: string;
+  balanceAfter?: number;
+}
 
 interface ReferralDashboardData {
   credits: UserCredits;
@@ -201,7 +231,7 @@ export default function ReferralsPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-600">
-                {formatCurrency(dashboardData?.credits?.balance || "0")}
+                {formatCurrency(String(dashboardData?.credits?.balance || 0))}
               </div>
               <p className="text-xs text-muted-foreground">
                 Available for use
@@ -231,7 +261,7 @@ export default function ReferralsPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-600">
-                {formatCurrency(dashboardData?.credits?.totalEarned || "0")}
+                {formatCurrency(String(dashboardData?.credits?.totalEarned || 0))}
               </div>
               <p className="text-xs text-muted-foreground">
                 Lifetime earnings
@@ -317,7 +347,7 @@ export default function ReferralsPage() {
                         </div>
                         <div className="flex items-center gap-3">
                           {getStatusBadge(referral.status)}
-                          {referral.creditAwarded && (
+                          {referral.creditsAwarded && (
                             <Badge variant="default" className="bg-green-100 text-green-800">
                               $100 Earned
                             </Badge>
@@ -369,13 +399,13 @@ export default function ReferralsPage() {
                         </div>
                         <div className="text-right">
                           <div className={`font-medium ${
-                            parseFloat(transaction.amount) > 0 ? 'text-green-600' : 'text-red-600'
+                            transaction.amount > 0 ? 'text-green-600' : 'text-red-600'
                           }`}>
-                            {parseFloat(transaction.amount) > 0 ? '+' : ''}
-                            {formatCurrency(transaction.amount)}
+                            {transaction.amount > 0 ? '+' : ''}
+                            {formatCurrency(String(transaction.amount))}
                           </div>
                           <div className="text-sm text-muted-foreground">
-                            Balance: {formatCurrency(transaction.balanceAfter)}
+                            Balance: {formatCurrency(String(transaction.balanceAfter || 0))}
                           </div>
                         </div>
                       </div>
