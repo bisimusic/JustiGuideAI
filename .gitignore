@@ -12,3 +12,7 @@ vite.config.ts.*
 .env*.local
 .env.bak
 data/contacts/
+
+# Admin pages - exclude from deployment
+app/admin/
+app/api/admin/
