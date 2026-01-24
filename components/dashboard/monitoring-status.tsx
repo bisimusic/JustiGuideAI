@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, AlertCircle, Clock, Zap } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { DashboardStats } from "@/types";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -209,12 +209,68 @@ export default function MonitoringStatus({ stats }: MonitoringStatusProps) {
     );
   };
 
+  const [monitoringStatus, setMonitoringStatus] = useState<{ isRunning: boolean } | null>(null);
+
+  // Fetch monitoring status on mount
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const response = await fetch('/api/monitoring/status');
+        const data = await response.json();
+        if (data.success && data.monitoring) {
+          setMonitoringStatus(data.monitoring);
+        }
+      } catch (error) {
+        console.error('Failed to fetch monitoring status:', error);
+      }
+    };
+    fetchStatus();
+    const interval = setInterval(fetchStatus, 30000); // Refresh every 30 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  const toggleMonitoring = async () => {
+    try {
+      const endpoint = monitoringStatus?.isRunning ? '/api/monitoring/stop' : '/api/monitoring/start';
+      const response = await fetch(endpoint, { method: 'POST' });
+      const data = await response.json();
+      
+      if (data.success) {
+        setMonitoringStatus({ isRunning: !monitoringStatus?.isRunning });
+        alert(data.message || (monitoringStatus?.isRunning ? 'Monitoring stopped' : 'Monitoring started'));
+      } else {
+        alert(data.error || 'Failed to toggle monitoring');
+      }
+    } catch (error) {
+      console.error('Failed to toggle monitoring:', error);
+      alert('Failed to toggle monitoring. Make sure the Express server is running.');
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-semibold text-gray-900">Platform Monitoring Status</CardTitle>
           <div className="flex items-center space-x-4">
+            <Button
+              onClick={toggleMonitoring}
+              size="sm"
+              variant={monitoringStatus?.isRunning ? "destructive" : "default"}
+              className="flex items-center space-x-2"
+            >
+              {monitoringStatus?.isRunning ? (
+                <>
+                  <AlertCircle className="h-4 w-4" />
+                  <span>Stop Monitoring</span>
+                </>
+              ) : (
+                <>
+                  <CheckCircle className="h-4 w-4" />
+                  <span>Start Monitoring</span>
+                </>
+              )}
+            </Button>
             <Button
               onClick={triggerManualScan}
               disabled={isScanning}
@@ -226,8 +282,10 @@ export default function MonitoringStatus({ stats }: MonitoringStatusProps) {
               <span>{isScanning ? 'Scanning...' : 'Manual Scan'}</span>
             </Button>
             <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-blue-500 rounded-full" />
-              <span className="text-sm font-medium text-gray-700">Manual Control</span>
+              <div className={`w-3 h-3 rounded-full ${monitoringStatus?.isRunning ? 'bg-green-500' : 'bg-gray-400'}`} />
+              <span className="text-sm font-medium text-gray-700">
+                {monitoringStatus?.isRunning ? 'Monitoring Active' : 'Monitoring Inactive'}
+              </span>
             </div>
           </div>
         </div>

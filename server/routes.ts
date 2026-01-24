@@ -2456,6 +2456,47 @@ export async function registerRoutes(app: Express) {
     }
   });
 
+  // Check when leads were last populated
+  app.get("/api/leads/last-populated", async (req, res) => {
+    try {
+      // Try to get the most recent lead by discoveredAt
+      const { leads } = await import("@shared/schema");
+      const [mostRecent] = await storage.db.select()
+        .from(leads)
+        .orderBy(desc(leads.discoveredAt))
+        .limit(1);
+
+      if (mostRecent) {
+        res.json({
+          success: true,
+          lastPopulated: mostRecent.discoveredAt,
+          mostRecentLead: {
+            id: mostRecent.id,
+            title: mostRecent.title,
+            platform: mostRecent.sourcePlatform,
+            discoveredAt: mostRecent.discoveredAt,
+            updatedAt: mostRecent.updatedAt,
+          },
+          totalLeads: await storage.db.select({ count: sql`count(*)` }).from(leads).then(r => Number(r[0]?.count || 0)),
+        });
+      } else {
+        res.json({
+          success: true,
+          lastPopulated: null,
+          message: "No leads found in database",
+          totalLeads: 0,
+        });
+      }
+    } catch (error: any) {
+      console.error("Get last populated error:", error);
+      res.status(500).json({ 
+        success: false,
+        error: "Failed to check when leads were last populated",
+        message: error.message 
+      });
+    }
+  });
+
   // Leads routes (optimized with memory caching)
   app.get("/api/leads", async (req, res) => {
     try {
@@ -3037,6 +3078,107 @@ export async function registerRoutes(app: Express) {
     } catch (error) {
       console.error("Get contacts by source error:", error);
       res.status(500).json({ error: "Failed to fetch contacts by source" });
+    }
+  });
+
+  // Import contacts from CSV files
+  app.post("/api/contacts/import-group", async (req, res) => {
+    try {
+      const { contacts } = req.body;
+      const GROUP_NAME = 'Sunday Service & Founder Events';
+      
+      if (!contacts || !Array.isArray(contacts)) {
+        return res.status(400).json({ error: "Contacts array is required" });
+      }
+
+      console.log(`📥 Received ${contacts.length} contacts to import...`);
+
+      let imported = 0;
+      let updated = 0;
+      let errors = 0;
+      const errorDetails: string[] = [];
+
+      // Process in batches to avoid overwhelming the database
+      const batchSize = 100;
+      for (let i = 0; i < contacts.length; i += batchSize) {
+        const batch = contacts.slice(i, i + batchSize);
+        console.log(`Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(contacts.length / batchSize)}...`);
+
+        for (const contact of batch) {
+          try {
+            const email = contact.email.toLowerCase().trim();
+            
+            // Use emailCaptures table to store contacts (it has email, source, metadata fields)
+            const existing = await storage.db.select()
+              .from(emailCaptures)
+              .where(eq(emailCaptures.email, email))
+              .limit(1);
+
+            const contactMetadata = {
+              firstName: contact.firstName || null,
+              lastName: contact.lastName || null,
+              phone: contact.phone || null,
+              company: contact.company || null,
+              linkedin: contact.linkedin || null,
+              group: GROUP_NAME,
+              source: contact.source || GROUP_NAME,
+              notes: contact.notes || null,
+              importedAt: new Date().toISOString(),
+            };
+
+            if (existing.length > 0) {
+              // Update existing contact - merge sources array
+              const currentSources = (existing[0].sources as string[]) || [];
+              const newSource = contact.source || GROUP_NAME;
+              const updatedSources = currentSources.includes(newSource) 
+                ? currentSources 
+                : [...currentSources, newSource];
+              
+              await storage.db.update(emailCaptures)
+                .set({
+                  sources: updatedSources,
+                  metadata: {
+                    ...(existing[0].metadata as any || {}),
+                    ...contactMetadata,
+                  },
+                  captureDate: new Date(),
+                })
+                .where(eq(emailCaptures.email, email));
+              updated++;
+            } else {
+              // Insert new contact
+              await storage.db.insert(emailCaptures).values({
+                email: email,
+                sources: [contact.source || GROUP_NAME],
+                status: 'active',
+                captureDate: new Date(),
+                metadata: contactMetadata,
+              });
+              imported++;
+            }
+          } catch (error: any) {
+            errors++;
+            if (errors <= 10) {
+              errorDetails.push(`${contact.email}: ${error.message}`);
+            }
+            console.error(`Error importing contact ${contact.email}:`, error.message);
+          }
+        }
+      }
+
+      console.log(`✅ Imported ${imported} new contacts, updated ${updated} existing contacts`);
+
+      res.json({
+        success: true,
+        imported,
+        updated,
+        errors,
+        total: contacts.length,
+        errorDetails: errors > 0 ? errorDetails.slice(0, 10) : [], // First 10 errors
+      });
+    } catch (error: any) {
+      console.error("Import contacts error:", error);
+      res.status(500).json({ error: error.message || "Failed to import contacts" });
     }
   });
 

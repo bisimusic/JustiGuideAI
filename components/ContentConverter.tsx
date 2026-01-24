@@ -54,12 +54,38 @@ export function ContentConverter() {
   // Fetch Substack recommendations
   const { data: recommendations, isLoading: loadingRecommendations } = useQuery({
     queryKey: ['/api/content/substack/recommendations'],
+    queryFn: async () => {
+      try {
+        const response = await fetch('/api/content/substack/recommendations');
+        if (!response.ok) {
+          return { candidates: [] };
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Failed to fetch Substack recommendations:', error);
+        return { candidates: [] };
+      }
+    },
     refetchInterval: false
   });
 
   // Fetch content templates
   const { data: templatesData, isLoading: loadingTemplates } = useQuery({
     queryKey: ['/api/content/templates'],
+    queryFn: async () => {
+      try {
+        const response = await fetch('/api/content/templates');
+        if (!response.ok) {
+          return { templates: [] };
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Failed to fetch content templates:', error);
+        return { templates: [] };
+      }
+    },
     refetchInterval: false
   });
 

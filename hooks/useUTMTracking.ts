@@ -297,32 +297,44 @@ class UTMTrackingService {
 // React hook for using UTM tracking
 export function useUTMTracking() {
   const [utmData, setUTMData] = useState<UTMTrackingData | null>(null);
-  const service = UTMTrackingService.getInstance();
-
+  
   useEffect(() => {
+    // Only run in browser
+    if (typeof window === 'undefined') return;
+    
+    const service = UTMTrackingService.getInstance();
+    
     // Get initial data
     setUTMData(service.getUTMData());
 
     // Subscribe to changes
     const unsubscribe = service.subscribe(setUTMData);
     return unsubscribe;
-  }, [service]);
+  }, []);
 
   const getUTMParameters = useCallback(() => {
+    if (typeof window === 'undefined') return {};
+    const service = UTMTrackingService.getInstance();
     return service.getUTMParameters();
-  }, [service]);
+  }, []);
 
   const getTrackingParameters = useCallback(() => {
+    if (typeof window === 'undefined') return {};
+    const service = UTMTrackingService.getInstance();
     return service.getTrackingParameters();
-  }, [service]);
+  }, []);
 
   const appendUTMToUrl = useCallback((url: string) => {
+    if (typeof window === 'undefined') return url;
+    const service = UTMTrackingService.getInstance();
     return service.appendUTMToUrl(url);
-  }, [service]);
+  }, []);
 
   const updateUTMData = useCallback((updates: Partial<UTMParameters>) => {
+    if (typeof window === 'undefined') return;
+    const service = UTMTrackingService.getInstance();
     service.updateUTMData(updates);
-  }, [service]);
+  }, []);
 
   return {
     utmData,

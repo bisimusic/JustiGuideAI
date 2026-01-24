@@ -1,0 +1,10 @@
+IMPORT STATUS
+=============
+
+Last checked: Not yet run
+
+To see current status, run:
+  npx ts-node server/scripts/check-import-status.ts
+
+To start import, run:
+  npx ts-node server/scripts/test-and-import.ts

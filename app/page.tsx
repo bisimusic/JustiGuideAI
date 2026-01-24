@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Award, CheckCircle, Clock, Users, MessageCircle, Shield, Zap, Globe, Heart, Star, Mail, MapPin, Phone } from "lucide-react";
+import { Award, CheckCircle, Clock, Users, MessageCircle, Shield, Zap, Globe, Heart, Star, Mail, MapPin, Phone, ArrowRight } from "lucide-react";
 
 // Image paths - Next.js serves files from public/ at the root
 const logoImage = "/assets/file-VqtLhVngyJTcoRdkTestqJ-Guarder Icon - Transparent_1759804664573.png";
@@ -82,11 +82,11 @@ export default function LandingPage() {
           <span className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white text-xs font-bold px-2 py-1 rounded-full">NEW</span>
           <span className="font-medium">O1A Jet-Filing for Founders — Just-In-Time, attorney review, 80% cost reduction</span>
           <a 
-            href="mailto:o1a@justiguide.com?subject=O1A%20Beta%20Access%20Request" 
+            href="/o1a-webinar" 
             className="bg-white text-[#0F172A] px-4 py-1.5 rounded-full font-semibold text-sm hover:bg-gray-100 transition-colors whitespace-nowrap"
             data-testid="link-o1a-early-access"
           >
-            Get Early Access →
+            Learn More →
           </a>
         </div>
       </div>
@@ -353,6 +353,67 @@ export default function LandingPage() {
                     <span className="bg-white/10 text-white px-4 py-2 rounded-full text-sm">Researchers</span>
                     <span className="bg-white/10 text-white px-4 py-2 rounded-full text-sm">Artists</span>
                     <span className="bg-white/10 text-white px-4 py-2 rounded-full text-sm">Athletes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EU Residency Section */}
+      <section className="py-[80px] bg-gradient-to-br from-[#F8FAFC] to-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-[#6B5FCF]/5 to-[#5B8DEE]/5 rounded-full blur-[80px]"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="bg-white rounded-3xl p-10 shadow-xl border border-gray-200">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6B5FCF]/10 to-[#5B8DEE]/10 border border-[#6B5FCF]/20 text-[#6B5FCF] px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Globe className="w-4 h-4" />
+                  <span>European Residency</span>
+                </div>
+                
+                <h2 className="text-[36px] md:text-[42px] font-bold text-[#0F172A] mb-4 leading-[1.1]">
+                  Earn a Highly Qualified Talent Residency in Europe
+                </h2>
+                
+                <p className="text-lg text-[#1E293B] mb-6 leading-relaxed">
+                  Fast-track your path to European residency with university-backed support. Residency granted in 4-6 months — faster than most EU residency paths.
+                </p>
+
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#6B5FCF] flex-shrink-0" />
+                    <span className="text-[#1E293B]">Faster than most EU residency/citizenship paths</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#6B5FCF] flex-shrink-0" />
+                    <span className="text-[#1E293B]">Supporting University backs your application</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#6B5FCF] flex-shrink-0" />
+                    <span className="text-[#1E293B]">Residency granted in 4-6 months</span>
+                  </div>
+                </div>
+
+                <a
+                  href="/eu"
+                  className="inline-flex items-center gap-3 bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-[0_4px_20px_rgba(107,95,207,0.25)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
+                >
+                  Learn More About EU Residency
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
+
+              <div className="relative">
+                <div className="bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-2xl p-8 border border-[#6B5FCF]/20">
+                  <div className="text-center">
+                    <Globe className="w-20 h-20 text-[#6B5FCF] mx-auto mb-6" />
+                    <h3 className="text-2xl font-bold text-[#0F172A] mb-4">European Access</h3>
+                    <p className="text-[#1E293B] leading-relaxed">
+                      Gain residency rights in Europe, opening doors to work, study, and live across EU member states.
+                    </p>
                   </div>
                 </div>
               </div>

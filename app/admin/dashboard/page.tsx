@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { RefreshCw, Send } from "lucide-react";
 import Sidebar from "@/components/layout/sidebar";
 import StatsGrid from "@/components/dashboard/stats-grid";
 import LeadsList from "@/components/dashboard/leads-list";
@@ -83,78 +86,89 @@ export default function Dashboard() {
 
 
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className="min-h-screen flex bg-gradient-to-br from-slate-50 via-white to-slate-50">
       <Sidebar />
       
       <main className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">JustiGuide GTM Engine</h1>
-              <p className="text-blue-100 mt-1">Go-to-Market Operations • AI-Powered Lead Generation • Immigration Tech Platform</p>
-              <div className="flex items-center space-x-4 mt-2">
-                <span className="text-sm bg-blue-500 px-2 py-1 rounded">Lead Generation</span>
-                <span className="text-sm bg-green-500 px-2 py-1 rounded">{stats?.totalLeads || 0} Leads</span>
-                <span className="text-sm bg-purple-500 px-2 py-1 rounded">AI-Powered</span>
+        {/* Header - Enterprise Grade */}
+        <header className="bg-white border-b border-slate-200 shadow-sm">
+          <div className="px-8 py-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-slate-900 mb-1">JustiGuide GTM Engine</h1>
+                <p className="text-slate-600">Go-to-Market Operations • AI-Powered Lead Generation • Immigration Tech Platform</p>
+                <div className="flex items-center space-x-3 mt-3">
+                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                    Lead Generation
+                  </Badge>
+                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
+                    {stats?.totalLeads || 0} Leads
+                  </Badge>
+                  <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+                    AI-Powered
+                  </Badge>
+                </div>
               </div>
-            </div>
-            
-            {/* Quick Actions */}
-            <div className="flex space-x-3">
-              <button 
-                onClick={() => refetchStats()}
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm font-medium"
-              >
-                Sync Data
-              </button>
-              <button className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors text-sm font-medium">
-                Send Daily Update
-              </button>
+              
+              {/* Quick Actions */}
+              <div className="flex space-x-3">
+                <Button 
+                  variant="outline"
+                  onClick={() => refetchStats()}
+                  className="gap-2"
+                >
+                  <RefreshCw className="h-4 w-4" />
+                  Sync Data
+                </Button>
+                <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700">
+                  <Send className="h-4 w-4" />
+                  Send Daily Update
+                </Button>
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Navigation Tabs - Organized to match sidebar structure */}
-        <div className="bg-white border-b border-gray-200">
-          <nav className="px-6">
-            <div className="flex space-x-8">
+        {/* Navigation Tabs - Enterprise Grade */}
+        <div className="bg-white border-b border-slate-200">
+          <nav className="px-8">
+            <div className="flex space-x-1">
               <button
                 onClick={() => setActiveTab("overview")}
-                className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 ${
+                className={`px-4 py-4 border-b-2 font-medium text-sm flex items-center space-x-2 transition-colors ${
                   activeTab === "overview"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                    ? "border-blue-600 text-blue-600 bg-blue-50/50"
+                    : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                 }`}
               >
                 <span>🎯</span><span>Overview</span>
               </button>
               <button
                 onClick={() => setActiveTab("leads")}
-                className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 ${
+                className={`px-4 py-4 border-b-2 font-medium text-sm flex items-center space-x-2 transition-colors ${
                   activeTab === "leads"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                    ? "border-blue-600 text-blue-600 bg-blue-50/50"
+                    : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                 }`}
               >
                 <span>👥</span><span>Leads & Pipeline</span>
               </button>
               <button
                 onClick={() => setActiveTab("ai-analysis")}
-                className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 ${
+                className={`px-4 py-4 border-b-2 font-medium text-sm flex items-center space-x-2 transition-colors ${
                   activeTab === "ai-analysis"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                    ? "border-blue-600 text-blue-600 bg-blue-50/50"
+                    : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                 }`}
               >
                 <span>🤖</span><span>AI Analysis</span>
               </button>
               <button
                 onClick={() => setActiveTab("monitoring")}
-                className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 ${
+                className={`px-4 py-4 border-b-2 font-medium text-sm flex items-center space-x-2 transition-colors ${
                   activeTab === "monitoring"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                    ? "border-blue-600 text-blue-600 bg-blue-50/50"
+                    : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                 }`}
               >
                 <span>📊</span><span>Source Monitoring</span>
@@ -169,8 +183,8 @@ export default function Dashboard() {
 
 
 
-        {/* Dashboard Content */}
-        <div className="flex-1 overflow-auto p-6 space-y-6">
+        {/* Dashboard Content - Enterprise Grade */}
+        <div className="flex-1 overflow-auto bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8 space-y-6">
           {activeTab === "overview" && (
             <div className="space-y-6">
               <StatsGrid stats={stats} isLoading={statsLoading} />

@@ -74,12 +74,26 @@ export default function EnhancedPersonaDashboard() {
   // Fetch extended persona analysis
   const { data: analysisData, isLoading: analysisLoading, refetch: refetchAnalysis } = useQuery({
     queryKey: ['/api/persona/extended-analysis', sampleSize],
+    queryFn: async () => {
+      const response = await fetch(`/api/persona/extended-analysis?sampleSize=${sampleSize}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch persona analysis');
+      }
+      return response.json();
+    },
     enabled: true
   });
 
   // Fetch investor prospects
   const { data: investorData, isLoading: investorLoading } = useQuery({
     queryKey: ['/api/persona/investor-prospects'],
+    queryFn: async () => {
+      const response = await fetch('/api/persona/investor-prospects');
+      if (!response.ok) {
+        throw new Error('Failed to fetch investor prospects');
+      }
+      return response.json();
+    },
     enabled: true
   });
 

@@ -77,6 +77,18 @@ export default function Sidebar() {
       active: pathname === "/admin/referrals"
     },
     { 
+      icon: Users, 
+      label: "Contacts", 
+      href: "/admin/contacts", 
+      active: pathname === "/admin/contacts"
+    },
+    { 
+      icon: Mail, 
+      label: "Newsletter", 
+      href: "/admin/newsletter", 
+      active: pathname === "/admin/newsletter"
+    },
+    { 
       icon: Globe, 
       label: "Mobility ID", 
       href: "/admin/mobility", 

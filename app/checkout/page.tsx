@@ -1,7 +1,8 @@
 "use client";
 
 // JustiGuide Payment Page - Direct Conversion Capture
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useStripe, Elements, PaymentElement, useElements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { apiRequest } from "@/lib/queryClient";
@@ -21,12 +22,20 @@ const stripePromise = stripeKey ? loadStripe(stripeKey) : null;
 // Service offerings based on revenue calculator pricing
 const services = [
   {
+    id: 'o1a_readiness_assessment',
+    name: 'O-1A Readiness Assessment',
+    description: 'A personalized, attorney-reviewed roadmap to your O-1A eligibility',
+    price: 149,
+    features: ['Personalized eligibility evaluation', 'Attorney-reviewed roadmap', 'Evidence preparation guide', 'Timeline and budget planning'],
+    popular: true,
+    type: 'one-time'
+  },
+  {
     id: 'd2c_n400',
     name: 'U.S. Citizenship Application (N-400)',
     description: 'Complete assistance with your naturalization application',
     price: 499,
     features: ['Expert guidance', 'Document preparation', 'Application review', '90-day support'],
-    popular: true,
     type: 'one-time'
   },
   {
@@ -224,10 +233,29 @@ const ServiceSelector = ({ onSelectService }: { onSelectService: (service: any) 
   );
 };
 
-export default function Checkout() {
+function CheckoutContent() {
+  const searchParams = useSearchParams();
   const [selectedService, setSelectedService] = useState<any>(null);
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Check URL parameters for service selection
+  useEffect(() => {
+    const serviceId = searchParams.get('service');
+    const price = searchParams.get('price');
+    
+    if (serviceId) {
+      // Find service by ID
+      const service = services.find(s => s.id === serviceId);
+      if (service) {
+        // Override price if provided in URL
+        if (price) {
+          service.price = parseInt(price);
+        }
+        setSelectedService(service);
+      }
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (selectedService) {
@@ -275,5 +303,20 @@ export default function Checkout() {
     <Elements stripe={stripePromise} options={{ clientSecret }}>
       <CheckoutForm selectedService={selectedService} clientSecret={clientSecret} />
     </Elements>
+  );
+}
+
+export default function Checkout() {
+  return (
+    <Suspense fallback={
+      <div className="h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-2" />
+          <p>Loading...</p>
+        </div>
+      </div>
+    }>
+      <CheckoutContent />
+    </Suspense>
   );
 }

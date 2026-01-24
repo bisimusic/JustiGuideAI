@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "totalContacts": 10900,
+  "validContacts": 10900,
+  "sent": 0,
+  "failed": 10900,
+  "sentEmails": [],
+  "failedEmails": [
+    {
+      "email": "abhay.venkatesh@gmail.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 a92af1059eb24-1244af108absm15384072c88.13 - gsmtp"
+    },
+    {
+      "email": "abdallago@gmail.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 5a478bee46e88-2b6b36550dfsm13733022eec.25 - gsmtp"
+    },
+    {
+      "email": "aaronchewbani@gmail.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 5a478bee46e88-2b6b3651f39sm13673872eec.24 - gsmtp"
+    },
+    {
+      "email": "42piyush@gmail.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 5a478bee46e88-2b6c2de1f29sm11844183eec.15 - gsmtp"
+    },
+    {
+      "email": "abdulmuizzmatem@gmail.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 5a478bee46e88-2b6b361a7acsm13580751eec.21 - gsmtp"
+    },
+    {
+      "email": "abhaygupta2310@gmail.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 5a478bee46e88-2b6b351e38bsm13477048eec.14 - gsmtp"
+    },
+    {
+      "email": "aaron.garg@wattup-energy.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 a92af1059eb24-1244ac6c2besm17295760c88.5 - gsmtp"
+    },
+    {
+      "email": "aashay@withbelay.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 5a478bee46e88-2b6b3502c65sm13376021eec.8 - gsmtp"
+    },
+    {
+      "email": "ab@darwinian.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 a92af1059eb24-1244aefab3fsm14603812c88.12 - gsmtp"
+    },
+    {
+      "email": "aamir@joinattain.com",
+      "error": "Invalid login: 454-4.7.0 Too many login attempts, please try again later. For more information,\n454-4.7.0 go to\n454 4.7.0  https://support.google.com/mail/answer/7126229 5a478bee46e88-2b6b361df88sm13413048eec.18 - gsmtp"
+    }
+  ],
+  "contactsFile": "sunday-service-contacts-2026-01-19T16-16-58-021Z.json",
+  "timestamp": "2026-01-19T17:52:32.206Z",
+  "subject": "Sunday Swervice Newsletter"
+}

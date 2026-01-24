@@ -11,8 +11,10 @@ function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const serviceId = searchParams?.get('service') || null;
   const paymentIntent = searchParams?.get('payment_intent') || null;
+  const sessionId = searchParams?.get('session_id') || null;
 
   const serviceNames = {
+    'o1a_readiness_assessment': 'O-1A Readiness Assessment',
     'd2c_n400': 'U.S. Citizenship Application (N-400)',
     'b2b_nonimmigrant_worker': 'Work Visa Services',
     'b2b_employment_auth': 'Employment Authorization (EAD)', 
@@ -21,19 +23,20 @@ function PaymentSuccessContent() {
 
   useEffect(() => {
     // Track conversion event
-    if (paymentIntent && serviceId) {
+    if ((paymentIntent || sessionId) && serviceId) {
       fetch('/api/track-conversion', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           paymentIntent,
+          sessionId,
           serviceId,
           conversionType: 'payment',
-          source: 'direct_payment'
+          source: serviceId === 'o1a_readiness_assessment' ? 'o1a-webinar' : 'direct_payment'
         })
       }).catch(console.error);
     }
-  }, [paymentIntent, serviceId]);
+  }, [paymentIntent, sessionId, serviceId]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 flex items-center justify-center p-6">
