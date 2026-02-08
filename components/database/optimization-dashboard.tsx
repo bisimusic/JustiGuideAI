@@ -38,7 +38,7 @@ export function OptimizationDashboard() {
       const result = await response.json();
       return result;
     },
-    refetchInterval: 30000 // Refresh every 30 seconds
+    refetchInterval: false // Disable auto-refresh to prevent constant reloads
   });
 
   // Fetch performance analysis
@@ -52,7 +52,7 @@ export function OptimizationDashboard() {
       const result = await response.json();
       return result;
     },
-    refetchInterval: 60000 // Refresh every minute
+    refetchInterval: false // Disable auto-refresh to prevent constant reloads
   });
 
   // Optimize indexes mutation

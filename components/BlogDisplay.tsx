@@ -30,7 +30,12 @@ export function BlogDisplay({
 }: BlogDisplayProps) {
   const { data: postsData, isLoading, error } = useQuery({
     queryKey: ['/api/content/substack/posts'],
-    refetchInterval: 300000 // Refresh every 5 minutes
+    queryFn: () => fetch('/api/content/substack/posts').then(res => res.json()),
+    refetchInterval: false, // Disable auto-refresh to prevent loops
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: false,
+    staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
   });
 
   const posts = (postsData as any)?.posts || [];

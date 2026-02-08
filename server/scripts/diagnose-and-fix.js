@@ -152,35 +152,169 @@ async function diagnoseAndFix() {
   }
   
   console.log(`✅ Found ${statements.length.toLocaleString()} statements\n`);
+  console.log('🔧 Processing INSERT statements (handling conflicts and NULL values)...');
+  
+  // Transform INSERT statements to handle conflicts and NULL values
+  const transformedStatements = statements.map(stmt => {
+    // Check if it's an INSERT statement
+    if (stmt.trim().toUpperCase().startsWith('INSERT INTO')) {
+      // Check if it already has ON CONFLICT
+      if (stmt.toUpperCase().includes('ON CONFLICT')) {
+        return stmt; // Already has conflict handling
+      }
+      
+      // Extract table name
+      const tableMatch = stmt.match(/INSERT INTO\s+(\w+)/i);
+      if (tableMatch) {
+        const tableName = tableMatch[1];
+        
+        // Handle NULL values for specific tables
+        let processedStmt = stmt;
+        
+        if (tableName === 'lead_responses') {
+          // For lead_responses, handle NULL response_slot values
+          // response_slot is the last column (index 10)
+          // Replace NULL that appears as the last value before closing paren
+          // Handle both single-line and multi-line statements
+          
+          // Pattern 1: NULL followed by ) and semicolon (single line)
+          processedStmt = processedStmt.replace(/,\s*NULL\s*\)\s*;/g, ', 0);');
+          
+          // Pattern 2: NULL followed by ) and ON CONFLICT (with our added clause)
+          processedStmt = processedStmt.replace(/,\s*NULL\s*\)\s*ON CONFLICT/g, ', 0) ON CONFLICT');
+          
+          // Pattern 3: Multi-line - NULL on its own line before closing paren
+          processedStmt = processedStmt.replace(/,\s*\n\s*NULL\s*\n\s*\)/g, ',\n0\n)');
+          
+          // Pattern 4: NULL with whitespace before closing paren (handles various formats)
+          processedStmt = processedStmt.replace(/,\s*NULL\s*\)/g, ', 0)');
+        }
+        
+        // Determine conflict target based on table
+        let conflictTarget = 'id'; // Default to id
+        if (tableName === 'lead_responses') {
+          conflictTarget = '(lead_id, response_slot)'; // Unique constraint
+        } else if (tableName === 'leads') {
+          conflictTarget = 'id';
+        } else if (tableName === 'templates') {
+          conflictTarget = 'id';
+        } else {
+          // For other tables, try to use id or primary key
+          conflictTarget = 'id';
+        }
+        
+        // Add ON CONFLICT DO NOTHING before the semicolon
+        const lastSemicolon = processedStmt.lastIndexOf(';');
+        if (lastSemicolon > 0) {
+          // Check if conflict target needs parentheses
+          const conflictClause = conflictTarget.includes('(') 
+            ? `ON CONFLICT ${conflictTarget} DO NOTHING`
+            : `ON CONFLICT (${conflictTarget}) DO NOTHING`;
+          
+          return processedStmt.substring(0, lastSemicolon) + 
+                 ` ${conflictClause}` + 
+                 processedStmt.substring(lastSemicolon);
+        }
+        
+        return processedStmt;
+      }
+    }
+    return stmt; // Return unchanged if not an INSERT or can't parse
+  });
+  
+  console.log(`✅ Processed ${transformedStatements.length.toLocaleString()} statements\n`);
   console.log('🚀 Executing statements...\n');
   
   let executed = 0;
   let errors = 0;
   const startTime = Date.now();
   const criticalErrors = [];
+  const responseErrors = []; // Track lead_responses specific errors
   
-  for (let i = 0; i < statements.length; i++) {
+  for (let i = 0; i < transformedStatements.length; i++) {
+    const isResponseInsert = transformedStatements[i].toUpperCase().includes('INSERT INTO LEAD_RESPONSES');
+    
     try {
-      await sql.unsafe(statements[i]);
+      await sql.unsafe(transformedStatements[i]);
       executed++;
       
       if (executed % 500 === 0) {
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
-        const percent = ((executed / statements.length) * 100).toFixed(1);
+        const percent = ((executed / transformedStatements.length) * 100).toFixed(1);
         const rate = (executed / ((Date.now() - startTime) / 1000)).toFixed(0);
-        console.log(`⏳ Progress: ${executed.toLocaleString()}/${statements.length.toLocaleString()} (${percent}%, ${elapsed}s, ~${rate}/sec, ${errors} errors)`);
+        console.log(`⏳ Progress: ${executed.toLocaleString()}/${transformedStatements.length.toLocaleString()} (${percent}%, ${elapsed}s, ~${rate}/sec, ${errors} errors)`);
       }
     } catch (error) {
       errors++;
       const msg = error.message.toLowerCase();
-      const ignoreErrors = ['already exists', 'duplicate key', 'does not exist', 'relation', 'syntax error'];
       
-      if (!ignoreErrors.some(ignore => msg.includes(ignore))) {
-        if (criticalErrors.length < 5) {
-          criticalErrors.push(error.message.substring(0, 100));
+      // Special handling for lead_responses errors - log them all
+      if (isResponseInsert && responseErrors.length < 20) {
+        const stmtPreview = transformedStatements[i].substring(0, 200).replace(/\n/g, ' ');
+        responseErrors.push({
+          error: error.message,
+          statement: stmtPreview,
+          errorCode: error.code
+        });
+        console.log(`\n   🔴 LEAD_RESPONSES ERROR ${responseErrors.length}:`);
+        console.log(`      ${error.message}`);
+        console.log(`      Code: ${error.code || 'N/A'}`);
+        console.log(`      Statement preview: ${stmtPreview}...\n`);
+      }
+      
+      // Ignore expected errors that don't prevent migration
+      const ignoreErrors = [
+        'already exists', 
+        'duplicate key', 
+        'does not exist', 
+        'relation',
+        'permission denied',
+        'system trigger',
+        'null value', // Skip null value errors - data issue
+        'malformed array', // Skip malformed array errors - data issue
+        'column.*does not exist' // Skip schema mismatch errors
+      ];
+      
+      const shouldIgnore = ignoreErrors.some(ignore => {
+        if (ignore.includes('.*')) {
+          // Regex pattern
+          const regex = new RegExp(ignore, 'i');
+          return regex.test(error.message);
+        }
+        return msg.includes(ignore);
+      });
+      
+      // Log first few non-ignored errors for debugging
+      if (!shouldIgnore && errors <= 10 && !isResponseInsert) {
+        const stmtPreview = transformedStatements[i].substring(0, 100).replace(/\n/g, ' ');
+        console.log(`   ⚠️  Error ${errors}: ${error.message.substring(0, 80)}`);
+        console.log(`      Statement: ${stmtPreview}...`);
+      }
+      
+      if (!shouldIgnore) {
+        if (criticalErrors.length < 10) {
+          criticalErrors.push({
+            error: error.message.substring(0, 100),
+            statement: transformedStatements[i].substring(0, 150)
+          });
         }
       }
     }
+  }
+  
+  // Report lead_responses errors summary
+  if (responseErrors.length > 0) {
+    console.log('\n📊 LEAD_RESPONSES ERROR SUMMARY:');
+    console.log(`   Total errors: ${responseErrors.length}`);
+    const errorTypes = {};
+    responseErrors.forEach(err => {
+      const key = err.error.substring(0, 50);
+      errorTypes[key] = (errorTypes[key] || 0) + 1;
+    });
+    console.log('\n   Error types:');
+    Object.entries(errorTypes).slice(0, 10).forEach(([err, count]) => {
+      console.log(`      ${count}x: ${err}...`);
+    });
   }
   
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
@@ -188,6 +322,15 @@ async function diagnoseAndFix() {
   console.log(`   • Executed: ${executed.toLocaleString()}`);
   console.log(`   • Errors: ${errors}`);
   console.log(`   • Time: ${elapsed}s\n`);
+  
+  if (criticalErrors.length > 0) {
+    console.log('⚠️  Sample errors encountered:');
+    criticalErrors.slice(0, 5).forEach((err, idx) => {
+      console.log(`   ${idx + 1}. ${err.error}`);
+      console.log(`      ${err.statement}...`);
+    });
+    console.log('');
+  }
   
   // Verify
   console.log('🔍 Verifying import...');

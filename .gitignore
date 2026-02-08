@@ -12,7 +12,10 @@ vite.config.ts.*
 .env*.local
 .env.bak
 data/contacts/
+data/lead_responses.json
+data/lead_responses.csv
+data/
 
-# Admin pages - exclude from deployment
-app/admin/
-app/api/admin/
+# Admin pages - exclude from deployment (commented out for testing)
+# app/admin/
+# app/api/admin/

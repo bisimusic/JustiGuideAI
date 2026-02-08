@@ -53,6 +53,11 @@ export function ContentConverter() {
 
   // Fetch Substack recommendations
   const { data: recommendations, isLoading: loadingRecommendations } = useQuery({
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: false,
+    staleTime: 5 * 60 * 1000,
     queryKey: ['/api/content/substack/recommendations'],
     queryFn: async () => {
       try {
@@ -72,6 +77,11 @@ export function ContentConverter() {
 
   // Fetch content templates
   const { data: templatesData, isLoading: loadingTemplates } = useQuery({
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: false,
+    staleTime: 5 * 60 * 1000,
     queryKey: ['/api/content/templates'],
     queryFn: async () => {
       try {

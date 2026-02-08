@@ -38,7 +38,12 @@ export function WidgetGenerator() {
   // Fetch lead magnets for selection
   const { data: leadMagnetsData } = useQuery({
     queryKey: ['/api/lead-magnets'],
-    refetchInterval: false
+    queryFn: () => fetch('/api/lead-magnets').then(res => res.json()),
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: false,
+    staleTime: 5 * 60 * 1000,
   });
 
   // Generate widget mutation

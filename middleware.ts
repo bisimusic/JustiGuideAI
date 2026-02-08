@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  // Block admin pages in production
+  // Admin pages are now enabled for testing
+  // Uncomment below to block admin pages in production:
+  /*
   if (process.env.NODE_ENV === 'production') {
     const pathname = request.nextUrl.pathname;
     
@@ -16,6 +18,7 @@ export function middleware(request: NextRequest) {
       return new NextResponse('Not Found', { status: 404 });
     }
   }
+  */
   
   return NextResponse.next();
 }

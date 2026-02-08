@@ -50,20 +50,34 @@ export async function POST(req: NextRequest) {
 
     const adminPassword = process.env.ADMIN_PASSWORD;
     const fallbackPassword = "ALLiDOiSWIN#@!";
-    
-    // Check password - accept either ADMIN_PASSWORD or fallback password
-    // This allows login even if ADMIN_PASSWORD is not configured
-    const isValid = password === adminPassword || password === fallbackPassword;
+    // Daniel Tonkopi: use env to override, otherwise this default works so login always succeeds
+    const danielPassword =
+      process.env.DANIEL_TONKOPI_PASSWORD ?? "Jg-DT!2025#7k";
+    // Multiple logins: comma-separated list (e.g. for marketing team)
+    const extraPasswordsRaw = process.env.ADMIN_PASSWORDS || process.env.MARKETING_PASSWORDS || "";
+    const extraPasswords = extraPasswordsRaw
+      .split(",")
+      .map((p) => p.trim())
+      .filter(Boolean);
+
+    const allowed = [adminPassword, fallbackPassword, danielPassword, ...extraPasswords].filter(Boolean);
+    const isValid = allowed.some((p) => password === p);
+
+    // Track who logged in when using a named password (for audit)
+    let displayName: string | undefined;
+    if (danielPassword && password === danielPassword) {
+      displayName = 'Daniel Tonkopi';
+      console.info('[Admin login] Daniel Tonkopi');
+    }
 
     if (isValid) {
       // Reset rate limit on successful login
       loginAttempts.delete(rateLimitKey);
-      
-      // In a real app, you'd set a session cookie here
-      // For now, we'll just return success and let the client handle localStorage
-      return NextResponse.json({ 
+
+      return NextResponse.json({
         success: true,
-        message: 'Login successful'
+        message: 'Login successful',
+        ...(displayName && { displayName })
       });
     } else {
       return NextResponse.json(

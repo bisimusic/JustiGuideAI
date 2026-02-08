@@ -61,28 +61,65 @@ type VisaType = 'all' | 'h1b' | 'green_card' | 'citizenship' | 'asylum' | 'famil
 export function ConversionOptimizationDashboard(): React.ReactElement {
   const [selectedVisaType, setSelectedVisaType] = useState<VisaType>('all');
 
-  const { data: dashboardData, isLoading } = useQuery({
+  // Default placeholder data to show immediately
+  const placeholderData: OptimizationDashboardData = {
+    visaPathPerformance: [],
+    activeOptimizationTests: 0,
+    totalLeadsOptimized: 0,
+    averageConversionRate: 0,
+    topPerformingPaths: [],
+    optimizationOpportunities: [],
+  };
+
+  const { data: dashboardData, isLoading, isError, error } = useQuery({
     queryKey: ['/api/optimization/dashboard'],
-    refetchInterval: 60000
+    queryFn: async () => {
+      const response = await fetch('/api/optimization/dashboard');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data || placeholderData;
+    },
+    placeholderData, // Show placeholder data immediately while loading
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retry: false,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
+    throwOnError: false,
   });
 
   const { data: abTestResults } = useQuery({
     queryKey: ['/api/optimization/ab-tests'],
-    refetchInterval: 30000
+    queryFn: async () => {
+      try {
+        const response = await fetch('/api/optimization/ab-tests');
+        if (!response.ok) {
+          return []; // Return empty array instead of throwing
+        }
+        return response.json();
+      } catch (err) {
+        console.error('Error fetching AB tests:', err);
+        return []; // Return empty array on error
+      }
+    },
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retry: false,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
   });
 
-  if (isLoading || !dashboardData) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading optimization data...</p>
-        </div>
-      </div>
-    );
-  }
+  // Use data (will be placeholderData initially, then real data when loaded)
+  const dashboardDataFinal = (dashboardData || placeholderData) as OptimizationDashboardData;
 
-  const data = dashboardData as OptimizationDashboardData;
+  // Don't show loading overlay - show skeleton content instead
+  const isInitialLoading = false; // Always show content, even if loading
 
   // Tab configuration
   const tabs: { value: VisaType; label: string }[] = [
@@ -98,15 +135,15 @@ export function ConversionOptimizationDashboard(): React.ReactElement {
   // Filter data based on selected visa type
   const filteredData = useMemo(() => {
     if (selectedVisaType === 'all') {
-      return data;
+      return dashboardDataFinal;
     }
     return {
-      ...data,
-      visaPathPerformance: data.visaPathPerformance?.filter(path => path.visaType === selectedVisaType) || [],
-      topPerformingPaths: data.topPerformingPaths?.filter(path => path.visaType === selectedVisaType) || [],
-      optimizationOpportunities: data.optimizationOpportunities?.filter(path => path.visaType === selectedVisaType) || [],
+      ...dashboardDataFinal,
+      visaPathPerformance: dashboardDataFinal.visaPathPerformance?.filter(path => path.visaType === selectedVisaType) || [],
+      topPerformingPaths: dashboardDataFinal.topPerformingPaths?.filter(path => path.visaType === selectedVisaType) || [],
+      optimizationOpportunities: dashboardDataFinal.optimizationOpportunities?.filter(path => path.visaType === selectedVisaType) || [],
     };
-  }, [data, selectedVisaType]);
+  }, [dashboardDataFinal, selectedVisaType]);
 
   const filteredABTests = useMemo((): ABTestResult[] => {
     if (!abTestResults || !Array.isArray(abTestResults)) return [];
@@ -115,7 +152,7 @@ export function ConversionOptimizationDashboard(): React.ReactElement {
   }, [abTestResults, selectedVisaType]);
 
   return (
-    <div className="space-y-6" data-testid="optimization-dashboard">
+    <div className="space-y-6 relative" data-testid="optimization-dashboard">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card data-testid="total-leads-card">
@@ -124,8 +161,17 @@ export function ConversionOptimizationDashboard(): React.ReactElement {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data.totalLeadsOptimized?.toLocaleString() || 0}</div>
-            <p className="text-xs text-muted-foreground">Last 30 days</p>
+            {isLoading && !dashboardData ? (
+              <div className="space-y-2">
+                <div className="h-8 w-24 bg-gray-200 animate-pulse rounded" />
+                <div className="h-4 w-32 bg-gray-200 animate-pulse rounded" />
+              </div>
+            ) : (
+              <>
+                <div className="text-2xl font-bold">{dashboardDataFinal.totalLeadsOptimized?.toLocaleString() || 0}</div>
+                <p className="text-xs text-muted-foreground">Last 30 days</p>
+              </>
+            )}
           </CardContent>
         </Card>
 
@@ -135,10 +181,19 @@ export function ConversionOptimizationDashboard(): React.ReactElement {
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {data.averageConversionRate?.toFixed(1) || 0}%
-            </div>
-            <p className="text-xs text-muted-foreground">Across all visa paths</p>
+            {isLoading && !dashboardData ? (
+              <div className="space-y-2">
+                <div className="h-8 w-20 bg-gray-200 animate-pulse rounded" />
+                <div className="h-4 w-32 bg-gray-200 animate-pulse rounded" />
+              </div>
+            ) : (
+              <>
+                <div className="text-2xl font-bold">
+                  {dashboardDataFinal.averageConversionRate?.toFixed(1) || 0}%
+                </div>
+                <p className="text-xs text-muted-foreground">Across all visa paths</p>
+              </>
+            )}
           </CardContent>
         </Card>
 
@@ -148,8 +203,17 @@ export function ConversionOptimizationDashboard(): React.ReactElement {
             <TestTube className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data.activeOptimizationTests || 0}</div>
-            <p className="text-xs text-muted-foreground">Currently running</p>
+            {isLoading && !dashboardData ? (
+              <div className="space-y-2">
+                <div className="h-8 w-12 bg-gray-200 animate-pulse rounded" />
+                <div className="h-4 w-32 bg-gray-200 animate-pulse rounded" />
+              </div>
+            ) : (
+              <>
+                <div className="text-2xl font-bold">{dashboardDataFinal.activeOptimizationTests || 0}</div>
+                <p className="text-xs text-muted-foreground">Currently running</p>
+              </>
+            )}
           </CardContent>
         </Card>
 
@@ -159,8 +223,17 @@ export function ConversionOptimizationDashboard(): React.ReactElement {
             <Zap className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data.optimizationOpportunities?.length || 0}</div>
-            <p className="text-xs text-muted-foreground">Paths to improve</p>
+            {isLoading && !dashboardData ? (
+              <div className="space-y-2">
+                <div className="h-8 w-12 bg-gray-200 animate-pulse rounded" />
+                <div className="h-4 w-32 bg-gray-200 animate-pulse rounded" />
+              </div>
+            ) : (
+              <>
+                <div className="text-2xl font-bold">{dashboardDataFinal.optimizationOpportunities?.length || 0}</div>
+                <p className="text-xs text-muted-foreground">Paths to improve</p>
+              </>
+            )}
           </CardContent>
         </Card>
       </div>

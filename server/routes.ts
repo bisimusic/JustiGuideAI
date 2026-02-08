@@ -4794,12 +4794,18 @@ Secure your spot now: https://www.justi.guide/get_started/?urgent=n400&discount=
           { name: "citizenship", description: "Naturalization, N-400, citizenship test", focus: "citizenship" },
           { name: "visas", description: "All visa types and processes", focus: "temporary_visas" },
           { name: "legaladvice", description: "Legal advice for immigration matters", focus: "legal_support" },
-          { name: "iwantout", description: "People seeking to emigrate from their home country", focus: "emigration" }
+          { name: "iwantout", description: "People seeking to emigrate from their home country", focus: "emigration" },
+          { name: "expats", description: "Expat life, relocation, and residency abroad", focus: "eu_residency" },
+          { name: "europe", description: "European topics including mobility and residency", focus: "eu_residency" },
+          { name: "europeanunion", description: "EU policy, freedom of movement, and residency", focus: "eu_residency" }
         ],
-        highValueKeywords: ["urgent", "deadline", "denied", "rfe", "help", "lawyer", "attorney"],
-        totalChannels: 8,
-        newChannelsAdded: ["citizenship", "legaladvice"],
-        focusAreas: ["work_visas", "permanent_residence", "citizenship", "legal_support", "general"]
+        highValueKeywords: [
+          "urgent", "deadline", "denied", "rfe", "help", "lawyer", "attorney",
+          "EU residency", "European residency", "EU fast track", "highly qualified talent", "EU citizenship"
+        ],
+        totalChannels: 11,
+        newChannelsAdded: ["citizenship", "legaladvice", "expats", "europe", "europeanunion"],
+        focusAreas: ["work_visas", "permanent_residence", "citizenship", "legal_support", "general", "eu_residency"]
       };
       
       res.json(immigrationChannels);

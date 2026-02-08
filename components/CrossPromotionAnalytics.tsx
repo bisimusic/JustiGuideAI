@@ -28,12 +28,22 @@ interface CrossPromotionMetrics {
 export function CrossPromotionAnalytics() {
   const { data: metricsData, isLoading, error } = useQuery({
     queryKey: ['/api/cross-promotion/metrics'],
-    refetchInterval: 30000 // Refresh every 30 seconds
+    queryFn: () => fetch('/api/cross-promotion/metrics').then(res => res.json()),
+    refetchInterval: false, // Disable auto-refresh to prevent loops
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: false,
+    staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
   });
 
   const { data: promotionsData } = useQuery({
     queryKey: ['/api/cross-promotion/promotions'],
-    refetchInterval: false
+    queryFn: () => fetch('/api/cross-promotion/promotions').then(res => res.json()),
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: false,
+    staleTime: 5 * 60 * 1000,
   });
 
   if (isLoading) {

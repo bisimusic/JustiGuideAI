@@ -48,9 +48,17 @@ export interface LeadResponse {
 
 export interface DashboardStats {
   totalLeads: number;
+  dailyLeads?: number;
+  totalResponses?: number;
+  leadsWithResponses?: number;
+  conversionRate?: number;
   validatedSourcesPercentage: number;
   avgAiScore: number;
-  monitoring: MonitoringStats[];
+  platformBreakdown?: Record<string, number>;
+  weeklyRevenue?: number;
+  totalContacts?: number;
+  recentContacts?: number;
+  monitoring?: MonitoringStats[];
 }
 
 export interface MonitoringStats {

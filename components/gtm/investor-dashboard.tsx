@@ -491,62 +491,62 @@ export function InvestorDashboard() {
       </Card>
 
       {/* Daily Update Preview */}
-      <Card>
+      <Card className="bg-[#14161c] border border-white/5 rounded-2xl">
         <CardHeader>
-          <CardTitle>📊 Daily Investor Update Preview</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-[#f5f5f7]">📊 Daily Investor Update Preview</CardTitle>
+          <CardDescription className="text-[#8e919a]">
             What gets sent to investors every day at 9 AM PST
           </CardDescription>
         </CardHeader>
-        <CardContent className="bg-gray-50 p-6 rounded-lg">
-          <div className="font-mono text-sm space-y-3">
-            <p className="font-bold">📈 JustiGuide Daily Update - {new Date().toLocaleDateString()}</p>
-            <div className="space-y-2">
-              <p>💰 <strong>Current Investors:</strong> Brady (Union Green Partners), Alex (JustiGuide), Carlos Contreras, Marl5G Strategic</p>
-              <p>🎯 <strong>New Leads:</strong> {contacts?.total || 498} active prospects + 27 Gmail contacts analyzed</p>
-              <p>📈 <strong>Growth:</strong> Reddit response tracking with 484 responses posted + automated follow-ups</p>
-              <p>🤝 <strong>Conversions:</strong> Enhanced follow-up system with Loom video resources</p>
-              <p>💵 <strong>Revenue Model:</strong> N400 citizenship service ($499) + H1B visa support ($299-699)</p>
-              <p>🏆 <strong>Key Win:</strong> Enhanced persona cataloging with keyword-based AI analysis</p>
-              <p>📅 <strong>Next:</strong> 7 investor meetings scheduled this week</p>
+        <CardContent className="p-6">
+          <div className="bg-[#181b22] border border-white/5 rounded-xl p-6 font-mono text-sm space-y-3">
+            <p className="font-bold text-[#f5f5f7]">📈 JustiGuide Daily Update - {new Date().toLocaleDateString()}</p>
+            <div className="space-y-2 text-[#8e919a]">
+              <p>💰 <strong className="text-[#f5f5f7]">Current Investors:</strong> {investors.map(i => `${i.name} (${i.company})`).join(', ')}</p>
+              <p>🎯 <strong className="text-[#f5f5f7]">New Leads:</strong> {contacts?.total ?? 498} active prospects + 27 Gmail contacts analyzed</p>
+              <p>📈 <strong className="text-[#f5f5f7]">Growth:</strong> Reddit response tracking with 484 responses posted + automated follow-ups</p>
+              <p>🤝 <strong className="text-[#f5f5f7]">Conversions:</strong> Enhanced follow-up system with Loom video resources</p>
+              <p>💵 <strong className="text-[#f5f5f7]">Revenue Model:</strong> N400 citizenship service ($499) + H1B visa support ($299-699)</p>
+              <p>🏆 <strong className="text-[#f5f5f7]">Key Win:</strong> Enhanced persona cataloging with keyword-based AI analysis</p>
+              <p>📅 <strong className="text-[#f5f5f7]">Next:</strong> {fundingMetrics.investors.meetings_this_week} investor meetings scheduled this week</p>
             </div>
-            <p className="text-gray-600">Building rails for human mobility 🚀</p>
+            <p className="text-[#8e919a]">Building rails for human mobility 🚀</p>
           </div>
         </CardContent>
       </Card>
 
       {/* Verification Dialog */}
       <Dialog open={showVerificationDialog} onOpenChange={setShowVerificationDialog}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="max-w-4xl bg-[#14161c] border-white/10 text-[#f5f5f7]">
           <DialogHeader>
-            <DialogTitle>📧 Verify Investor Update Before Sending</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-[#f5f5f7]">📧 Verify Investor Update Before Sending</DialogTitle>
+            <DialogDescription className="text-[#8e919a]">
               Please review the update content before sending to {pendingUpdate?.recipients || 0} investors
             </DialogDescription>
           </DialogHeader>
           
           {pendingUpdate && (
-            <div className="bg-gray-50 p-6 rounded-lg font-mono text-sm space-y-3 max-h-96 overflow-y-auto">
-              <p className="font-bold">{pendingUpdate.subject}</p>
-              <div className="space-y-2">
+            <div className="bg-[#181b22] border border-white/5 p-6 rounded-xl font-mono text-sm space-y-3 max-h-96 overflow-y-auto">
+              <p className="font-bold text-[#f5f5f7]">{pendingUpdate.subject}</p>
+              <div className="space-y-2 text-[#8e919a]">
                 {pendingUpdate.highlights.map((highlight: string, index: number) => (
                   <p key={index}>{highlight}</p>
                 ))}
               </div>
-              <p className="text-gray-600">{pendingUpdate.footer}</p>
+              <p className="text-[#8e919a]">{pendingUpdate.footer}</p>
               
               {pendingUpdate.recipientList && pendingUpdate.recipientList.length > 0 && (
-                <div className="mt-4 pt-4 border-t">
-                  <p className="font-bold mb-2">Recipients ({pendingUpdate.recipientList.length}):</p>
+                <div className="mt-4 pt-4 border-t border-white/10">
+                  <p className="font-bold mb-2 text-[#f5f5f7]">Recipients ({pendingUpdate.recipientList.length}):</p>
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     {pendingUpdate.recipientList.slice(0, 8).map((recipient: any, index: number) => (
-                      <div key={index} className="bg-white p-2 rounded">
-                        <div className="font-semibold">{recipient.company || 'Unknown'}</div>
-                        <div className="text-gray-600">{recipient.email}</div>
+                      <div key={index} className="bg-[#14161c] border border-white/5 p-2 rounded-lg">
+                        <div className="font-semibold text-[#f5f5f7]">{recipient.company || 'Unknown'}</div>
+                        <div className="text-[#8e919a]">{recipient.email}</div>
                       </div>
                     ))}
                     {pendingUpdate.recipientList.length > 8 && (
-                      <div className="col-span-2 text-center text-gray-500">
+                      <div className="col-span-2 text-center text-[#8e919a]">
                         +{pendingUpdate.recipientList.length - 8} more recipients
                       </div>
                     )}
@@ -560,13 +560,14 @@ export function InvestorDashboard() {
             <Button 
               variant="outline" 
               onClick={() => setShowVerificationDialog(false)}
+              className="border-white/10 text-[#f5f5f7] hover:bg-[#181b22]"
             >
               Cancel
             </Button>
             <Button 
               onClick={sendVerifiedUpdate}
               disabled={sendingUpdate}
-              className="bg-green-600 hover:bg-green-700"
+              className="bg-[#00d4aa] text-[#0a0b0d] hover:bg-[#00e5b8]"
             >
               {sendingUpdate ? 'Sending...' : '✅ Verify & Send'}
             </Button>

@@ -130,7 +130,7 @@ export async function POST(req: NextRequest) {
 
     // Setup email transporter
     // Prefer SMTP over Gmail to avoid Gmail rate limits and blocks
-    let transporter;
+    let transporter: nodemailer.Transporter;
 
     if (hasSMTP) {
       // Use SMTP first (preferred for bulk sending)
@@ -154,6 +154,12 @@ export async function POST(req: NextRequest) {
         },
       });
       console.log(`📧 Using Gmail service (may have rate limits)`);
+    } else {
+      // This should never happen due to the check above, but TypeScript needs it
+      return NextResponse.json(
+        { error: 'Email service is not configured' },
+        { status: 500 }
+      );
     }
 
     // Send emails in batches to avoid rate limiting

@@ -146,7 +146,9 @@ async function parsePDFFile(filePath: string): Promise<Contact[]> {
   
   try {
     // Dynamic import to avoid Next.js SSR issues
-    const pdf = (await import('pdf-parse')).default;
+    const pdfParseModule = await import('pdf-parse');
+    // Handle both ESM and CJS exports
+    const pdf = (pdfParseModule as any).default || pdfParseModule;
     const dataBuffer = fs.readFileSync(filePath);
     const data = await pdf(dataBuffer);
     const text = data.text;
@@ -156,7 +158,7 @@ async function parsePDFFile(filePath: string): Promise<Contact[]> {
     
     // Parse the PDF text - looking for table rows with guest information
     // The PDF has columns: #, Guest Name, Party Size, Payment Status, Email
-    const lines = text.split('\n').filter(line => line.trim());
+    const lines = text.split('\n').filter((line: string) => line.trim());
     
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
@@ -178,7 +180,7 @@ async function parsePDFFile(filePath: string): Promise<Contact[]> {
         
         // Split by common delimiters (tabs, pipes, multiple spaces) to get columns
         // Format: # | Name | Party Size | Payment Status | Email
-        const parts = beforeEmail.split(/\s{2,}|\t|\|/).map(p => p.trim()).filter(p => p);
+        const parts = beforeEmail.split(/\s{2,}|\t|\|/).map((p: string) => p.trim()).filter((p: string) => p);
         
         // Find the name part (usually after the number)
         let name = '';
@@ -335,10 +337,10 @@ export async function POST(req: NextRequest) {
         totalContacts: allContacts.length,
         contacts: allContacts,
         summary: {
-          withEmail: allContacts.filter(c => c.email).length,
-          withCompany: allContacts.filter(c => c.company).length,
-          withLinkedIn: allContacts.filter(c => c.linkedin).length,
-          withPhone: allContacts.filter(c => c.phone).length,
+          withEmail: allContacts.filter((c: Contact) => c.email).length,
+          withCompany: allContacts.filter((c: Contact) => c.company).length,
+          withLinkedIn: allContacts.filter((c: Contact) => c.linkedin).length,
+          withPhone: allContacts.filter((c: Contact) => c.phone).length,
         },
       };
       
@@ -352,10 +354,10 @@ export async function POST(req: NextRequest) {
         totalContacts: allContacts.length,
         savedTo: outputFile,
         summary: {
-          withEmail: allContacts.filter(c => c.email).length,
-          withCompany: allContacts.filter(c => c.company).length,
-          withLinkedIn: allContacts.filter(c => c.linkedin).length,
-          withPhone: allContacts.filter(c => c.phone).length,
+          withEmail: allContacts.filter((c: Contact) => c.email).length,
+          withCompany: allContacts.filter((c: Contact) => c.company).length,
+          withLinkedIn: allContacts.filter((c: Contact) => c.linkedin).length,
+          withPhone: allContacts.filter((c: Contact) => c.phone).length,
         },
         sampleContacts: allContacts.slice(0, 10), // Return first 10 as sample
       });
@@ -369,10 +371,10 @@ export async function POST(req: NextRequest) {
         error: saveError.message,
         contacts: allContacts.slice(0, 10), // Return first 10 as sample
         summary: {
-          withEmail: allContacts.filter(c => c.email).length,
-          withCompany: allContacts.filter(c => c.company).length,
-          withLinkedIn: allContacts.filter(c => c.linkedin).length,
-          withPhone: allContacts.filter(c => c.phone).length,
+          withEmail: allContacts.filter((c: Contact) => c.email).length,
+          withCompany: allContacts.filter((c: Contact) => c.company).length,
+          withLinkedIn: allContacts.filter((c: Contact) => c.linkedin).length,
+          withPhone: allContacts.filter((c: Contact) => c.phone).length,
         },
       });
     }

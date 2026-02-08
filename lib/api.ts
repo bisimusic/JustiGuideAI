@@ -3,8 +3,13 @@ import type { Lead, DashboardStats, AIInsights, AuditResult } from "@/types";
 
 export const api = {
   // Dashboard
-  getDashboardStats: (): Promise<DashboardStats> => 
-    fetch("/api/dashboard/stats").then(res => res.json()),
+  getDashboardStats: async (): Promise<DashboardStats> => {
+    const res = await fetch("/api/dashboard/stats");
+    if (!res.ok) {
+      throw new Error(`Failed to fetch dashboard stats: ${res.status}`);
+    }
+    return res.json();
+  },
 
   // Leads
   getLeads: (platform?: string, limit?: number, offset = 0): Promise<Lead[]> => {
@@ -73,4 +78,17 @@ export const api = {
 
   getLeadsWithResponses: () =>
     fetch("/api/leads/with-responses").then(res => res.json()),
+
+  // Dashboard data
+  getPriorityActions: () =>
+    fetch("/api/dashboard/priority-actions").then(res => res.json()),
+
+  getLeadSegmentation: () =>
+    fetch("/api/dashboard/lead-segmentation").then(res => res.json()),
+
+  getWeeklyTrend: () =>
+    fetch("/api/dashboard/weekly-trend").then(res => res.json()),
+
+  getLiveActivity: () =>
+    fetch("/api/dashboard/live-activity").then(res => res.json()),
 };

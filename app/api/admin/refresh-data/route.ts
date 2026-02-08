@@ -41,10 +41,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       message: `Refreshed ${successful} endpoints, ${failed} failed`,
-      results: results.map((r, i) => ({
-        endpoint: endpoints[i],
-        ...(r.status === 'fulfilled' ? r.value : { success: false, error: 'Request failed' }),
-      })),
+      results: results.map((r, i) => {
+        if (r.status === 'fulfilled') {
+          const { endpoint: _, ...rest } = r.value;
+          return {
+            endpoint: endpoints[i],
+            ...rest,
+          };
+        } else {
+          return {
+            endpoint: endpoints[i],
+            success: false,
+            error: 'Request failed',
+          };
+        }
+      }),
     });
   } catch (error: any) {
     console.error('Refresh data error:', error);

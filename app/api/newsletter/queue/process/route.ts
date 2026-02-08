@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    let transporter;
+    let transporter: nodemailer.Transporter;
     if (hasSMTP) {
       transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
@@ -114,6 +114,12 @@ export async function POST(req: NextRequest) {
           pass: process.env.GMAIL_APP_PASSWORD,
         },
       });
+    } else {
+      // This should never happen due to the check above, but TypeScript needs it
+      return NextResponse.json(
+        { error: 'Email service is not configured' },
+        { status: 500 }
+      );
     }
 
     // Get pending items for this hour (up to emailsPerHour)

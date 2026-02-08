@@ -82,7 +82,9 @@ export default function LandingPage() {
           <span className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white text-xs font-bold px-2 py-1 rounded-full">NEW</span>
           <span className="font-medium">O1A Jet-Filing for Founders — Just-In-Time, attorney review, 80% cost reduction</span>
           <a 
-            href="/o1a-webinar" 
+            href="https://immigrant.justi.guide/jit"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-white text-[#0F172A] px-4 py-1.5 rounded-full font-semibold text-sm hover:bg-gray-100 transition-colors whitespace-nowrap"
             data-testid="link-o1a-early-access"
           >
@@ -154,7 +156,7 @@ export default function LandingPage() {
 
             <div className="flex gap-4 justify-center mb-20 flex-wrap">
               <a
-                href="https://justi.guide/get_started/"
+                href="https://immigrant.justi.guide/assessment"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-8 py-4 rounded-full font-semibold text-base shadow-[0_4px_20px_rgba(107,95,207,0.25)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"

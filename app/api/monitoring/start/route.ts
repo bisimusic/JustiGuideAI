@@ -10,9 +10,11 @@ export async function POST(request: NextRequest) {
       headers: {
         'Content-Type': 'application/json',
       },
+      body: '{}',
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    const data = text ? (() => { try { return JSON.parse(text); } catch { return {}; } })() : {};
     
     if (!response.ok) {
       return NextResponse.json(
@@ -27,8 +29,14 @@ export async function POST(request: NextRequest) {
     });
   } catch (error: any) {
     console.error('Monitoring start error:', error);
+    const isConnectionRefused = error?.code === 'ECONNREFUSED' || error?.message?.includes('ECONNREFUSED');
     return NextResponse.json(
-      { success: false, error: error.message || 'Failed to start monitoring' },
+      {
+        success: false,
+        error: isConnectionRefused
+          ? 'Express server not running. Start it (e.g. node server/index.ts on port 5000) for listening to work.'
+          : error.message || 'Failed to start monitoring',
+      },
       { status: 500 }
     );
   }
