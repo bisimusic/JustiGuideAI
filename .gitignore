@@ -16,6 +16,9 @@ data/lead_responses.json
 data/lead_responses.csv
 data/
 
-# Admin pages - exclude from deployment (commented out for testing)
-# app/admin/
-# app/api/admin/
+# Markdown files
+*.md
+
+# Admin pages - excluded from deployment
+app/admin/
+app/api/admin/
