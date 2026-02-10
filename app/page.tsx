@@ -865,31 +865,31 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer — HTML design: ink bg, centered, label + nav + legal + copyright */}
-      <footer className="bg-ink text-white border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-12 md:py-14 text-center">
-          <div className="font-display text-xl md:text-2xl text-white mb-6">
+      {/* Footer — HTML design: ink bg + inline styles so text is visible */}
+      <footer className="border-t py-12 md:py-14" style={{ backgroundColor: '#0B1215', borderColor: 'rgba(255,255,255,0.1)' }}>
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="font-display text-xl md:text-2xl mb-6" style={{ color: '#ffffff' }}>
             JustiGuide
           </div>
           <nav className="mb-6" aria-label="Footer navigation">
             <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[11px] font-semibold uppercase tracking-wider">
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="text-white/75 hover:text-white transition-colors" data-testid="link-o1a-footer">Free Assessment</a>
-              <a href="#features" className="text-white/75 hover:text-white transition-colors">Benefits</a>
-              <a href="#pricing" className="text-white/75 hover:text-white transition-colors">Pricing</a>
-              <a href="/features" className="text-white/75 hover:text-white transition-colors" data-testid="link-features-footer">Feature Videos</a>
-              <a href="#testimonials" className="text-white/75 hover:text-white transition-colors">Testimonials</a>
-              <a href="/lawyer-faq" className="text-white/75 hover:text-white transition-colors" data-testid="link-lawyer-faq-footer">Attorney FAQ</a>
-              <a href="/press" className="text-white/75 hover:text-white transition-colors" data-testid="link-press-footer">Press</a>
-              <a href="#contact" className="text-white/75 hover:text-white transition-colors">Contact</a>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }} data-testid="link-o1a-footer">Free Assessment</a>
+              <a href="#features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Benefits</a>
+              <a href="#pricing" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Pricing</a>
+              <a href="/features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }} data-testid="link-features-footer">Feature Videos</a>
+              <a href="#testimonials" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Testimonials</a>
+              <a href="/lawyer-faq" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }} data-testid="link-lawyer-faq-footer">Attorney FAQ</a>
+              <a href="/press" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }} data-testid="link-press-footer">Press</a>
+              <a href="#contact" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Contact</a>
             </div>
           </nav>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-[11px] font-semibold uppercase tracking-wider text-white/60 mb-8">
-            <a href="/privacy-policy" className="hover:text-white/80 transition-colors">Privacy Policy</a>
-            <a href="/terms-of-service" className="hover:text-white/80 transition-colors">Terms of Service</a>
-            <a href="/refund-policy" className="hover:text-white/80 transition-colors">Refund Policy</a>
-            <a href="/pricing" className="hover:text-white/80 transition-colors">Pricing</a>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-[11px] font-semibold uppercase tracking-wider mb-8">
+            <a href="/privacy-policy" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.7)' }}>Privacy Policy</a>
+            <a href="/terms-of-service" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.7)' }}>Terms of Service</a>
+            <a href="/refund-policy" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.7)' }}>Refund Policy</a>
+            <a href="/pricing" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.7)' }}>Pricing</a>
           </div>
-          <p className="text-[11px] text-white/60">
+          <p className="text-[11px]" style={{ color: 'rgba(255,255,255,0.7)' }}>
             © 2026 JustiGuide. Built by immigrants, for immigrants.
           </p>
         </div>
