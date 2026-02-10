@@ -20,9 +20,10 @@ data/
 *.md
 
 # Admin / dashboard - excluded from deployment (landing + connected only)
+# Moved out of app/ so Next.js build does not include them (see _excluded_from_build)
+_excluded_from_build/
 app/admin/
 app/api/admin/
-components/ContentConverter.tsx
 app/api/optimization/
 app/api/dashboard/
 app/api/audit/
@@ -38,3 +39,45 @@ app/api/contacts/
 app/api/email/
 app/api/chat/
 app/api/newsletter/
+
+# Admin-only components (public app only uses components/ui/* and UTMFormInjector - do not list that)
+components/admin/
+components/ai/
+components/avvo/
+components/backup/
+components/chat/
+components/campaigns/
+components/conversion/
+components/conversion-optimization/
+components/dashboard/
+components/database/
+components/gtm/
+components/investor/
+components/layout/
+components/meta/
+components/monitoring/
+components/newsletter/
+components/outreach/
+components/persona/
+components/reporting/
+components/revenue/
+components/settings/
+components/solo/
+components/system/
+components/tiktok/
+components/ContentConverter.tsx
+components/BlogDisplay.tsx
+components/CrossPromotionAnalytics.tsx
+components/WidgetGenerator.tsx
+components/cache-management.tsx
+components/conversion-strategy-enhanced.tsx
+components/email-integration.tsx
+components/gmail-auth.tsx
+components/gmail-contact-extraction.tsx
+components/intelligent-agent-control.tsx
+components/LawyerSocialListening.tsx
+components/PaymentCallToAction.tsx
+components/persona-management.tsx
+components/persona-selection.tsx
+components/ProtectedRoute.tsx
+components/response-generator.tsx
