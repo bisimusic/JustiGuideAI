@@ -19,6 +19,21 @@ data/
 # Markdown files
 *.md
 
-# Admin pages - excluded from deployment
+# Admin / dashboard - excluded from deployment (landing + connected only)
 app/admin/
 app/api/admin/
+app/api/optimization/
+app/api/dashboard/
+app/api/audit/
+app/api/database/
+app/api/insights/
+app/api/leads/
+app/api/monitoring/
+app/api/refresh/
+app/api/response-templates/
+app/api/revenue/
+app/api/scan/
+app/api/contacts/
+app/api/email/
+app/api/chat/
+app/api/newsletter/
