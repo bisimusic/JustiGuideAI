@@ -75,18 +75,18 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Nunito, sans-serif' }}>
-      {/* O1A Launch Announcement Banner */}
-      <div className="bg-gradient-to-r from-[#0F172A] to-[#1E293B] text-white py-3 px-4" data-testid="banner-o1a-launch">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-3 text-sm md:text-base">
-          <span className="text-xs font-bold px-2 py-1 rounded-full bg-white text-[#0F172A]" style={{ backgroundColor: 'white', color: '#0F172A' }}>NEW</span>
+    <div className="min-h-screen bg-chalk font-body">
+      {/* O1A Launch Announcement Banner — purple CTA */}
+      <div className="py-3 px-4 relative overflow-hidden" style={{ backgroundColor: '#0B1215', color: '#ffffff' }} data-testid="banner-o1a-launch">
+        <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent pointer-events-none" aria-hidden />
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-3 text-sm md:text-base relative z-10">
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-chalk text-ink">NEW</span>
           <span className="font-medium">O1A Jet-Filing for Founders — Just-In-Time, attorney review, 80% cost reduction</span>
           <a 
             href="https://immigrant.justi.guide/jit"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-1.5 rounded-full font-semibold text-sm transition-opacity whitespace-nowrap hover:opacity-90"
-            style={{ background: 'linear-gradient(to right, #6B5FCF, #5B8DEE)', color: 'white' }}
+            className="px-4 py-2 rounded-full font-semibold text-sm bg-accent text-white whitespace-nowrap hover:bg-accent-deep hover:brightness-110 transition-all duration-200"
             data-testid="link-o1a-early-access"
           >
             Learn More →
@@ -94,309 +94,242 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-5">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <img src={logoImage} alt="JustiGuide Logo" className="w-10 h-10" data-testid="logo-image" />
-              <span className="text-2xl font-bold text-gray-900">JustiGuide</span>
-            </div>
-            
-            <div className="hidden md:flex items-center gap-10">
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Free Assessment</a>
-              <a href="#how-it-works" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">How It Works</a>
-              <a href="#features" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Benefits</a>
-              <a href="#pricing" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Pricing</a>
-              <a href="#testimonials" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Testimonials</a>
-              <a href="#contact" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Contact</a>
-            </div>
-
-            <a
-              href="https://immigrant.justi.guide/assessment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="min-h-[44px] inline-flex items-center justify-center bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-7 py-3 rounded-full font-semibold text-[15px] hover:shadow-[0_8px_20px_rgba(107,95,207,0.3)] hover:-translate-y-0.5 transition-all"
-              data-testid="nav-cta"
-            >
-              Free Assessment
-            </a>
+      {/* Navigation — purple accent, scroll shadow */}
+      <nav className="sticky top-0 z-50 bg-chalk/95 backdrop-blur-md border-b border-border shadow-[0_1px_0_0_rgba(0,0,0,0.05)]" id="main-nav">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" style={{ height: '68px' }}>
+          <a href="/" className="flex items-center gap-3 font-display text-[1.35rem] text-ink group">
+            <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-accent/10 ring-1 ring-accent/20 group-hover:ring-accent/40 transition-all">
+              <img src={logoImage} alt="JustiGuide" className="w-6 h-6 object-contain" data-testid="logo-image" />
+            </span>
+            JustiGuide
+          </a>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#features" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Benefits</a>
+            <a href="#pricing" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Pricing</a>
+            <a href="#testimonials" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Testimonials</a>
+            <a href="#contact" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Contact</a>
+          </div>
+          <div className="hidden md:flex items-center gap-3">
+            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold transition-all duration-200 px-7 py-3 text-base bg-accent hover:bg-accent-deep shadow-[0_4px_14px_rgba(107,95,207,0.45)] hover:shadow-[0_8px_24px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 ring-2 ring-accent/30 hover:ring-accent/50" style={{ color: '#0B1215' }} data-testid="nav-cta">Free Assessment →</a>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative py-[100px] pb-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-        {/* Blob decoration */}
-        <div className="absolute top-12 right-0 w-[600px] h-[600px] bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-full opacity-30 blur-[100px]"></div>
-        
+      {/* Hero — two-column, stronger purple presence, floating card */}
+      <section className="relative pt-[120px] md:pt-[140px] pb-24 bg-gradient-to-b from-chalk to-sage overflow-hidden">
+        <div className="absolute top-[-200px] right-[-150px] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(107,95,207,0.12)_0%,transparent_65%)] pointer-events-none" />
+        <div className="absolute bottom-[-150px] left-[-80px] w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(200,162,78,0.08)_0%,transparent_65%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center max-w-[900px] mx-auto">
-            {/* TIME Best Inventions Badge - SEO Link */}
-            <a 
-              href="https://time.com/collections/best-inventions-2025/7318500/justiguide-relo/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-white border border-gray-200 text-gray-900 px-6 py-3 rounded-full font-medium text-base mb-8 hover:border-gray-300 hover:shadow-md transition-all"
-              data-testid="badge-time-inventions"
-            >
-              <Award className="h-5 w-5 text-gray-700" />
-              <span>TIME Best Inventions 2025</span>
-            </a>
-
-            <h1 className="text-[56px] md:text-[56px] font-bold text-[#0F172A] mb-6 leading-[1.1]">
-              From <span className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] bg-clip-text text-transparent">Months to Hours</span>
-            </h1>
-
-            <p className="text-xl text-[#475569] font-semibold mb-5">
-              Your new life, your secure path—with certainty at every step.
-            </p>
-
-            <p className="text-xl text-[#94A3B8] mb-6 max-w-2xl mx-auto leading-[1.7]">
-              JustiGuide connects you with vetted lawyers and AI-powered tools so you can move from overwhelming to ready—faster.
-            </p>
-
-            {/* 5-second test: clear visa categories (audit Stage 2) */}
-            <p className="text-sm text-[#64748B] mb-10 font-medium">
-              We help with: <span className="text-[#0F172A]">O-1A</span> · <span className="text-[#0F172A]">EB-1</span> · <span className="text-[#0F172A]">EB-2 NIW</span> · <span className="text-[#0F172A]">N-400</span> · <span className="text-[#0F172A]">H-1B</span> · <span className="text-[#0F172A]">Green Card</span> · <span className="text-[#0F172A]">and more</span>
-            </p>
-
-            <div className="flex gap-4 justify-center mb-20 flex-wrap">
-              <a
-                href="https://immigrant.justi.guide/assessment"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="min-h-[48px] min-w-[180px] inline-flex items-center justify-center bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-8 py-4 rounded-full font-semibold text-base shadow-[0_4px_20px_rgba(107,95,207,0.25)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
-                data-testid="button-hero-cta"
-              >
-                Get my personalized roadmap
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: copy */}
+            <div>
+              <a href="https://time.com/collections/best-inventions-2025/7318500/justiguide-relo/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold text-gold bg-gold-light/80 border border-gold/20 mb-6 hover:bg-gold-light transition-colors" data-testid="badge-time-inventions">
+                <Award className="w-4 h-4" /> Tech Disrupt Pitch Showcase Winner &apos;25
               </a>
-              <p className="text-[#64748B] text-sm mt-2">See your eligibility score in minutes—no commitment.</p>
-              <a
-                href="https://justi.guide/get_started/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="min-h-[48px] min-w-[180px] inline-flex items-center justify-center bg-white text-[#6B5FCF] px-8 py-4 rounded-full font-semibold text-base border-2 border-[#E8E5FF] hover:bg-[#E8E5FF] hover:-translate-y-0.5 transition-all"
-                data-testid="button-lawyer-cta"
-              >
-                Join as Lawyer - $699/case
-              </a>
-            </div>
-
-            {/* Process Steps */}
-            <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-6 shadow-2xl">
-              <div className="bg-white rounded-xl p-10" id="how-it-works">
-                <div className="flex justify-center items-center gap-10 mb-10 flex-wrap">
-                  <div className="text-center flex-1 min-w-[150px]">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF] to-[#5B8DEE] text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
-                      1
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Legal Research Assistant</h3>
-                    <p className="text-sm text-gray-600">Dolores AI answers instantly</p>
-                  </div>
-                  <div className="text-center flex-1 min-w-[150px]">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF] to-[#5B8DEE] text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
-                      2
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-1">VetMatch™ Pairing</h3>
-                    <p className="text-sm text-gray-600">Perfect lawyer in minutes</p>
-                  </div>
-                  <div className="text-center flex-1 min-w-[150px]">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF] to-[#5B8DEE] text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
-                      3
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-1">FastTrack Processing™</h3>
-                    <p className="text-sm text-gray-600">Complete in 3 hours</p>
-                  </div>
+              <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-ink mb-5">
+                Your <em className="italic text-accent font-display">new life</em> in America starts here.
+              </h1>
+              <p className="text-[1.125rem] text-warm-gray leading-[1.75] max-w-[480px] mb-8">
+                Stop wondering. Start moving. JustiGuide&apos;s AI analyzes your profile against thousands of successful cases and pairs you with the right attorney.
+              </p>
+              <div className="flex gap-4 flex-wrap mb-10">
+                <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] hover:bg-accent-deep hover:shadow-[0_12px_32px_rgba(107,95,207,0.35)] hover:-translate-y-1 transition-all duration-200" data-testid="button-hero-cta">
+                  See my eligibility score <ArrowRight className="w-4 h-4" />
+                </a>
+                <a href="#how-it-works" className="inline-flex items-center gap-2 bg-transparent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/50 transition-all min-h-[52px] duration-200">How it works</a>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="flex">
+                  <span className="w-10 h-10 rounded-full border-[2.5px] border-chalk flex items-center justify-center text-[0.75rem] font-bold text-white ml-[-10px] first:ml-0 shadow-[0_2px_8px_rgba(47,106,91,0.4)] hover:scale-110 hover:shadow-[0_4px_12px_rgba(47,106,91,0.5)] transition-transform duration-300 cursor-default animate-avatar-float animate-avatar-float-1" style={{ backgroundColor: '#2F6A5B' }}>PR</span>
+                  <span className="w-10 h-10 rounded-full border-[2.5px] border-chalk flex items-center justify-center text-[0.75rem] font-bold text-white ml-[-10px] first:ml-0 shadow-[0_2px_8px_rgba(200,162,78,0.4)] hover:scale-110 hover:shadow-[0_4px_12px_rgba(200,162,78,0.5)] transition-transform duration-300 cursor-default animate-avatar-float animate-avatar-float-2" style={{ backgroundColor: '#C8A24E' }}>MC</span>
+                  <span className="w-10 h-10 rounded-full border-[2.5px] border-chalk flex items-center justify-center text-[0.75rem] font-bold text-white ml-[-10px] first:ml-0 shadow-[0_2px_8px_rgba(111,105,102,0.35)] hover:scale-110 hover:shadow-[0_4px_12px_rgba(111,105,102,0.45)] transition-transform duration-300 cursor-default animate-avatar-float animate-avatar-float-3" style={{ backgroundColor: '#6F6966' }}>SK</span>
                 </div>
-
-                {/* Stats */}
-                <div className="flex justify-center gap-20 mt-12 pt-10 bg-gradient-to-r from-[#6B5FCF]/5 to-[#5B8DEE]/5 rounded-2xl p-10 flex-wrap">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-[#6B5FCF]" data-testid="stat-users">47,000+</div>
-                    <div className="text-sm text-gray-600 mt-1">Users Helped</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-[#6B5FCF]" data-testid="stat-lawyers">500+</div>
-                    <div className="text-sm text-gray-600 mt-1">Vetted Lawyers</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-[#6B5FCF]" data-testid="stat-success">95%</div>
-                    <div className="text-sm text-gray-600 mt-1">Success Rate</div>
-                  </div>
-                </div>
+                <p className="text-[0.8rem] text-warm-gray leading-[1.5]">Join thousands who got their path in minutes</p>
               </div>
             </div>
+            {/* Right: visa card — float animation, purple shadow */}
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-[0_2px_8px_rgba(0,0,0,0.04),0_24px_64px_rgba(107,95,207,0.12)] border border-accent/10 animate-float">
+              <p className="text-[0.65rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center gap-2">
+                <span className="w-1 h-1 rounded-full bg-accent" /> Which visa is right for you?
+              </p>
+              <h3 className="font-display text-2xl md:text-[1.75rem] text-ink mb-2">Find your path in 60 seconds</h3>
+              <p className="text-[0.9rem] text-warm-gray mb-6">Select the visa you&apos;re exploring — or let our AI figure it out.</p>
+              <div className="flex flex-wrap gap-2 mb-7">
+                {['O-1A / O-1B', 'EB-1A', 'EB-2 NIW', 'H-1B', 'Green Card', 'N-400', 'I\'m not sure'].map((label, i) => (
+                  <span key={label} className={`px-4 py-2.5 rounded-full text-sm font-semibold border-[1.5px] cursor-pointer transition-all duration-200 ${i === 0 ? 'border-accent text-accent bg-accent-light' : 'border-border text-warm-gray hover:border-accent hover:text-accent hover:bg-accent-light'}`}>{label}</span>
+                ))}
+              </div>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full bg-accent text-white py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] hover:bg-accent-deep hover:shadow-[0_8px_24px_rgba(107,95,207,0.3)] transition-all duration-200">Get my personalized roadmap →</a>
+              <p className="text-center text-[0.78rem] text-warm-gray mt-4 flex items-center justify-center gap-1.5">🔒 Free · No commitment · Results in minutes</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why choose JustiGuide – trust strip (builds trust as user scrolls) */}
-      <section className="py-14 bg-white border-t border-[#E2E8F0]">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-center text-[#64748B] text-sm font-semibold uppercase tracking-wider mb-8">
-            Why choose JustiGuide
-          </h2>
-          <div className="grid md:grid-cols-3 gap-10 text-center">
-            <div>
-              <p className="text-lg font-bold text-[#0F172A] mb-2">Built by top accelerators</p>
-              <p className="text-[#475569] text-sm leading-relaxed">
-                Our platform is built by Y Combinator and TechCrunch Showcase winners. Trust our track record of innovation and reliability.
-              </p>
-            </div>
-            <div>
-              <p className="text-lg font-bold text-[#0F172A] mb-2">95% success rate</p>
-              <p className="text-[#475569] text-sm leading-relaxed">
-                We focus on transparency and quality at every step. Our proven success rate gives you confidence in your immigration journey.
-              </p>
-            </div>
-            <div>
-              <p className="text-lg font-bold text-[#0F172A] mb-2">U.S. licensed attorneys</p>
-              <p className="text-[#475569] text-sm leading-relaxed">
-                Every case is reviewed by vetted, U.S.-licensed immigration attorneys. Expert guidance from assessment to submission.
-              </p>
-            </div>
-          </div>
-          {/* Trust: satisfaction guarantee (audit Stage 3) */}
-          <div className="mt-10 pt-8 border-t border-[#E2E8F0] text-center">
-            <p className="text-[#0F172A] font-semibold mb-1">100% satisfaction guarantee</p>
-            <p className="text-[#475569] text-sm max-w-xl mx-auto">If your application is denied due to our error, we refund the service fee. Transparency and honesty at every stage.</p>
-          </div>
+      {/* Trust bar — dark strip with stats (inline styles for visibility) */}
+      <section className="py-7" style={{ backgroundColor: '#0B1215' }}>
+        <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-12">
+          <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>47,000+</span> Immigrants Helped</div>
+          <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+          <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>500+</span> Vetted Attorneys</div>
+          <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+          <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>95%</span> Success Rate</div>
+          <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+          <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>180+</span> Countries Served</div>
+          <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+          <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>99.7%</span> AI Accuracy</div>
         </div>
       </section>
 
-      {/* Achievements Banner */}
-      <section className="py-12 bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE]" data-testid="section-achievements">
+      {/* How it works — keep 3 steps, use tokens */}
+      <section id="how-it-works" className="py-24 bg-chalk">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-            <div className="flex items-center gap-3 text-white" data-testid="achievement-time-best-inventions">
-              <Award className="w-8 h-8" />
-              <div>
-                <p className="text-sm font-medium opacity-90">Selected As</p>
-                <p className="text-lg font-bold">TIME Best Inventions 2025</p>
+          <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Simple, fast, certain</p>
+          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-tight text-ink mb-3">Four steps to your new life</h2>
+          <p className="text-[1.05rem] text-warm-gray max-w-[560px] mt-3 leading-[1.7]">No guesswork. No endless waiting. Just a clear path from assessment to approval.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+            {[
+              { num: '1', title: 'Tell us your story', desc: 'Answer a few questions. Our AI analyzes your background against thousands of successful cases.', time: '~2 min' },
+              { num: '2', title: 'Get your eligibility score', desc: 'See your success probability, best visa path, and personalized roadmap — instantly.', time: '~3 sec' },
+              { num: '3', title: 'Meet your attorney', desc: 'We match you with a vetted, U.S.-licensed immigration attorney who specializes in your case type.', time: '15-min call' },
+              { num: '4', title: 'We file. You live.', desc: 'AI prepares your application, your attorney reviews it, and we file — often in under 3 hours.', time: '~3 hours' },
+            ].map((step) => (
+              <div key={step.num} className="text-center">
+                <div className="w-20 h-20 rounded-full bg-white border-2 border-accent flex items-center justify-center font-display text-2xl text-accent mx-auto mb-6 shadow-[0_4px_16px_rgba(107,95,207,0.1)]">{step.num}</div>
+                <h4 className="font-bold text-base mb-2 text-ink">{step.title}</h4>
+                <p className="text-sm text-warm-gray leading-relaxed max-w-[240px] mx-auto">{step.desc}</p>
+                <span className="inline-block mt-3 px-3 py-1 bg-accent-light rounded-full text-xs font-bold text-accent">{step.time}</span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why choose — two pillars, no duplicate guarantee */}
+      <section className="py-14 bg-chalk border-t border-border">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-center text-accent text-sm font-bold uppercase tracking-wider mb-8 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Built on trust</p>
+          <h2 className="font-display text-center text-[clamp(2rem,4vw,3.2rem)] text-ink mb-3">Why immigrants trust us</h2>
+          <p className="text-center text-warm-gray text-[1.05rem] max-w-[560px] mx-auto mt-2">Immigration is high-stakes. We built every feature to eliminate your risk.</p>
+          <div className="grid md:grid-cols-2 gap-10 text-center mt-14 max-w-2xl mx-auto">
+            <div>
+              <p className="text-lg font-bold text-ink mb-2">95% success rate</p>
+              <p className="text-warm-gray text-sm leading-relaxed">Transparency and quality at every step. Proven results so you can move with confidence.</p>
             </div>
-            
-            <div className="hidden md:block w-px h-12 bg-white/30"></div>
-            
-            <div className="flex items-center gap-3 text-white" data-testid="achievement-techcrunch">
-              <Award className="w-8 h-8" />
-              <div>
-                <p className="text-sm font-medium opacity-90">Winner</p>
-                <p className="text-lg font-bold">TechCrunch Best Showcase Pitch 2025</p>
-              </div>
+            <div>
+              <p className="text-lg font-bold text-ink mb-2">U.S. licensed attorneys</p>
+              <p className="text-warm-gray text-sm leading-relaxed">Every case is reviewed by vetted, U.S.-licensed immigration attorneys from assessment to submission.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Extraordinary Talent Section - O1A for Founders */}
-      <section id="extraordinary-talent" className="py-[100px] bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] relative overflow-hidden" data-testid="section-extraordinary-talent">
-        {/* Background decorations */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#6B5FCF]/20 to-[#5B8DEE]/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#5B8DEE]/15 to-[#6B5FCF]/10 rounded-full blur-[100px]"></div>
+      {/* Achievements — single line */}
+      <section className="py-10" style={{ backgroundColor: '#6B5FCF' }} data-testid="section-achievements">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
+            <Award className="w-7 h-7 shrink-0" style={{ color: '#ffffff' }} />
+            <span className="text-base md:text-lg font-semibold" style={{ color: '#ffffff' }}>TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Extraordinary Talent Section - O1A (dark bg + white text via inline styles) */}
+      <section id="extraordinary-talent" className="py-[100px] relative overflow-hidden" style={{ backgroundColor: '#0B1215' }} data-testid="section-extraordinary-talent">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Zap className="w-4 h-4 text-[#5B8DEE]" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#ffffff' }}>
+                <Zap className="w-4 h-4" style={{ color: '#F5EDD4' }} />
                 <span>For Founders & Extraordinary Talent</span>
               </div>
               
-              <h2 className="text-[42px] md:text-[52px] font-bold text-white mb-6 leading-[1.1]">
+              <h2 className="text-[42px] md:text-[52px] font-bold mb-6 leading-[1.1]" style={{ color: '#ffffff' }}>
                 Immigration<br />
-                <span className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] bg-clip-text text-transparent">Done For You</span>
+                <span className="italic" style={{ color: '#F5EDD4' }}>Done For You</span>
               </h2>
               
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              <p className="text-xl mb-8 leading-relaxed" style={{ color: '#E5E5E5' }}>
                 We handle your immigration while you build your legacy.
               </p>
               
-              <p className="text-base text-gray-400 mb-10 leading-relaxed">
+              <p className="text-base mb-10 leading-relaxed" style={{ color: '#B0B0B0' }}>
                 O1A Jet-Filing is about to change everything. We're launching a done-for-you service for founders who qualify — Just-In-Time delivery with attorney review included.
               </p>
 
-              {/* Key Benefits */}
               <div className="space-y-4 mb-10">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#6B5FCF]/30 to-[#5B8DEE]/30 rounded-xl flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-[#5B8DEE]" />
+                  <div className="w-10 h-10 bg-accent/30 rounded-xl flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-[#E8E5FF]" />
                   </div>
                   <div>
-                    <span className="text-white font-semibold">Just-In-Time Delivery</span>
-                    <span className="text-gray-400 ml-2">— Full application when you need it</span>
+                    <span className="font-semibold" style={{ color: '#ffffff' }}>Just-In-Time Delivery</span>
+                    <span className="ml-2" style={{ color: '#B0B0B0' }}>— Full application when you need it</span>
                   </div>
                 </div>
-                
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#6B5FCF]/30 to-[#5B8DEE]/30 rounded-xl flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-[#5B8DEE]" />
+                  <div className="w-10 h-10 bg-accent/30 rounded-xl flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-[#E8E5FF]" />
                   </div>
                   <div>
-                    <span className="text-white font-semibold">Attorney Review Included</span>
-                    <span className="text-gray-400 ml-2">— Expert eyes on every detail</span>
+                    <span className="font-semibold" style={{ color: '#ffffff' }}>Attorney Review Included</span>
+                    <span className="ml-2" style={{ color: '#B0B0B0' }}>— Expert eyes on every detail</span>
                   </div>
                 </div>
-                
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#6B5FCF]/30 to-[#5B8DEE]/30 rounded-xl flex items-center justify-center">
-                    <Zap className="w-5 h-5 text-[#5B8DEE]" />
+                  <div className="w-10 h-10 bg-accent/30 rounded-xl flex items-center justify-center">
+                    <Zap className="w-5 h-5 text-[#E8E5FF]" />
                   </div>
                   <div>
-                    <span className="text-white font-semibold">80% Cost Reduction</span>
-                    <span className="text-gray-400 ml-2">— Premium service, fraction of the price</span>
+                    <span className="font-semibold" style={{ color: '#ffffff' }}>80% Cost Reduction</span>
+                    <span className="ml-2" style={{ color: '#B0B0B0' }}>— Premium service, fraction of the price</span>
                   </div>
                 </div>
               </div>
 
               <a
                 href="mailto:o1a@justiguide.com?subject=O1A Beta Access Request"
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 transition-all"
+                className="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all"
                 data-testid="button-o1a-beta-access"
               >
                 Request Beta Access
-                <span className="bg-white/20 px-3 py-1 rounded-full text-sm">10 spots</span>
               </a>
             </div>
 
-            {/* Right Content - Stats Card */}
             <div className="relative">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-10">
+              <div className="rounded-3xl p-10 backdrop-blur-sm" style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
                 <div className="text-center mb-10">
-                  <p className="text-sm font-semibold text-[#5B8DEE] uppercase tracking-wider mb-3">OUR BIGGEST LAUNCH YET</p>
-                  <h3 className="text-3xl font-bold text-white mb-2">47,000+ Immigrants Served</h3>
-                  <p className="text-gray-400">This year alone</p>
+                  <p className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: '#F5EDD4' }}>OUR BIGGEST LAUNCH YET</p>
+                  <h3 className="text-3xl font-bold mb-2" style={{ color: '#ffffff' }}>O1A Jet-Filing</h3>
+                  <p style={{ color: '#B0B0B0' }}>Just-In-Time · 80% cost reduction</p>
                 </div>
-
                 <div className="grid grid-cols-2 gap-6 mb-10">
-                  <div className="bg-white/5 rounded-2xl p-6 text-center">
-                    <div className="text-3xl font-bold text-white mb-1">JIT</div>
-                    <div className="text-sm text-gray-400">Just-In-Time</div>
+                  <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>JIT</div>
+                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Just-In-Time</div>
                   </div>
-                  <div className="bg-white/5 rounded-2xl p-6 text-center">
-                    <div className="text-3xl font-bold text-white mb-1">80%</div>
-                    <div className="text-sm text-gray-400">Cost Savings</div>
+                  <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>80%</div>
+                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Cost Savings</div>
                   </div>
-                  <div className="bg-white/5 rounded-2xl p-6 text-center">
-                    <div className="text-3xl font-bold text-white mb-1">100%</div>
-                    <div className="text-sm text-gray-400">Attorney Reviewed</div>
-                   </div>
-                  <div className="bg-white/5 rounded-2xl p-6 text-center">
-                    <div className="text-3xl font-bold text-white mb-1">10</div>
-                    <div className="text-sm text-gray-400">Beta Spots</div>
+                  <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>100%</div>
+                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Attorney Reviewed</div>
+                  </div>
+                  <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>10</div>
+                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Beta Spots</div>
                   </div>
                 </div>
-
-                <div className="border-t border-white/10 pt-8">
-                  <p className="text-center text-gray-400 text-sm mb-4">Perfect for</p>
+                <div className="pt-8 border-t border-white/10">
+                  <p className="text-center text-sm mb-4" style={{ color: '#B0B0B0' }}>Perfect for</p>
                   <div className="flex flex-wrap justify-center gap-3">
-                    <span className="bg-white/10 text-white px-4 py-2 rounded-full text-sm">Startup Founders</span>
-                    <span className="bg-white/10 text-white px-4 py-2 rounded-full text-sm">Tech Leaders</span>
-                    <span className="bg-white/10 text-white px-4 py-2 rounded-full text-sm">Researchers</span>
-                    <span className="bg-white/10 text-white px-4 py-2 rounded-full text-sm">Artists</span>
-                    <span className="bg-white/10 text-white px-4 py-2 rounded-full text-sm">Athletes</span>
+                    {['Startup Founders', 'Tech Leaders', 'Researchers', 'Artists', 'Athletes'].map((label) => (
+                      <span key={label} className="px-4 py-2 rounded-full text-sm" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff' }}>{label}</span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -406,56 +339,56 @@ export default function LandingPage() {
       </section>
 
       {/* EU Residency Section */}
-      <section className="py-[80px] bg-gradient-to-br from-[#F8FAFC] to-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-[#6B5FCF]/5 to-[#5B8DEE]/5 rounded-full blur-[80px]"></div>
+      <section className="py-[80px] bg-gradient-to-br from-sage to-chalk relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px]"></div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="bg-white rounded-3xl p-10 shadow-xl border border-gray-200">
+          <div className="bg-white rounded-3xl p-10 shadow-xl border border-border">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6B5FCF]/10 to-[#5B8DEE]/10 border border-[#6B5FCF]/20 text-[#6B5FCF] px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-accent-light border border-accent/20 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Globe className="w-4 h-4" />
                   <span>European Residency</span>
                 </div>
                 
-                <h2 className="text-[36px] md:text-[42px] font-bold text-[#0F172A] mb-4 leading-[1.1]">
+                <h2 className="font-display text-[36px] md:text-[42px] font-bold text-ink mb-4 leading-[1.1]">
                   Earn a Highly Qualified Talent Residency in Europe
                 </h2>
                 
-                <p className="text-lg text-[#1E293B] mb-6 leading-relaxed">
+                <p className="text-lg text-ink mb-6 leading-relaxed">
                   Fast-track your path to European residency with university-backed support. Residency granted in 4-6 months — faster than most EU residency paths.
                 </p>
 
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#6B5FCF] flex-shrink-0" />
-                    <span className="text-[#1E293B]">Faster than most EU residency/citizenship paths</span>
+                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                    <span className="text-ink">Faster than most EU residency/citizenship paths</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#6B5FCF] flex-shrink-0" />
-                    <span className="text-[#1E293B]">Supporting University backs your application</span>
+                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                    <span className="text-ink">Supporting University backs your application</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#6B5FCF] flex-shrink-0" />
-                    <span className="text-[#1E293B]">Residency granted in 4-6 months</span>
+                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                    <span className="text-ink">Residency granted in 4-6 months</span>
                   </div>
                 </div>
 
                 <a
                   href="/eu"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-[0_4px_20px_rgba(107,95,207,0.25)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
+                  className="inline-flex items-center gap-3 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-lg shadow-[0_4px_20px_rgba(107,95,207,0.15)] hover:bg-accent hover:text-white hover:border-accent hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
                 >
                   Learn More About EU Residency
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-5 h-5 shrink-0" />
                 </a>
               </div>
 
               <div className="relative">
-                <div className="bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-2xl p-8 border border-[#6B5FCF]/20">
+                <div className="bg-accent-light rounded-2xl p-8 border border-accent/20">
                   <div className="text-center">
-                    <Globe className="w-20 h-20 text-[#6B5FCF] mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold text-[#0F172A] mb-4">European Access</h3>
-                    <p className="text-[#1E293B] leading-relaxed">
+                    <Globe className="w-20 h-20 text-accent mx-auto mb-6" />
+                    <h3 className="font-display text-2xl font-bold text-ink mb-4">European Access</h3>
+                    <p className="text-ink leading-relaxed">
                       Gain residency rights in Europe, opening doors to work, study, and live across EU member states.
                     </p>
                   </div>
@@ -467,17 +400,17 @@ export default function LandingPage() {
       </section>
 
       {/* Dolores AI Section */}
-      <section className="py-[100px] bg-white relative">
-        <div className="absolute left-[-150px] top-[100px] w-[400px] h-[400px] bg-[#5B8DEE]/10 rounded-full blur-[60px]"></div>
+      <section className="py-[100px] bg-chalk relative">
+        <div className="absolute left-[-150px] top-[100px] w-[400px] h-[400px] bg-accent/10 rounded-full blur-[60px]"></div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-[#6B5FCF] uppercase tracking-wider mb-4">BEYOND FORMS: TRUE AI INTELLIGENCE</p>
-            <h2 className="text-[48px] font-bold text-[#0F172A] mb-5">
+            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Beyond forms: true AI intelligence</p>
+            <h2 className="font-display text-[48px] font-bold text-ink mb-5">
               Meet Dolores AI™<br/>
-              <span className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] bg-clip-text text-transparent">1M+ Cases. 12 Languages. 3 Second Answers.</span>
+              <span className="text-accent">1M+ Cases. 12 Languages. 3 Second Answers.</span>
             </h2>
-            <p className="text-lg text-[#475569] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-warm-gray max-w-3xl mx-auto leading-relaxed">
               Dolores provides legal reasoning, strategy analysis, and predictive insights<br className="hidden md:block"/>
               - like having an immigration expert available 24/7.
             </p>
@@ -485,30 +418,30 @@ export default function LandingPage() {
 
           <div className="flex justify-center gap-20 flex-wrap mt-12">
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-[#6B5FCF] mb-2">99.7%</h3>
-              <p className="text-[#475569]">Accuracy Rate</p>
+              <h3 className="font-display text-5xl font-bold text-accent mb-2">99.7%</h3>
+              <p className="text-warm-gray">Accuracy Rate</p>
             </div>
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-[#6B5FCF] mb-2">3 sec</h3>
-              <p className="text-[#475569]">Response Time</p>
+              <h3 className="font-display text-5xl font-bold text-accent mb-2">3 sec</h3>
+              <p className="text-warm-gray">Response Time</p>
             </div>
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-[#6B5FCF] mb-2">24/7</h3>
-              <p className="text-[#475569]">Always Available</p>
+              <h3 className="font-display text-5xl font-bold text-accent mb-2">24/7</h3>
+              <p className="text-warm-gray">Always Available</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section id="features" className="py-[100px] bg-[#F8FAFC]">
+      <section id="features" className="py-[100px] bg-sage">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-[#6B5FCF] uppercase tracking-wider mb-4">WHY JUSTIGUIDE</p>
-            <h2 className="text-[48px] font-bold text-[#0F172A] mb-5">
+            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Why JustiGuide</p>
+            <h2 className="font-display text-[48px] font-bold text-ink mb-5">
               From Months to Hours
             </h2>
-            <p className="text-xl text-[#475569] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-warm-gray max-w-3xl mx-auto leading-relaxed">
               JustiGuide delivers completed applications in just 3 hours.<br className="hidden md:block"/>
               Here's how we make immigration simple:
             </p>
@@ -516,63 +449,56 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h3 className="text-[40px] font-bold text-[#0F172A] mb-8">For Lawyers: 10x Your Practice</h3>
+              <h3 className="font-display text-[40px] font-bold text-ink mb-8">For Lawyers: 10x Your Practice</h3>
 
               <div className="space-y-8">
                 <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Users className="w-6 h-6 text-[#6B5FCF]" />
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-1">50% More Cases</h4>
-                    <p className="text-base text-gray-600 leading-relaxed">
+                    <h4 className="text-lg font-semibold text-ink mb-1">50% More Cases</h4>
+                    <p className="text-base text-warm-gray leading-relaxed">
                       Handle 40 cases/month instead of 20 - with the same team
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-[#6B5FCF]" />
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-1">93% Time Reduction</h4>
-                    <p className="text-base text-gray-600 leading-relaxed">
+                    <h4 className="text-lg font-semibold text-ink mb-1">93% Time Reduction</h4>
+                    <p className="text-base text-warm-gray leading-relaxed">
                       From 40+ hours to 3 hours per case - verified by 500+ lawyers
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-[#6B5FCF]" />
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-1">Zero Errors Guaranteed</h4>
-                    <p className="text-base text-gray-600 leading-relaxed">
+                    <h4 className="text-lg font-semibold text-ink mb-1">Zero Errors Guaranteed</h4>
+                    <p className="text-base text-warm-gray leading-relaxed">
                       AI triple-checks every form - 100% RFE prevention rate
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Zap className="w-6 h-6 text-[#6B5FCF]" />
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Zap className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-1">$300K+ Additional Revenue</h4>
-                    <p className="text-base text-gray-600 leading-relaxed">
+                    <h4 className="text-lg font-semibold text-ink mb-1">$300K+ Additional Revenue</h4>
+                    <p className="text-base text-warm-gray leading-relaxed">
                       Average lawyer adds $25K/month with our efficiency gains
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="relative h-96">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#5B8DEE]/20 to-[#6B5FCF]/20 rounded-full blur-3xl"></div>
-              <div className="relative h-full flex items-center justify-center">
-                <Globe className="w-64 h-64 text-[#6B5FCF]/30" />
               </div>
             </div>
           </div>
@@ -580,69 +506,63 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-[100px] bg-white">
+      <section id="testimonials" className="py-[100px] bg-chalk">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-[#6B5FCF] uppercase tracking-wider mb-4">TESTIMONIALS</p>
-            <h2 className="text-[48px] font-bold text-[#0F172A] mb-5">
-              Why people <strong>LOVE</strong> JustiGuide
+            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Testimonials</p>
+            <h2 className="font-display text-[48px] font-bold text-ink mb-5">
+              Why people <strong>love</strong> JustiGuide
             </h2>
-            <p className="text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-warm-gray max-w-2xl mx-auto leading-relaxed">
               Read what our satisfied customers say. Join the community who trust us for quality, reliability, and service.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-              <div className="flex text-yellow-400 mb-4">
+            <div className="bg-white p-8 rounded-2xl border border-border shadow-sm">
+              <div className="flex text-gold mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
-              <p className="text-base text-gray-700 mb-6 leading-relaxed">
+              <p className="text-base text-warm-gray mb-6 leading-relaxed">
                 "JustiGuide made my H1B process incredibly smooth. What used to take months took just 3 hours!"
               </p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF] to-[#5B8DEE] rounded-full flex items-center justify-center text-white font-semibold">
-                  PR
-                </div>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#2F6A5B' }}>PR</div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Priya Reddy</h4>
-                  <p className="text-sm text-gray-600">Software Engineer</p>
+                  <h4 className="font-semibold text-ink">Priya Reddy</h4>
+                  <p className="text-sm text-warm-gray">Software Engineer</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-              <div className="flex text-yellow-400 mb-4">
+            <div className="bg-white p-8 rounded-2xl border border-border shadow-sm">
+              <div className="flex text-gold mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
-              <p className="text-base text-gray-700 mb-6 leading-relaxed">
+              <p className="text-base text-warm-gray mb-6 leading-relaxed">
                 "Finally got my Green Card! The lawyer matching was perfect. Highly recommend JustiGuide."
               </p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF] to-[#5B8DEE] rounded-full flex items-center justify-center text-white font-semibold">
-                  MC
-                </div>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#C8A24E' }}>MC</div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Miguel Chen</h4>
-                  <p className="text-sm text-gray-600">Business Owner</p>
+                  <h4 className="font-semibold text-ink">Miguel Chen</h4>
+                  <p className="text-sm text-warm-gray">Business Owner</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-              <div className="flex text-yellow-400 mb-4">
+            <div className="bg-white p-8 rounded-2xl border border-border shadow-sm">
+              <div className="flex text-gold mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
-              <p className="text-base text-gray-700 mb-6 leading-relaxed">
+              <p className="text-base text-warm-gray mb-6 leading-relaxed">
                 "Dolores AI answered all my questions instantly. Best immigration platform I've used!"
               </p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#6B5FCF] to-[#5B8DEE] rounded-full flex items-center justify-center text-white font-semibold">
-                  SK
-                </div>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#6F6966' }}>SK</div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Sarah Kim</h4>
-                  <p className="text-sm text-gray-600">Medical Resident</p>
+                  <h4 className="font-semibold text-ink">Sarah Kim</h4>
+                  <p className="text-sm text-warm-gray">Medical Resident</p>
                 </div>
               </div>
             </div>
@@ -651,126 +571,139 @@ export default function LandingPage() {
       </section>
 
       {/* Features Grid Section */}
-      <section className="py-[100px] bg-white">
+      <section className="py-[100px] bg-chalk">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-[#6B5FCF] uppercase tracking-wider mb-4">PLATFORM FEATURES</p>
-            <h2 className="text-[48px] font-bold text-[#0F172A] mb-5">
+            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Platform features</p>
+            <h2 className="font-display text-[48px] font-bold text-ink mb-5">
               Everything You Need in One Platform
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-[#E2E8F0] hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
               <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-white">
                 <img src={aiFormImage} alt="AI-Assisted Form Filling Interface" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">AI-Assisted Form Filling</h3>
-              <p className="text-gray-600 leading-relaxed">Reduce errors and save time across multiple immigration applications</p>
+              <h3 className="text-xl font-semibold text-ink mb-3">AI-Assisted Form Filling</h3>
+              <p className="text-warm-gray leading-relaxed">Reduce errors and save time across multiple immigration applications</p>
             </div>
 
-            <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-[#E2E8F0] hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-white">
+            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
+              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
                 <img src={multilingualImage} alt="Multilingual Support Interface" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">Multilingual Support</h3>
-              <p className="text-gray-600 leading-relaxed">Break language barriers effortlessly for diverse client bases</p>
+              <h3 className="text-xl font-semibold text-ink mb-3">Multilingual Support</h3>
+              <p className="text-warm-gray leading-relaxed">Break language barriers effortlessly for diverse client bases</p>
             </div>
 
-            <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-[#E2E8F0] hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-white">
+            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
+              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
                 <img src={caseManagementImage} alt="Case Management Dashboard Interface" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">Case Management Dashboard</h3>
-              <p className="text-gray-600 leading-relaxed">Stay organized and on top of every immigration case</p>
+              <h3 className="text-xl font-semibold text-ink mb-3">Case Management Dashboard</h3>
+              <p className="text-warm-gray leading-relaxed">Stay organized and on top of every immigration case</p>
             </div>
 
-            <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-[#E2E8F0] hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-white">
+            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
+              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
                 <img src={realTimeUpdatesImage} alt="Real-Time Updates Interface" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">Real-Time Updates</h3>
-              <p className="text-gray-600 leading-relaxed">Keep clients informed at every step of their immigration journey</p>
+              <h3 className="text-xl font-semibold text-ink mb-3">Real-Time Updates</h3>
+              <p className="text-warm-gray leading-relaxed">Keep clients informed at every step of their immigration journey</p>
             </div>
 
-            <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-[#E2E8F0] hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-white">
+            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
+              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
                 <img src={legalResearchImage} alt="Legal Research Assistant Interface" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">Legal Research Assistant</h3>
-              <p className="text-gray-600 leading-relaxed">Access comprehensive immigration law resources instantly</p>
+              <h3 className="text-xl font-semibold text-ink mb-3">Legal Research Assistant</h3>
+              <p className="text-warm-gray leading-relaxed">Access comprehensive immigration law resources instantly</p>
             </div>
 
-            <div className="bg-[#F8FAFC] p-8 rounded-2xl border border-[#E2E8F0] hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-white">
+            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
+              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
                 <img src={documentVerificationImage} alt="Document Verification Interface" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-semibold text-[#0F172A] mb-3">Document Verification</h3>
-              <p className="text-gray-600 leading-relaxed">Automated checks ensure accuracy and compliance</p>
+              <h3 className="text-xl font-semibold text-ink mb-3">Document Verification</h3>
+              <p className="text-warm-gray leading-relaxed">Automated checks ensure accuracy and compliance</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Transparent pricing (Stage 6: eliminate budget uncertainty, e-sign, pay-per-phase) */}
-      <section id="pricing" className="py-16 bg-[#F8FAFC] border-t border-[#E2E8F0]">
+      <section id="pricing" className="py-16 bg-sage border-t border-border">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-[32px] font-bold text-[#0F172A] mb-4">Transparent pricing</h2>
-          <p className="text-[#475569] mb-8 max-w-2xl mx-auto">
+          <h2 className="font-display text-[32px] font-bold text-ink mb-4">Transparent pricing</h2>
+          <p className="text-warm-gray mb-8 max-w-2xl mx-auto">
             No hidden fees. Know your investment before you start.
           </p>
           <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
-              <p className="text-[#6B5FCF] font-semibold mb-1">O-1A Just-In-Time Filing</p>
-              <p className="text-2xl font-bold text-[#0F172A]">From $8,000</p>
-              <p className="text-sm text-[#64748B] mt-2">Attorney-reviewed · Full petition · 80% vs traditional counsel</p>
-              <p className="text-xs text-[#64748B] mt-2">E-signature ready · Review &amp; sign online</p>
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-[#6B5FCF] font-semibold text-sm hover:underline">Get started →</a>
+            <div className="bg-white rounded-2xl p-6 border border-border shadow-sm">
+              <p className="text-accent font-semibold mb-1">O-1A Just-In-Time Filing</p>
+              <p className="font-display text-2xl font-bold text-ink">$9,499</p>
+              <p className="text-sm text-warm-gray mt-2">Attorney-reviewed · Full petition · 80% vs traditional counsel</p>
+              <p className="text-xs text-warm-gray mt-2">E-signature ready · Review &amp; sign online</p>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent font-semibold text-sm hover:underline">Get started →</a>
             </div>
-            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
-              <p className="text-[#6B5FCF] font-semibold mb-1">Other visas &amp; green card</p>
-              <p className="text-2xl font-bold text-[#0F172A]">Starting from</p>
-              <p className="text-sm text-[#64748B] mt-2">Free assessment · Tiered packages · Clear fee breakdown</p>
-              <p className="text-xs text-[#64748B] mt-2">Pay per phase available · No large upfront retainer</p>
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-[#6B5FCF] font-semibold text-sm hover:underline">See options →</a>
+            <div className="bg-white rounded-2xl p-6 border border-border shadow-sm">
+              <p className="text-accent font-semibold mb-1">Other visas &amp; green card</p>
+              <p className="font-display text-2xl font-bold text-ink">Starting from</p>
+              <p className="text-sm text-warm-gray mt-2">Free assessment · Tiered packages · Clear fee breakdown</p>
+              <p className="text-xs text-warm-gray mt-2">Pay per phase available · No large upfront retainer</p>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent font-semibold text-sm hover:underline">See options →</a>
             </div>
           </div>
-          <p className="text-[#64748B] text-sm mt-6">Financing and pay-over-time options available. <a href="/pricing" className="text-[#6B5FCF] font-semibold hover:underline">Full pricing →</a></p>
+          <p className="text-warm-gray text-sm mt-6">Financing and pay-over-time options available. <a href="/pricing" className="text-accent font-semibold hover:underline">Full pricing →</a></p>
         </div>
       </section>
 
-      {/* Lead capture CTA (audit: CTA clarity – "Get My Personalized Roadmap") */}
-      <section id="waitlist" className="py-[100px] bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        
+      {/* Guarantee strip — HTML layout */}
+      <section className="py-14 bg-accent-light">
+        <div className="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-center gap-6 text-center">
+          <div className="w-[72px] h-[72px] rounded-full bg-accent text-white flex items-center justify-center shrink-0">
+            <Shield className="w-8 h-8" />
+          </div>
+          <div>
+            <h3 className="font-display text-2xl text-ink">100% Satisfaction Guarantee</h3>
+            <p className="text-warm-gray text-[0.9rem] mt-1 max-w-[480px]">If your application is denied due to a JustiGuide error, we refund your full service fee. Your trust is non-negotiable.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Waitlist — light section, dark text, design system */}
+      <section id="waitlist" className="py-[100px] relative overflow-hidden bg-sage">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" aria-hidden />
         <div className="max-w-3xl mx-auto px-6 relative z-10">
+          <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2">
+            <span className="w-5 h-0.5 bg-accent" aria-hidden /> Get started
+          </p>
           <div className="text-center mb-12">
-            <h2 className="text-[48px] md:text-[56px] font-bold text-white mb-6 leading-tight">
+            <h2 className="font-display text-[48px] md:text-[56px] font-bold text-ink mb-6 leading-tight">
               Get your personalized roadmap
             </h2>
-            <p className="text-lg text-white/90">
+            <p className="text-lg text-warm-gray">
               Free assessment · See your best path in minutes · No commitment
             </p>
           </div>
 
-          {/* Stage 5: What happens next – 15-min discovery + Success Probability */}
-          <div className="mb-10 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-center">
-            <h3 className="text-lg font-bold text-white mb-2">What happens next</h3>
-            <p className="text-white/90 text-sm mb-2">15-minute discovery call to understand your background and goals.</p>
-            <p className="text-white/90 text-sm">Get your <strong>Success Probability score</strong>—AI analyzes thousands of cases to show your likelihood of approval.</p>
+          <div className="mb-10 p-6 rounded-2xl text-center bg-white border border-border">
+            <h3 className="text-lg font-bold text-ink mb-2">What happens next</h3>
+            <p className="text-sm text-warm-gray mb-2">15-minute discovery call to understand your background and goals.</p>
+            <p className="text-sm text-warm-gray">Get your <strong className="text-ink">Success Probability score</strong>—AI analyzes thousands of cases to show your likelihood of approval.</p>
           </div>
 
           {isSubmitted ? (
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-12 text-center">
-              <CheckCircle className="w-16 h-16 text-white mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-white mb-2">You're on the list! 🎉</h3>
-              <p className="text-white/90">We'll be in touch within 1 hour to schedule your discovery call.</p>
+            <div className="rounded-2xl p-12 text-center bg-white border border-border">
+              <CheckCircle className="w-16 h-16 text-accent mx-auto mb-4" />
+              <h3 className="font-display text-2xl font-bold text-ink mb-2">You're on the list! 🎉</h3>
+              <p className="text-warm-gray">We'll be in touch within 1 hour to schedule your discovery call.</p>
             </div>
           ) : (
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
-              {/* Trust: Security & Privacy badge (audit Stage 4) */}
-              <div className="flex items-center justify-center gap-2 mb-6 text-white/90 text-sm">
-                <Shield className="h-4 w-4" />
+            <div className="rounded-2xl p-8 bg-chalk border border-border shadow-xl">
+              <div className="flex items-center justify-center gap-2 mb-6 text-sm text-warm-gray">
+                <Shield className="h-4 w-4 text-accent" />
                 <span>Secure &amp; private · Your data is never shared</span>
               </div>
               <Form {...form}>
@@ -780,17 +713,17 @@ export default function LandingPage() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white font-semibold">Full Name</FormLabel>
+                        <FormLabel className="font-semibold text-ink">Full Name</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
                             placeholder="John Doe"
                             autoComplete="name"
-                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white min-h-[48px]"
+                            className="min-h-[48px] border-border bg-white text-ink placeholder:text-warm-gray focus:border-accent focus:ring-accent/20"
                             data-testid="input-name"
                           />
                         </FormControl>
-                        <FormMessage className="text-white/90" />
+                        <FormMessage className="text-warm-gray text-sm" />
                       </FormItem>
                     )}
                   />
@@ -800,18 +733,18 @@ export default function LandingPage() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white font-semibold">Email Address</FormLabel>
+                        <FormLabel className="font-semibold text-ink">Email Address</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
                             type="email"
                             placeholder="john@example.com"
                             autoComplete="email"
-                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white min-h-[48px]"
+                            className="min-h-[48px] border-border bg-white text-ink placeholder:text-warm-gray focus:border-accent focus:ring-accent/20"
                             data-testid="input-email"
                           />
                         </FormControl>
-                        <FormMessage className="text-white/90" />
+                        <FormMessage className="text-warm-gray text-sm" />
                       </FormItem>
                     )}
                   />
@@ -821,17 +754,17 @@ export default function LandingPage() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white font-semibold">Phone (Optional)</FormLabel>
+                        <FormLabel className="font-semibold text-ink">Phone (Optional)</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
                             placeholder="+1 (555) 123-4567"
                             autoComplete="tel"
-                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white min-h-[48px]"
+                            className="min-h-[48px] border-border bg-white text-ink placeholder:text-warm-gray focus:border-accent focus:ring-accent/20"
                             data-testid="input-phone"
                           />
                         </FormControl>
-                        <FormMessage className="text-white/90" />
+                        <FormMessage className="text-warm-gray text-sm" />
                       </FormItem>
                     )}
                   />
@@ -841,17 +774,17 @@ export default function LandingPage() {
                     name="immigrationStatus"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white font-semibold">Immigration Status (Optional)</FormLabel>
+                        <FormLabel className="font-semibold text-ink">Immigration Status (Optional)</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger 
-                              className="bg-white/20 border-white/30 text-white focus:border-white"
+                              className="min-h-[48px] border-border bg-white text-ink focus:border-accent focus:ring-accent/20"
                               data-testid="select-status"
                             >
                               <SelectValue placeholder="Select your status" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent className="bg-white">
+                          <SelectContent className="bg-chalk border-border text-ink">
                             <SelectItem value="h1b">H-1B</SelectItem>
                             <SelectItem value="o1a">O-1A (Extraordinary Ability)</SelectItem>
                             <SelectItem value="eb1">EB-1 (Employment-Based First Preference)</SelectItem>
@@ -870,7 +803,7 @@ export default function LandingPage() {
                   <Button
                     type="submit"
                     disabled={waitlistMutation.isPending}
-                    className="w-full min-h-[48px] bg-white text-[#6B5FCF] hover:bg-white/90 font-bold py-6 text-lg rounded-full"
+                    className="w-full min-h-[48px] bg-chalk text-accent hover:bg-white font-bold py-6 text-lg rounded-full border-0 shadow-lg"
                     data-testid="button-submit-waitlist"
                   >
                     {waitlistMutation.isPending ? "Sending..." : "Get my roadmap →"}
@@ -883,43 +816,43 @@ export default function LandingPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-[100px] bg-white">
+      <section id="contact" className="py-[100px] bg-chalk">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-[#6B5FCF] uppercase tracking-wider mb-4">GET IN TOUCH</p>
-            <h2 className="text-[48px] font-bold text-[#0F172A] mb-5">Contact Us</h2>
-            <p className="text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Get in touch</p>
+            <h2 className="font-display text-[48px] font-bold text-ink mb-5">Contact Us</h2>
+            <p className="text-lg text-warm-gray max-w-2xl mx-auto leading-relaxed">
               Have questions? We're here to help you navigate your immigration journey.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center p-8 bg-[#F8FAFC] rounded-2xl border border-[#E2E8F0]">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-8 h-8 text-[#6B5FCF]" />
+            <div className="text-center p-8 bg-white rounded-2xl border border-border">
+              <div className="w-16 h-16 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                <Mail className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold text-[#0F172A] mb-2">Email Us</h3>
-              <a href="mailto:info@justiguide.com" className="text-[#6B5FCF] hover:underline" data-testid="link-email">
+              <h3 className="text-lg font-semibold text-ink mb-2">Email Us</h3>
+              <a href="mailto:info@justiguide.com" className="text-accent hover:underline" data-testid="link-email">
                 info@justiguide.com
               </a>
             </div>
 
-            <div className="text-center p-8 bg-[#F8FAFC] rounded-2xl border border-[#E2E8F0]">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-8 h-8 text-[#6B5FCF]" />
+            <div className="text-center p-8 bg-white rounded-2xl border border-border">
+              <div className="w-16 h-16 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold text-[#0F172A] mb-2">Call Us</h3>
-              <a href="tel:+18667795127" className="text-[#6B5FCF] hover:underline" data-testid="link-phone">
+              <h3 className="text-lg font-semibold text-ink mb-2">Call Us</h3>
+              <a href="tel:+18667795127" className="text-accent hover:underline" data-testid="link-phone">
                 +1 (866) 779-5127
               </a>
             </div>
 
-            <div className="text-center p-8 bg-[#F8FAFC] rounded-2xl border border-[#E2E8F0]">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-8 h-8 text-[#6B5FCF]" />
+            <div className="text-center p-8 bg-white rounded-2xl border border-border">
+              <div className="w-16 h-16 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold text-[#0F172A] mb-2">Visit Us</h3>
-              <p className="text-[#475569]">
+              <h3 className="text-lg font-semibold text-ink mb-2">Visit Us</h3>
+              <p className="text-warm-gray">
                 San Francisco, CA<br />United States
               </p>
             </div>
@@ -927,36 +860,34 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      {/* Footer — dark background, white text via inline */}
+      <footer className="py-16" style={{ backgroundColor: '#0B1215', color: '#ffffff' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-3 mb-6">
               <img src={logoImage} alt="JustiGuide Logo" className="w-10 h-10" data-testid="footer-logo-image" />
-              <span className="text-2xl font-bold">JustiGuide</span>
+              <span className="text-2xl font-bold font-display" style={{ color: '#ffffff' }}>JustiGuide</span>
             </div>
             
             <div className="flex flex-wrap justify-center gap-8 mb-6">
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Free Assessment</a>
-              <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors">How It Works</a>
-              <a href="#features" className="text-gray-400 hover:text-white transition-colors">Benefits</a>
-              <a href="#pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</a>
-              <a href="/features" className="text-gray-400 hover:text-white transition-colors" data-testid="link-features-footer">Feature Videos</a>
-              <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">Testimonials</a>
-              <a href="/lawyer-faq" className="text-gray-400 hover:text-white transition-colors" data-testid="link-lawyer-faq-footer">Attorney FAQ</a>
-              <a href="/press" className="text-gray-400 hover:text-white transition-colors" data-testid="link-press-footer">Press</a>
-              <a href="https://nexpathglobal.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" data-testid="link-nexpath-footer">NexPath Global</a>
-              <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Free Assessment</a>
+              <a href="#features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Benefits</a>
+              <a href="#pricing" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Pricing</a>
+              <a href="/features" className="transition-colors hover:opacity-100" data-testid="link-features-footer" style={{ color: 'rgba(255,255,255,0.75)' }}>Feature Videos</a>
+              <a href="#testimonials" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Testimonials</a>
+              <a href="/lawyer-faq" className="transition-colors hover:opacity-100" data-testid="link-lawyer-faq-footer" style={{ color: 'rgba(255,255,255,0.75)' }}>Attorney FAQ</a>
+              <a href="/press" className="transition-colors hover:opacity-100" data-testid="link-press-footer" style={{ color: 'rgba(255,255,255,0.75)' }}>Press</a>
+              <a href="#contact" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Contact</a>
             </div>
-            <div className="flex flex-wrap justify-center gap-6 text-gray-500 text-sm">
-              <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</a>
-              <a href="/pricing" className="hover:text-white transition-colors">Pricing</a>
+            <div className="flex flex-wrap justify-center gap-6 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
+              <a href="/privacy-policy" className="hover:opacity-100 transition-colors" style={{ color: 'rgba(255,255,255,0.6)' }}>Privacy Policy</a>
+              <a href="/terms-of-service" className="hover:opacity-100 transition-colors" style={{ color: 'rgba(255,255,255,0.6)' }}>Terms of Service</a>
+              <a href="/refund-policy" className="hover:opacity-100 transition-colors" style={{ color: 'rgba(255,255,255,0.6)' }}>Refund Policy</a>
+              <a href="/pricing" className="hover:opacity-100 transition-colors" style={{ color: 'rgba(255,255,255,0.6)' }}>Pricing</a>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+          <div className="border-t pt-8 text-center text-sm" style={{ borderColor: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.6)' }}>
             <p>© 2026 JustiGuide. Built by immigrants, for immigrants.</p>
           </div>
         </div>
