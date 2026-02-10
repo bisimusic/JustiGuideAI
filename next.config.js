@@ -5,10 +5,8 @@ const nextConfig = {
   env: {
     // Add any public env vars here
   },
-  // Exclude admin pages from build
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   webpack: (config, { isServer }) => {
-    // Exclude admin pages from client-side bundle
     if (!isServer) {
       config.resolve.alias = {
         ...config.resolve.alias,
@@ -16,7 +14,6 @@ const nextConfig = {
     }
     return config;
   },
-  // Exclude admin routes from static generation
   async generateBuildId() {
     return 'build-' + Date.now();
   },

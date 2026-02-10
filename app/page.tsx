@@ -79,13 +79,14 @@ export default function LandingPage() {
       {/* O1A Launch Announcement Banner */}
       <div className="bg-gradient-to-r from-[#0F172A] to-[#1E293B] text-white py-3 px-4" data-testid="banner-o1a-launch">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-3 text-sm md:text-base">
-          <span className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white text-xs font-bold px-2 py-1 rounded-full">NEW</span>
+          <span className="text-xs font-bold px-2 py-1 rounded-full bg-white text-[#0F172A]" style={{ backgroundColor: 'white', color: '#0F172A' }}>NEW</span>
           <span className="font-medium">O1A Jet-Filing for Founders — Just-In-Time, attorney review, 80% cost reduction</span>
           <a 
             href="https://immigrant.justi.guide/jit"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-[#0F172A] px-4 py-1.5 rounded-full font-semibold text-sm hover:bg-gray-100 transition-colors whitespace-nowrap"
+            className="px-4 py-1.5 rounded-full font-semibold text-sm transition-opacity whitespace-nowrap hover:opacity-90"
+            style={{ background: 'linear-gradient(to right, #6B5FCF, #5B8DEE)', color: 'white' }}
             data-testid="link-o1a-early-access"
           >
             Learn More →
@@ -102,21 +103,23 @@ export default function LandingPage() {
               <span className="text-2xl font-bold text-gray-900">JustiGuide</span>
             </div>
             
-            <div className="hidden md:flex items-center gap-12">
-              <a href="#how-it-works" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">About Us</a>
+            <div className="hidden md:flex items-center gap-10">
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Free Assessment</a>
+              <a href="#how-it-works" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">How It Works</a>
               <a href="#features" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Benefits</a>
+              <a href="#pricing" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Pricing</a>
               <a href="#testimonials" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Testimonials</a>
-              <a href="#contact" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Contact Us</a>
+              <a href="#contact" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Contact</a>
             </div>
 
             <a
-              href="https://justi.guide/get_started/"
+              href="https://immigrant.justi.guide/assessment"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-7 py-3 rounded-full font-semibold text-[15px] hover:shadow-[0_8px_20px_rgba(107,95,207,0.3)] hover:-translate-y-0.5 transition-all"
+              className="min-h-[44px] inline-flex items-center justify-center bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-7 py-3 rounded-full font-semibold text-[15px] hover:shadow-[0_8px_20px_rgba(107,95,207,0.3)] hover:-translate-y-0.5 transition-all"
               data-testid="nav-cta"
             >
-              Get Started
+              Free Assessment
             </a>
           </div>
         </div>
@@ -146,12 +149,16 @@ export default function LandingPage() {
             </h1>
 
             <p className="text-xl text-[#475569] font-semibold mb-5">
-              Your Immigration Journey, Simplified
+              Your new life, your secure path—with certainty at every step.
             </p>
 
-            <p className="text-xl text-[#94A3B8] mb-12 max-w-2xl mx-auto leading-[1.7]">
-              JustiGuide connects immigrants with vetted lawyers and AI-powered tools. 
-              Transform your immigration process from overwhelming to effortless.
+            <p className="text-xl text-[#94A3B8] mb-6 max-w-2xl mx-auto leading-[1.7]">
+              JustiGuide connects you with vetted lawyers and AI-powered tools so you can move from overwhelming to ready—faster.
+            </p>
+
+            {/* 5-second test: clear visa categories (audit Stage 2) */}
+            <p className="text-sm text-[#64748B] mb-10 font-medium">
+              We help with: <span className="text-[#0F172A]">O-1A</span> · <span className="text-[#0F172A]">EB-1</span> · <span className="text-[#0F172A]">EB-2 NIW</span> · <span className="text-[#0F172A]">N-400</span> · <span className="text-[#0F172A]">H-1B</span> · <span className="text-[#0F172A]">Green Card</span> · <span className="text-[#0F172A]">and more</span>
             </p>
 
             <div className="flex gap-4 justify-center mb-20 flex-wrap">
@@ -159,16 +166,17 @@ export default function LandingPage() {
                 href="https://immigrant.justi.guide/assessment"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-8 py-4 rounded-full font-semibold text-base shadow-[0_4px_20px_rgba(107,95,207,0.25)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
+                className="min-h-[48px] min-w-[180px] inline-flex items-center justify-center bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-8 py-4 rounded-full font-semibold text-base shadow-[0_4px_20px_rgba(107,95,207,0.25)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
                 data-testid="button-hero-cta"
               >
-                Start Free Assessment
+                Get my personalized roadmap
               </a>
+              <p className="text-[#64748B] text-sm mt-2">See your eligibility score in minutes—no commitment.</p>
               <a
                 href="https://justi.guide/get_started/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-[#6B5FCF] px-8 py-4 rounded-full font-semibold text-base border-2 border-[#E8E5FF] hover:bg-[#E8E5FF] hover:-translate-y-0.5 transition-all"
+                className="min-h-[48px] min-w-[180px] inline-flex items-center justify-center bg-white text-[#6B5FCF] px-8 py-4 rounded-full font-semibold text-base border-2 border-[#E8E5FF] hover:bg-[#E8E5FF] hover:-translate-y-0.5 transition-all"
                 data-testid="button-lawyer-cta"
               >
                 Join as Lawyer - $699/case
@@ -219,6 +227,40 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why choose JustiGuide – trust strip (builds trust as user scrolls) */}
+      <section className="py-14 bg-white border-t border-[#E2E8F0]">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-center text-[#64748B] text-sm font-semibold uppercase tracking-wider mb-8">
+            Why choose JustiGuide
+          </h2>
+          <div className="grid md:grid-cols-3 gap-10 text-center">
+            <div>
+              <p className="text-lg font-bold text-[#0F172A] mb-2">Built by top accelerators</p>
+              <p className="text-[#475569] text-sm leading-relaxed">
+                Our platform is built by Y Combinator and TechCrunch Showcase winners. Trust our track record of innovation and reliability.
+              </p>
+            </div>
+            <div>
+              <p className="text-lg font-bold text-[#0F172A] mb-2">95% success rate</p>
+              <p className="text-[#475569] text-sm leading-relaxed">
+                We focus on transparency and quality at every step. Our proven success rate gives you confidence in your immigration journey.
+              </p>
+            </div>
+            <div>
+              <p className="text-lg font-bold text-[#0F172A] mb-2">U.S. licensed attorneys</p>
+              <p className="text-[#475569] text-sm leading-relaxed">
+                Every case is reviewed by vetted, U.S.-licensed immigration attorneys. Expert guidance from assessment to submission.
+              </p>
+            </div>
+          </div>
+          {/* Trust: satisfaction guarantee (audit Stage 3) */}
+          <div className="mt-10 pt-8 border-t border-[#E2E8F0] text-center">
+            <p className="text-[#0F172A] font-semibold mb-1">100% satisfaction guarantee</p>
+            <p className="text-[#475569] text-sm max-w-xl mx-auto">If your application is denied due to our error, we refund the service fee. Transparency and honesty at every stage.</p>
           </div>
         </div>
       </section>
@@ -543,10 +585,10 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <p className="text-sm font-semibold text-[#6B5FCF] uppercase tracking-wider mb-4">TESTIMONIALS</p>
             <h2 className="text-[48px] font-bold text-[#0F172A] mb-5">
-              What Our Users Say
+              Why people <strong>LOVE</strong> JustiGuide
             </h2>
             <p className="text-lg text-[#475569] max-w-2xl mx-auto leading-relaxed">
-              Join thousands of immigrants who found their path to success with JustiGuide
+              Read what our satisfied customers say. Join the community who trust us for quality, reliability, and service.
             </p>
           </div>
 
@@ -670,28 +712,67 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Waitlist CTA Section */}
+      {/* Transparent pricing (Stage 6: eliminate budget uncertainty, e-sign, pay-per-phase) */}
+      <section id="pricing" className="py-16 bg-[#F8FAFC] border-t border-[#E2E8F0]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-[32px] font-bold text-[#0F172A] mb-4">Transparent pricing</h2>
+          <p className="text-[#475569] mb-8 max-w-2xl mx-auto">
+            No hidden fees. Know your investment before you start.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
+              <p className="text-[#6B5FCF] font-semibold mb-1">O-1A Just-In-Time Filing</p>
+              <p className="text-2xl font-bold text-[#0F172A]">From $8,000</p>
+              <p className="text-sm text-[#64748B] mt-2">Attorney-reviewed · Full petition · 80% vs traditional counsel</p>
+              <p className="text-xs text-[#64748B] mt-2">E-signature ready · Review &amp; sign online</p>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-[#6B5FCF] font-semibold text-sm hover:underline">Get started →</a>
+            </div>
+            <div className="bg-white rounded-2xl p-6 border border-[#E2E8F0] shadow-sm">
+              <p className="text-[#6B5FCF] font-semibold mb-1">Other visas &amp; green card</p>
+              <p className="text-2xl font-bold text-[#0F172A]">Starting from</p>
+              <p className="text-sm text-[#64748B] mt-2">Free assessment · Tiered packages · Clear fee breakdown</p>
+              <p className="text-xs text-[#64748B] mt-2">Pay per phase available · No large upfront retainer</p>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-[#6B5FCF] font-semibold text-sm hover:underline">See options →</a>
+            </div>
+          </div>
+          <p className="text-[#64748B] text-sm mt-6">Financing and pay-over-time options available. <a href="/pricing" className="text-[#6B5FCF] font-semibold hover:underline">Full pricing →</a></p>
+        </div>
+      </section>
+
+      {/* Lead capture CTA (audit: CTA clarity – "Get My Personalized Roadmap") */}
       <section id="waitlist" className="py-[100px] bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
         
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-[48px] md:text-[56px] font-bold text-white mb-6 leading-tight">
-              Join the Waitlist
+              Get your personalized roadmap
             </h2>
             <p className="text-lg text-white/90">
-              Be among the first to experience the future of immigration
+              Free assessment · See your best path in minutes · No commitment
             </p>
+          </div>
+
+          {/* Stage 5: What happens next – 15-min discovery + Success Probability */}
+          <div className="mb-10 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-center">
+            <h3 className="text-lg font-bold text-white mb-2">What happens next</h3>
+            <p className="text-white/90 text-sm mb-2">15-minute discovery call to understand your background and goals.</p>
+            <p className="text-white/90 text-sm">Get your <strong>Success Probability score</strong>—AI analyzes thousands of cases to show your likelihood of approval.</p>
           </div>
 
           {isSubmitted ? (
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-12 text-center">
               <CheckCircle className="w-16 h-16 text-white mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-white mb-2">You're on the list! 🎉</h3>
-              <p className="text-white/90">We'll notify you as soon as JustiGuide is ready.</p>
+              <p className="text-white/90">We'll be in touch within 1 hour to schedule your discovery call.</p>
             </div>
           ) : (
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
+              {/* Trust: Security & Privacy badge (audit Stage 4) */}
+              <div className="flex items-center justify-center gap-2 mb-6 text-white/90 text-sm">
+                <Shield className="h-4 w-4" />
+                <span>Secure &amp; private · Your data is never shared</span>
+              </div>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
@@ -703,8 +784,9 @@ export default function LandingPage() {
                         <FormControl>
                           <Input 
                             {...field} 
-                            placeholder="John Doe" 
-                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white"
+                            placeholder="John Doe"
+                            autoComplete="name"
+                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white min-h-[48px]"
                             data-testid="input-name"
                           />
                         </FormControl>
@@ -723,8 +805,9 @@ export default function LandingPage() {
                           <Input 
                             {...field} 
                             type="email"
-                            placeholder="john@example.com" 
-                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white"
+                            placeholder="john@example.com"
+                            autoComplete="email"
+                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white min-h-[48px]"
                             data-testid="input-email"
                           />
                         </FormControl>
@@ -742,8 +825,9 @@ export default function LandingPage() {
                         <FormControl>
                           <Input 
                             {...field} 
-                            placeholder="+1 (555) 123-4567" 
-                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white"
+                            placeholder="+1 (555) 123-4567"
+                            autoComplete="tel"
+                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white min-h-[48px]"
                             data-testid="input-phone"
                           />
                         </FormControl>
@@ -786,10 +870,10 @@ export default function LandingPage() {
                   <Button
                     type="submit"
                     disabled={waitlistMutation.isPending}
-                    className="w-full bg-white text-[#6B5FCF] hover:bg-white/90 font-bold py-6 text-lg rounded-full"
+                    className="w-full min-h-[48px] bg-white text-[#6B5FCF] hover:bg-white/90 font-bold py-6 text-lg rounded-full"
                     data-testid="button-submit-waitlist"
                   >
-                    {waitlistMutation.isPending ? "Joining..." : "Join Waitlist →"}
+                    {waitlistMutation.isPending ? "Sending..." : "Get my roadmap →"}
                   </Button>
                 </form>
               </Form>
@@ -852,15 +936,23 @@ export default function LandingPage() {
               <span className="text-2xl font-bold">JustiGuide</span>
             </div>
             
-            <div className="flex justify-center gap-10 mb-10">
-              <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors">About Us</a>
+            <div className="flex flex-wrap justify-center gap-8 mb-6">
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Free Assessment</a>
+              <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors">How It Works</a>
               <a href="#features" className="text-gray-400 hover:text-white transition-colors">Benefits</a>
+              <a href="#pricing" className="text-gray-400 hover:text-white transition-colors">Pricing</a>
               <a href="/features" className="text-gray-400 hover:text-white transition-colors" data-testid="link-features-footer">Feature Videos</a>
               <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">Testimonials</a>
               <a href="/lawyer-faq" className="text-gray-400 hover:text-white transition-colors" data-testid="link-lawyer-faq-footer">Attorney FAQ</a>
               <a href="/press" className="text-gray-400 hover:text-white transition-colors" data-testid="link-press-footer">Press</a>
               <a href="https://nexpathglobal.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" data-testid="link-nexpath-footer">NexPath Global</a>
-              <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</a>
+              <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
+            </div>
+            <div className="flex flex-wrap justify-center gap-6 text-gray-500 text-sm">
+              <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</a>
+              <a href="/pricing" className="hover:text-white transition-colors">Pricing</a>
             </div>
           </div>
 

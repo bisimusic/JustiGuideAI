@@ -4797,15 +4797,19 @@ Secure your spot now: https://www.justi.guide/get_started/?urgent=n400&discount=
           { name: "iwantout", description: "People seeking to emigrate from their home country", focus: "emigration" },
           { name: "expats", description: "Expat life, relocation, and residency abroad", focus: "eu_residency" },
           { name: "europe", description: "European topics including mobility and residency", focus: "eu_residency" },
-          { name: "europeanunion", description: "EU policy, freedom of movement, and residency", focus: "eu_residency" }
+          { name: "europeanunion", description: "EU policy, freedom of movement, and residency", focus: "eu_residency" },
+          { name: "ImmigrationCanada", description: "Canadian immigration, PR, Express Entry", focus: "canada" },
+          { name: "canada", description: "Canada general, moving and immigration", focus: "canada" },
+          { name: "AskACanadian", description: "Canada Q&A including immigration", focus: "canada" }
         ],
         highValueKeywords: [
           "urgent", "deadline", "denied", "rfe", "help", "lawyer", "attorney",
-          "EU residency", "European residency", "EU fast track", "highly qualified talent", "EU citizenship"
+          "EU residency", "European residency", "EU fast track", "highly qualified talent", "EU citizenship",
+          "Canada", "Canadian PR", "Express Entry", "IRCC", "permanent resident Canada", "PNP", "provincial nominee"
         ],
-        totalChannels: 11,
-        newChannelsAdded: ["citizenship", "legaladvice", "expats", "europe", "europeanunion"],
-        focusAreas: ["work_visas", "permanent_residence", "citizenship", "legal_support", "general", "eu_residency"]
+        totalChannels: 14,
+        newChannelsAdded: ["citizenship", "legaladvice", "expats", "europe", "europeanunion", "ImmigrationCanada", "canada", "AskACanadian"],
+        focusAreas: ["work_visas", "permanent_residence", "citizenship", "legal_support", "general", "eu_residency", "canada"]
       };
       
       res.json(immigrationChannels);
