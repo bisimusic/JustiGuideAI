@@ -22,6 +22,7 @@ data/
 # Admin / dashboard - excluded from deployment (landing + connected only)
 app/admin/
 app/api/admin/
+components/ContentConverter.tsx
 app/api/optimization/
 app/api/dashboard/
 app/api/audit/
