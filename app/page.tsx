@@ -78,19 +78,23 @@ export default function LandingPage() {
     <div className="min-h-screen bg-chalk font-body">
       {/* O1A Launch Announcement Banner — purple CTA */}
       <div className="py-3 px-4 relative overflow-hidden" style={{ backgroundColor: '#0B1215', color: '#ffffff' }} data-testid="banner-o1a-launch">
-        <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent pointer-events-none" aria-hidden />
+        <div className="absolute inset-0 bg-linear-to-r from-accent/10 to-transparent pointer-events-none" aria-hidden />
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-3 text-sm md:text-base relative z-10">
           <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-chalk text-ink">NEW</span>
           <span className="font-medium">O1A Jet-Filing for Founders — Just-In-Time, attorney review, 80% cost reduction</span>
-          <a 
-            href="https://immigrant.justi.guide/jit"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Button
+            asChild
             className="px-4 py-2 rounded-full font-semibold text-sm bg-accent text-white whitespace-nowrap hover:bg-accent-deep hover:brightness-110 transition-all duration-200"
-            data-testid="link-o1a-early-access"
           >
-            Learn More →
-          </a>
+            <a
+              href="https://immigrant.justi.guide/jit"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-o1a-early-access"
+            >
+              Learn More →
+            </a>
+          </Button>
         </div>
       </div>
 
@@ -116,7 +120,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero — two-column, stronger purple presence, floating card */}
-      <section className="relative pt-[120px] md:pt-[140px] pb-24 bg-gradient-to-b from-chalk to-sage overflow-hidden">
+      <section className="relative pt-[120px] md:pt-[140px] pb-24 bg-linear-to-b from-chalk to-sage overflow-hidden">
         <div className="absolute top-[-200px] right-[-150px] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(107,95,207,0.12)_0%,transparent_65%)] pointer-events-none" />
         <div className="absolute bottom-[-150px] left-[-80px] w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(200,162,78,0.08)_0%,transparent_65%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -133,8 +137,8 @@ export default function LandingPage() {
                 Stop wondering. Start moving. JustiGuide&apos;s AI analyzes your profile against thousands of successful cases and pairs you with the right attorney.
               </p>
               <div className="flex gap-4 flex-wrap mb-10">
-                <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] hover:bg-accent-deep hover:shadow-[0_12px_32px_rgba(107,95,207,0.35)] hover:-translate-y-1 transition-all duration-200" data-testid="button-hero-cta">
-                  See my eligibility score <ArrowRight className="w-4 h-4" />
+                <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-chalk text-accent px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-2 border-accent hover:bg-accent hover:text-white hover:border-accent hover:shadow-[0_12px_32px_rgba(107,95,207,0.35)] hover:-translate-y-1 transition-all duration-200" data-testid="button-hero-cta">
+                  See my eligibility score <ArrowRight className="w-4 h-4 shrink-0" />
                 </a>
                 <a href="#how-it-works" className="inline-flex items-center gap-2 bg-transparent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/50 transition-all min-h-[52px] duration-200">How it works</a>
               </div>
@@ -144,7 +148,7 @@ export default function LandingPage() {
                   <span className="w-10 h-10 rounded-full border-[2.5px] border-chalk flex items-center justify-center text-[0.75rem] font-bold text-white ml-[-10px] first:ml-0 shadow-[0_2px_8px_rgba(200,162,78,0.4)] hover:scale-110 hover:shadow-[0_4px_12px_rgba(200,162,78,0.5)] transition-transform duration-300 cursor-default animate-avatar-float animate-avatar-float-2" style={{ backgroundColor: '#C8A24E' }}>MC</span>
                   <span className="w-10 h-10 rounded-full border-[2.5px] border-chalk flex items-center justify-center text-[0.75rem] font-bold text-white ml-[-10px] first:ml-0 shadow-[0_2px_8px_rgba(111,105,102,0.35)] hover:scale-110 hover:shadow-[0_4px_12px_rgba(111,105,102,0.45)] transition-transform duration-300 cursor-default animate-avatar-float animate-avatar-float-3" style={{ backgroundColor: '#6F6966' }}>SK</span>
                 </div>
-                <p className="text-[0.8rem] text-warm-gray leading-[1.5]">Join thousands who got their path in minutes</p>
+                <p className="text-[0.8rem] text-warm-gray leading-normal">Join thousands who got their path in minutes</p>
               </div>
             </div>
             {/* Right: visa card — float animation, purple shadow */}
@@ -170,8 +174,6 @@ export default function LandingPage() {
       <section className="py-7" style={{ backgroundColor: '#0B1215' }}>
         <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-12">
           <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>47,000+</span> Immigrants Helped</div>
-          <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
-          <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>500+</span> Vetted Attorneys</div>
           <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
           <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>95%</span> Success Rate</div>
           <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
@@ -224,12 +226,15 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Achievements — single line */}
-      <section className="py-10" style={{ backgroundColor: '#6B5FCF' }} data-testid="section-achievements">
+      {/* Achievements — design system: accent bg, label + bar, font-display */}
+      <section className="py-12 bg-accent" data-testid="section-achievements">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
-            <Award className="w-7 h-7 shrink-0" style={{ color: '#ffffff' }} />
-            <span className="text-base md:text-lg font-semibold" style={{ color: '#ffffff' }}>TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25</span>
+          <p className="text-[0.7rem] font-bold tracking-widest uppercase text-white/90 mb-4 flex items-center justify-center gap-2">
+            <span className="w-5 h-0.5 bg-white/80" aria-hidden /> Recognition
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+            <Award className="w-8 h-8 shrink-0 text-white" />
+            <span className="font-display text-lg md:text-xl text-white text-center">TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25</span>
           </div>
         </div>
       </section>
@@ -339,7 +344,7 @@ export default function LandingPage() {
       </section>
 
       {/* EU Residency Section */}
-      <section className="py-[80px] bg-gradient-to-br from-sage to-chalk relative overflow-hidden">
+      <section className="py-[80px] bg-linear-to-br from-sage to-chalk relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px]"></div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -361,15 +366,15 @@ export default function LandingPage() {
 
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-accent shrink-0" />
                     <span className="text-ink">Faster than most EU residency/citizenship paths</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-accent shrink-0" />
                     <span className="text-ink">Supporting University backs your application</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-accent shrink-0" />
                     <span className="text-ink">Residency granted in 4-6 months</span>
                   </div>
                 </div>
@@ -453,7 +458,7 @@ export default function LandingPage() {
 
               <div className="space-y-8">
                 <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
                     <Users className="w-6 h-6 text-accent" />
                   </div>
                   <div>
@@ -465,7 +470,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
                     <Clock className="w-6 h-6 text-accent" />
                   </div>
                   <div>
@@ -477,7 +482,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
                     <Shield className="w-6 h-6 text-accent" />
                   </div>
                   <div>
@@ -489,7 +494,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
                     <Zap className="w-6 h-6 text-accent" />
                   </div>
                   <div>
@@ -860,36 +865,33 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer — dark background, white text via inline */}
-      <footer className="py-16" style={{ backgroundColor: '#0B1215', color: '#ffffff' }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <img src={logoImage} alt="JustiGuide Logo" className="w-10 h-10" data-testid="footer-logo-image" />
-              <span className="text-2xl font-bold font-display" style={{ color: '#ffffff' }}>JustiGuide</span>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-8 mb-6">
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Free Assessment</a>
-              <a href="#features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Benefits</a>
-              <a href="#pricing" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Pricing</a>
-              <a href="/features" className="transition-colors hover:opacity-100" data-testid="link-features-footer" style={{ color: 'rgba(255,255,255,0.75)' }}>Feature Videos</a>
-              <a href="#testimonials" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Testimonials</a>
-              <a href="/lawyer-faq" className="transition-colors hover:opacity-100" data-testid="link-lawyer-faq-footer" style={{ color: 'rgba(255,255,255,0.75)' }}>Attorney FAQ</a>
-              <a href="/press" className="transition-colors hover:opacity-100" data-testid="link-press-footer" style={{ color: 'rgba(255,255,255,0.75)' }}>Press</a>
-              <a href="#contact" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.75)' }}>Contact</a>
-            </div>
-            <div className="flex flex-wrap justify-center gap-6 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
-              <a href="/privacy-policy" className="hover:opacity-100 transition-colors" style={{ color: 'rgba(255,255,255,0.6)' }}>Privacy Policy</a>
-              <a href="/terms-of-service" className="hover:opacity-100 transition-colors" style={{ color: 'rgba(255,255,255,0.6)' }}>Terms of Service</a>
-              <a href="/refund-policy" className="hover:opacity-100 transition-colors" style={{ color: 'rgba(255,255,255,0.6)' }}>Refund Policy</a>
-              <a href="/pricing" className="hover:opacity-100 transition-colors" style={{ color: 'rgba(255,255,255,0.6)' }}>Pricing</a>
-            </div>
+      {/* Footer — HTML design: ink bg, centered, label + nav + legal + copyright */}
+      <footer className="bg-ink text-white border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-12 md:py-14 text-center">
+          <div className="font-display text-xl md:text-2xl text-white mb-6">
+            JustiGuide
           </div>
-
-          <div className="border-t pt-8 text-center text-sm" style={{ borderColor: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.6)' }}>
-            <p>© 2026 JustiGuide. Built by immigrants, for immigrants.</p>
+          <nav className="mb-6" aria-label="Footer navigation">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[11px] font-semibold uppercase tracking-wider">
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="text-white/75 hover:text-white transition-colors" data-testid="link-o1a-footer">Free Assessment</a>
+              <a href="#features" className="text-white/75 hover:text-white transition-colors">Benefits</a>
+              <a href="#pricing" className="text-white/75 hover:text-white transition-colors">Pricing</a>
+              <a href="/features" className="text-white/75 hover:text-white transition-colors" data-testid="link-features-footer">Feature Videos</a>
+              <a href="#testimonials" className="text-white/75 hover:text-white transition-colors">Testimonials</a>
+              <a href="/lawyer-faq" className="text-white/75 hover:text-white transition-colors" data-testid="link-lawyer-faq-footer">Attorney FAQ</a>
+              <a href="/press" className="text-white/75 hover:text-white transition-colors" data-testid="link-press-footer">Press</a>
+              <a href="#contact" className="text-white/75 hover:text-white transition-colors">Contact</a>
+            </div>
+          </nav>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-[11px] font-semibold uppercase tracking-wider text-white/60 mb-8">
+            <a href="/privacy-policy" className="hover:text-white/80 transition-colors">Privacy Policy</a>
+            <a href="/terms-of-service" className="hover:text-white/80 transition-colors">Terms of Service</a>
+            <a href="/refund-policy" className="hover:text-white/80 transition-colors">Refund Policy</a>
+            <a href="/pricing" className="hover:text-white/80 transition-colors">Pricing</a>
           </div>
+          <p className="text-[11px] text-white/60">
+            © 2026 JustiGuide. Built by immigrants, for immigrants.
+          </p>
         </div>
       </footer>
     </div>

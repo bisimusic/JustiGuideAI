@@ -1,7 +1,9 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Environment variables that should be available on the client
+  outputFileTracingRoot: path.join(__dirname),
   env: {
     // Add any public env vars here
   },
