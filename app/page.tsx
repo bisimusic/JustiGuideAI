@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Award, CheckCircle, Clock, Users, MessageCircle, Shield, Zap, Globe, Heart, Star, Mail, MapPin, Phone, ArrowRight } from "lucide-react";
+import { Award, CheckCircle, Clock, Users, MessageCircle, Shield, Zap, Globe, Heart, Star, Mail, MapPin, Phone, ArrowRight, Send } from "lucide-react";
 
 // Image paths - Next.js serves files from public/ at the root
 const logoImage = "/assets/file-VqtLhVngyJTcoRdkTestqJ-Guarder Icon - Transparent_1759804664573.png";
@@ -404,35 +404,73 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Dolores AI Section */}
-      <section className="py-[100px] bg-chalk relative">
-        <div className="absolute left-[-150px] top-[100px] w-[400px] h-[400px] bg-accent/10 rounded-full blur-[60px]"></div>
-        
+      {/* Dolores AI Section — two-column: intro + metric cards left, chat mockup right */}
+      <section className="py-[100px] relative" style={{ backgroundColor: "#0B1215" }}>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Beyond forms: true AI intelligence</p>
-            <h2 className="font-display text-[48px] font-bold text-ink mb-5">
-              Meet Dolores AI™<br/>
-              <span className="text-accent">1M+ Cases. 12 Languages. 3 Second Answers.</span>
-            </h2>
-            <p className="text-lg text-warm-gray max-w-3xl mx-auto leading-relaxed">
-              Dolores provides legal reasoning, strategy analysis, and predictive insights<br className="hidden md:block"/>
-              - like having an immigration expert available 24/7.
-            </p>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: intro + metric cards */}
+            <div>
+              <p className="text-[0.7rem] font-bold tracking-widest uppercase mb-4 flex items-center gap-2" style={{ color: "#D4AF37" }}>
+                <span className="w-5 h-0.5 shrink-0" style={{ backgroundColor: "#D4AF37" }} aria-hidden /> Your AI immigration expert
+              </p>
+              <h2 className="text-[clamp(2rem,3.5vw,3rem)] font-bold mb-6 leading-tight" style={{ color: "#ffffff" }}>
+                Meet <em className="font-display italic" style={{ color: "#D4AF37" }}>Dolores AI</em> — trained on <span style={{ color: "#D4AF37" }}>1M+ cases</span>
+              </h2>
+              <p className="text-lg mb-10 leading-relaxed" style={{ color: "#E0E0E0" }}>
+                Ask anything about immigration in 12 languages and get legally-grounded answers in seconds. Dolores doesn&apos;t guess — she reasons across case law, regulations, and real outcomes.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <div className="rounded-xl px-6 py-5 min-w-[140px]" style={{ backgroundColor: "rgba(255,255,255,0.06)" }}>
+                  <div className="text-2xl md:text-3xl font-bold mb-1" style={{ color: "#ffffff" }}>99.7%</div>
+                  <div className="text-sm" style={{ color: "#E0E0E0" }}>Accuracy Rate</div>
+                </div>
+                <div className="rounded-xl px-6 py-5 min-w-[140px]" style={{ backgroundColor: "rgba(255,255,255,0.06)" }}>
+                  <div className="text-2xl md:text-3xl font-bold mb-1" style={{ color: "#ffffff" }}>3 sec</div>
+                  <div className="text-sm" style={{ color: "#E0E0E0" }}>Avg. Response</div>
+                </div>
+                <div className="rounded-xl px-6 py-5 min-w-[140px]" style={{ backgroundColor: "rgba(255,255,255,0.06)" }}>
+                  <div className="text-2xl md:text-3xl font-bold mb-1" style={{ color: "#ffffff" }}>24/7</div>
+                  <div className="text-sm" style={{ color: "#E0E0E0" }}>Always On</div>
+                </div>
+              </div>
+            </div>
 
-          <div className="flex justify-center gap-20 flex-wrap mt-12">
-            <div className="text-center">
-              <h3 className="font-display text-5xl font-bold text-accent mb-2">99.7%</h3>
-              <p className="text-warm-gray">Accuracy Rate</p>
-            </div>
-            <div className="text-center">
-              <h3 className="font-display text-5xl font-bold text-accent mb-2">3 sec</h3>
-              <p className="text-warm-gray">Response Time</p>
-            </div>
-            <div className="text-center">
-              <h3 className="font-display text-5xl font-bold text-accent mb-2">24/7</h3>
-              <p className="text-warm-gray">Always Available</p>
+            {/* Right: chat mockup */}
+            <div className="rounded-2xl overflow-hidden border shrink-0" style={{ backgroundColor: "#1E1E1E", borderColor: "rgba(255,255,255,0.08)" }}>
+              <div className="p-5 space-y-4 min-h-[320px]">
+                <div className="flex justify-end">
+                  <div className="rounded-2xl px-4 py-3 max-w-[85%]" style={{ backgroundColor: "#2D5A5A", color: "#ffffff" }}>
+                    <p className="text-sm">I&apos;m a startup founder from Nigeria on an F-1. What are my best visa options?</p>
+                  </div>
+                </div>
+                <div className="flex justify-start">
+                  <div className="rounded-2xl px-4 py-3 max-w-[90%]" style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#E0E0E0" }}>
+                    <p className="text-sm">You have <span style={{ color: "#D4AF37" }}>strong eligibility for the O-1A visa (Extraordinary Ability)</span> and <span style={{ color: "#D4AF37" }}>EB-1A for a longer-term path</span>. Want a detailed score?</p>
+                  </div>
+                </div>
+                <div className="flex justify-end">
+                  <div className="rounded-2xl px-4 py-3 max-w-[85%]" style={{ backgroundColor: "#2D5A5A", color: "#ffffff" }}>
+                    <p className="text-sm">Yes, and how long would the O-1A take?</p>
+                  </div>
+                </div>
+                <div className="flex justify-start">
+                  <div className="rounded-2xl px-4 py-3 max-w-[90%]" style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "#E0E0E0" }}>
+                    <p className="text-sm">Petition prep is <span style={{ color: "#D4AF37" }}>under 3 hours</span> with JustiGuide. Premium processing gets a decision in 15 days. I can generate a personalized roadmap next.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 px-4 py-4 border-t" style={{ borderColor: "rgba(255,255,255,0.08)", backgroundColor: "rgba(0,0,0,0.2)" }}>
+                <input
+                  type="text"
+                  placeholder="Ask Dolores anything about immigration..."
+                  readOnly
+                  className="flex-1 bg-transparent text-sm outline-none placeholder:opacity-60"
+                  style={{ color: "#E0E0E0" }}
+                />
+                <button type="button" aria-label="Send" className="p-2 rounded-full opacity-70 hover:opacity-100 transition-opacity" style={{ color: "#D4AF37" }}>
+                  <Send className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
         </div>

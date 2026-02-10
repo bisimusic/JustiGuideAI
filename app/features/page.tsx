@@ -1,6 +1,7 @@
 "use client";
 
-import { Play, Users, Brain, Zap, TrendingUp, Shield, Award, Tv } from "lucide-react";
+import { Play, Users, Brain, TrendingUp, Shield, Award, Tv, ArrowRight } from "lucide-react";
+
 const logoImage = "/assets/file-VqtLhVngyJTcoRdkTestqJ-Guarder Icon - Transparent_1759804664573.png";
 
 interface FeatureVideo {
@@ -10,7 +11,7 @@ interface FeatureVideo {
   youtubeId?: string;
   googleDriveId?: string;
   category: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   duration: string;
 }
 
@@ -82,124 +83,97 @@ const featureVideos: FeatureVideo[] = [
 
 export default function AppFeatures() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Nunito, sans-serif' }}>
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-5">
-          <div className="flex justify-between items-center">
-            <a href="/" className="flex items-center gap-3">
-              <img src={logoImage} alt="JustiGuide Logo" className="w-10 h-10" data-testid="logo-image" />
-              <span className="text-2xl font-bold text-gray-900">JustiGuide</span>
-            </a>
-            
-            <div className="hidden md:flex items-center gap-12">
-              <a href="/#how-it-works" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">About Us</a>
-              <a href="/#features" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Benefits</a>
-              <a href="/features" className="text-[#6B5FCF] font-medium text-[15px]">Feature Videos</a>
-              <a href="/#contact" className="text-[#475569] hover:text-[#6B5FCF] font-medium text-[15px] transition-colors">Contact Us</a>
-            </div>
-
-            <a
-              href="/#waitlist"
-              className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-7 py-3 rounded-full font-semibold text-[15px] hover:shadow-[0_8px_20px_rgba(107,95,207,0.3)] hover:-translate-y-0.5 transition-all"
-              data-testid="nav-cta"
-            >
-              Join Waitlist
-            </a>
+    <div className="min-h-screen bg-chalk font-body">
+      {/* Nav — match landing design system */}
+      <nav className="sticky top-0 z-50 bg-chalk/95 backdrop-blur-md border-b border-border shadow-[0_1px_0_0_rgba(0,0,0,0.05)]" id="main-nav">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" style={{ height: "68px" }}>
+          <a href="/" className="flex items-center gap-3 font-display text-[1.35rem] text-ink group">
+            <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-accent/10 ring-1 ring-accent/20 group-hover:ring-accent/40 transition-all">
+              <img src={logoImage} alt="JustiGuide" className="w-6 h-6 object-contain" data-testid="logo-image" />
+            </span>
+            JustiGuide
+          </a>
+          <div className="hidden md:flex items-center gap-8">
+            <a href="/#how-it-works" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">How it works</a>
+            <a href="/#features" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Benefits</a>
+            <a href="/features" className="text-sm font-semibold text-accent transition-colors">Feature Videos</a>
+            <a href="/#contact" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Contact</a>
           </div>
+          <a
+            href="/#waitlist"
+            className="rounded-full font-bold transition-all duration-200 px-7 py-3 text-base bg-accent hover:bg-accent-deep shadow-[0_4px_14px_rgba(107,95,207,0.45)] hover:shadow-[0_8px_24px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 ring-2 ring-accent/30 hover:ring-accent/50"
+            style={{ color: "#0B1215" }}
+            data-testid="nav-cta"
+          >
+            Get my roadmap →
+          </a>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative py-[100px] pb-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-        {/* Blob decoration */}
-        <div className="absolute top-12 right-0 w-[600px] h-[600px] bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-full opacity-30 blur-[100px]"></div>
-        
+      {/* Hero — design system: chalk → sage, label + bar, font-display */}
+      <section className="relative pt-[100px] md:pt-[120px] pb-20 bg-linear-to-b from-chalk to-sage overflow-hidden">
+        <div className="absolute top-[-200px] right-[-150px] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(107,95,207,0.12)_0%,transparent_65%)] pointer-events-none" aria-hidden />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center max-w-[900px] mx-auto">
-            {/* TIME Best Inventions Badge */}
-            <a 
-              href="https://time.com/collections/best-inventions-2025/7318500/justiguide-relo/" 
+            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2">
+              <span className="w-5 h-0.5 bg-accent" aria-hidden /> Platform demos
+            </p>
+            <h1 className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-bold text-ink mb-6 leading-tight">
+              See JustiGuide <em className="italic text-accent font-display">in action</em>
+            </h1>
+            <p className="text-xl text-warm-gray mb-10 max-w-2xl mx-auto leading-relaxed">
+              Watch how our AI-powered platform transforms immigration services and connects immigrant communities with qualified lawyers.
+            </p>
+            <a
+              href="https://calendly.com/bisivc/justiguide-demo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-white border border-gray-200 text-gray-900 px-6 py-3 rounded-full font-medium text-base mb-8 hover:border-gray-300 hover:shadow-md transition-all"
-              data-testid="badge-time-inventions"
+              className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-white hover:border-accent shadow-[0_4px_20px_rgba(107,95,207,0.15)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
+              data-testid="button-schedule-demo"
             >
-              <Award className="h-5 w-5 text-gray-700" />
-              <span>TIME Best Inventions 2025</span>
+              Schedule a demo <ArrowRight className="w-5 h-5 shrink-0" />
             </a>
-
-            <h1 className="text-[56px] md:text-[56px] font-bold text-[#0F172A] mb-6 leading-[1.1]">
-              See JustiGuide <span className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] bg-clip-text text-transparent">In Action</span>
-            </h1>
-
-            <p className="text-xl text-[#94A3B8] mb-12 max-w-2xl mx-auto leading-[1.7]">
-              Watch how our AI-powered platform transforms immigration services and connects 
-              immigrant communities with qualified lawyers.
-            </p>
-
-            <div className="flex gap-4 justify-center mb-12 flex-wrap">
-              <a
-                href="https://calendly.com/bisivc/justiguide-demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] text-white px-8 py-4 rounded-full font-semibold text-base shadow-[0_4px_20px_rgba(107,95,207,0.25)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
-                data-testid="button-schedule-demo"
-              >
-                Schedule a Demo
-              </a>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Achievements Banner */}
-      <section className="py-12 bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE]" data-testid="section-achievements">
+      {/* Achievements — single line, match landing */}
+      {/* Achievements — Dolores AI color scheme: dark bg + gold accent */}
+      <section className="py-12" style={{ backgroundColor: "#121212" }} data-testid="section-achievements">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-            <div className="flex items-center gap-3 text-white">
-              <Award className="w-8 h-8" />
-              <div>
-                <p className="text-sm font-medium opacity-90">Selected As</p>
-                <p className="text-lg font-bold">TIME Best Inventions 2025</p>
-              </div>
-            </div>
-            
-            <div className="hidden md:block w-px h-12 bg-white/30"></div>
-            
-            <div className="flex items-center gap-3 text-white">
-              <Award className="w-8 h-8" />
-              <div>
-                <p className="text-sm font-medium opacity-90">Winner</p>
-                <p className="text-lg font-bold">TechCrunch Best Showcase Pitch 2025</p>
-              </div>
-            </div>
+          <p className="text-[0.7rem] font-bold tracking-widest uppercase mb-4 flex items-center justify-center gap-2" style={{ color: "#D4AF37" }}>
+            <span className="w-5 h-0.5 shrink-0" style={{ backgroundColor: "#D4AF37" }} aria-hidden /> Recognition
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+            <Award className="w-8 h-8 shrink-0" style={{ color: "#D4AF37" }} />
+            <span className="font-display text-lg md:text-xl text-center" style={{ color: "#E0E0E0" }}>
+              TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Video Grid Section */}
-      <section className="py-[100px] bg-white">
+      {/* Video grid — design system: chalk bg, label + bar, cards with border */}
+      <section className="py-[100px] bg-chalk">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-[#6B5FCF] uppercase tracking-wider mb-4">PLATFORM DEMOS</p>
-            <h2 className="text-[48px] font-bold text-[#0F172A] mb-5">
-              Feature Videos
-            </h2>
-            <p className="text-xl text-[#475569] max-w-3xl mx-auto leading-relaxed">
-              Explore our powerful features through video demonstrations.
-            </p>
-          </div>
+          <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2">
+            <span className="w-5 h-0.5 bg-accent" aria-hidden /> Feature videos
+          </p>
+          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-ink mb-5 text-center">
+            Watch the platform
+          </h2>
+          <p className="text-lg text-warm-gray max-w-2xl mx-auto text-center mb-16 leading-relaxed">
+            Explore our features through video demonstrations.
+          </p>
 
           <div className="grid md:grid-cols-2 gap-10">
             {featureVideos.map((video) => (
-              <div 
-                key={video.id} 
-                className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300"
+              <div
+                key={video.id}
+                className="bg-white rounded-2xl border border-border overflow-hidden hover:shadow-xl transition-all duration-300"
                 data-testid={`video-card-${video.id}`}
               >
-                {/* Video Player */}
-                <div className="relative w-full bg-black" style={{ paddingBottom: '56.25%' }}>
+                <div className="relative w-full bg-ink" style={{ paddingBottom: "56.25%" }}>
                   {video.youtubeId ? (
                     <iframe
                       className="absolute top-0 left-0 w-full h-full"
@@ -221,34 +195,27 @@ export default function AppFeatures() {
                       data-testid={`video-iframe-${video.id}`}
                     />
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex flex-col items-center justify-center text-gray-500">
+                    <div className="absolute inset-0 bg-light-gray flex flex-col items-center justify-center text-warm-gray">
                       <Play className="h-16 w-16 mb-4 opacity-50" />
-                      <p className="text-lg font-semibold">Coming Soon</p>
+                      <p className="text-lg font-semibold text-ink">Coming soon</p>
                       <p className="text-sm">Video in production</p>
                     </div>
                   )}
                 </div>
-
-                {/* Video Info */}
                 <div className="p-8">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#6B5FCF]/10 to-[#5B8DEE]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <video.icon className="w-5 h-5 text-[#6B5FCF]" />
+                  <div className="flex items-start justify-between mb-4 gap-3">
+                    <div className="flex items-center gap-3 shrink-0">
+                      <div className="w-10 h-10 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
+                        <video.icon className="w-5 h-5 text-accent" />
                       </div>
-                      <div>
-                        <span className="inline-block px-3 py-1 bg-[#E8E5FF] text-[#6B5FCF] text-xs font-semibold rounded-full">
-                          {video.category}
-                        </span>
-                      </div>
+                      <span className="px-3 py-1 bg-accent-light text-accent text-xs font-semibold rounded-full">
+                        {video.category}
+                      </span>
                     </div>
-                    <span className="text-sm text-gray-500 font-medium">{video.duration}</span>
+                    <span className="text-sm text-warm-gray font-medium">{video.duration}</span>
                   </div>
-                  
-                  <h3 className="text-xl font-bold text-[#0F172A] mb-3">{video.title}</h3>
-                  <p className="text-base text-[#475569] leading-relaxed">
-                    {video.description}
-                  </p>
+                  <h3 className="text-xl font-bold text-ink mb-3">{video.title}</h3>
+                  <p className="text-base text-warm-gray leading-relaxed">{video.description}</p>
                 </div>
               </div>
             ))}
@@ -256,94 +223,85 @@ export default function AppFeatures() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-[100px] bg-[#F8FAFC]">
+      {/* Stats — design system: sage bg, font-display, accent numbers */}
+      <section className="py-[100px] bg-sage">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-[#6B5FCF] uppercase tracking-wider mb-4">BY THE NUMBERS</p>
-            <h2 className="text-[48px] font-bold text-[#0F172A] mb-5">
-              Platform Performance
-            </h2>
-          </div>
-
-          <div className="flex justify-center gap-20 flex-wrap">
+          <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2">
+            <span className="w-5 h-0.5 bg-accent" aria-hidden /> By the numbers
+          </p>
+          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-ink mb-16 text-center">
+            Platform performance
+          </h2>
+          <div className="flex justify-center gap-12 md:gap-20 flex-wrap">
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-[#6B5FCF] mb-2">47K+</h3>
-              <p className="text-[#475569]">Assisted Users</p>
+              <h3 className="font-display text-4xl md:text-5xl font-bold text-accent mb-2">47K+</h3>
+              <p className="text-warm-gray">Assisted users</p>
             </div>
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-[#6B5FCF] mb-2">1M+</h3>
-              <p className="text-[#475569]">AI Responses Generated</p>
+              <h3 className="font-display text-4xl md:text-5xl font-bold text-accent mb-2">1M+</h3>
+              <p className="text-warm-gray">AI responses generated</p>
             </div>
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-[#6B5FCF] mb-2">59%</h3>
-              <p className="text-[#475569]">Lead Engagement Rate</p>
+              <h3 className="font-display text-4xl md:text-5xl font-bold text-accent mb-2">99.7%</h3>
+              <p className="text-warm-gray">AI accuracy</p>
             </div>
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-[#6B5FCF] mb-2">$123M</h3>
-              <p className="text-[#475569]">Pipeline Value</p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-5xl font-bold text-[#6B5FCF] mb-2">24/7</h3>
-              <p className="text-[#475569]">AI Monitoring</p>
+              <h3 className="font-display text-4xl md:text-5xl font-bold text-accent mb-2">24/7</h3>
+              <p className="text-warm-gray">AI monitoring</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-[100px] bg-white">
+      {/* CTA — design system: light card, accent CTAs */}
+      <section className="py-[100px] bg-chalk">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-8 shadow-2xl">
-            <div className="bg-gradient-to-r from-[#6B5FCF] to-[#5B8DEE] rounded-xl p-12">
-              <h2 className="text-[40px] font-bold text-white mb-6">
-                Ready to See JustiGuide in Action?
-              </h2>
-              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Schedule a demo to see how our AI-powered platform can transform your immigration practice 
-                or help you navigate your immigration journey.
-              </p>
-              <div className="flex items-center justify-center gap-4 flex-wrap">
-                <a
-                  href="https://calendly.com/bisivc/justiguide-demo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white text-[#6B5FCF] px-8 py-4 rounded-full font-semibold text-base hover:bg-gray-50 hover:-translate-y-0.5 transition-all"
-                  data-testid="button-cta-demo"
-                >
-                  Schedule a Demo
-                </a>
-                <a
-                  href="/#waitlist"
-                  className="bg-transparent text-white px-8 py-4 rounded-full font-semibold text-base border-2 border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
-                  data-testid="button-cta-waitlist"
-                >
-                  Join Waitlist
-                </a>
-              </div>
+          <div className="bg-white rounded-2xl p-10 md:p-12 border border-border shadow-xl">
+            <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-ink mb-6">
+              Ready to see JustiGuide in action?
+            </h2>
+            <p className="text-lg text-warm-gray mb-10 max-w-2xl mx-auto leading-relaxed">
+              Schedule a demo to see how our AI-powered platform can transform your immigration practice or help you navigate your immigration journey.
+            </p>
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <a
+                href="https://calendly.com/bisivc/justiguide-demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-white hover:border-accent shadow-[0_4px_20px_rgba(107,95,207,0.15)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
+                data-testid="button-cta-demo"
+              >
+                Schedule a demo <ArrowRight className="w-5 h-5 shrink-0" />
+              </a>
+              <a
+                href="/#waitlist"
+                className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-white hover:border-accent transition-all"
+                data-testid="button-cta-waitlist"
+              >
+                Get my roadmap →
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0F172A] text-white py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
-              <img src={logoImage} alt="JustiGuide Logo" className="w-8 h-8" />
-              <span className="text-xl font-bold">JustiGuide</span>
-            </div>
-            <div className="flex gap-8 text-sm">
-              <a href="/" className="hover:text-[#6B5FCF] transition-colors">Home</a>
-              <a href="/features" className="hover:text-[#6B5FCF] transition-colors">Features</a>
-              <a href="/press" className="hover:text-[#6B5FCF] transition-colors">Press</a>
-              <a href="/#contact" className="hover:text-[#6B5FCF] transition-colors">Contact</a>
-            </div>
+      {/* Footer — match landing: ink bg, inline styles for visibility */}
+      <footer className="border-t py-12 md:py-14" style={{ backgroundColor: "#0B1215", borderColor: "rgba(255,255,255,0.1)" }}>
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="font-display text-xl md:text-2xl mb-6" style={{ color: "#ffffff" }}>
+            JustiGuide
           </div>
-          <div className="text-center mt-8 text-sm text-gray-400">
-            © 2025 JustiGuide. All rights reserved.
-          </div>
+          <nav className="mb-6" aria-label="Footer navigation">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[11px] font-semibold uppercase tracking-wider">
+              <a href="/" className="transition-colors hover:opacity-100" style={{ color: "rgba(255,255,255,0.85)" }}>Home</a>
+              <a href="/features" className="transition-colors hover:opacity-100" style={{ color: "rgba(255,255,255,0.85)" }}>Feature Videos</a>
+              <a href="/press" className="transition-colors hover:opacity-100" style={{ color: "rgba(255,255,255,0.85)" }}>Press</a>
+              <a href="/#contact" className="transition-colors hover:opacity-100" style={{ color: "rgba(255,255,255,0.85)" }}>Contact</a>
+            </div>
+          </nav>
+          <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.7)" }}>
+            © 2026 JustiGuide. Built by immigrants, for immigrants.
+          </p>
         </div>
       </footer>
     </div>
