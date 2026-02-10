@@ -3,10 +3,10 @@ import { dbClient } from '@/lib/db';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     // Update lead validation status
     await dbClient`
