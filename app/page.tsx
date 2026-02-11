@@ -137,7 +137,7 @@ export default function LandingPage() {
                 Stop wondering. Start moving. JustiGuide&apos;s AI analyzes your profile against thousands of successful cases and pairs you with the right attorney.
               </p>
               <div className="flex gap-4 flex-wrap mb-10">
-                <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-chalk text-accent px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-2 border-accent hover:bg-accent hover:text-white hover:border-accent hover:shadow-[0_12px_32px_rgba(107,95,207,0.35)] hover:-translate-y-1 transition-all duration-200" data-testid="button-hero-cta">
+                <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-chalk text-accent px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-2 border-accent hover:border-accent hover:shadow-[0_12px_32px_rgba(107,95,207,0.35)] hover:-translate-y-1 transition-all duration-200 hover:bg-[#0B1215] [&:hover]:text-white [&:hover]:[color:#ffffff]" data-testid="button-hero-cta">
                   See my eligibility score <ArrowRight className="w-4 h-4 shrink-0" />
                 </a>
                 <a href="#how-it-works" className="inline-flex items-center gap-2 bg-transparent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/50 transition-all min-h-[52px] duration-200">How it works</a>
@@ -227,14 +227,14 @@ export default function LandingPage() {
       </section>
 
       {/* Achievements — design system: accent bg, label + bar, font-display */}
-      <section className="py-12 bg-accent" data-testid="section-achievements">
+      <section className="py-12 bg-accent" data-testid="section-achievements" style={{ backgroundColor: '#0B1215' }}>
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-[0.7rem] font-bold tracking-widest uppercase text-white/90 mb-4 flex items-center justify-center gap-2">
-            <span className="w-5 h-0.5 bg-white/80" aria-hidden /> Recognition
+          <p className="text-[0.7rem] font-bold tracking-widest uppercase mb-4 flex items-center justify-center gap-2" style={{ color: '#ffffff' }}>
+            <span className="w-5 h-0.5 shrink-0" style={{ backgroundColor: 'rgba(255,255,255,0.8)' }} aria-hidden /> Recognition
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-            <Award className="w-8 h-8 shrink-0 text-white" />
-            <span className="font-display text-lg md:text-xl text-white text-center">TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25</span>
+            <Award className="w-8 h-8 shrink-0" style={{ color: '#ffffff' }} />
+            <span className="font-display text-lg md:text-xl text-center" style={{ color: '#ffffff' }}>TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25</span>
           </div>
         </div>
       </section>
