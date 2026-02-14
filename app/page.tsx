@@ -84,7 +84,7 @@ export default function LandingPage() {
           <span className="font-medium">O1A Jet-Filing for Founders — Just-In-Time, attorney review, 80% cost reduction</span>
           <Button
             asChild
-            className="px-4 py-2 rounded-full font-semibold text-sm bg-accent text-white whitespace-nowrap hover:bg-accent-deep hover:brightness-110 transition-all duration-200"
+            className="px-5 py-2.5 rounded-full font-bold text-sm bg-chalk text-accent border-2 border-chalk whitespace-nowrap hover:bg-accent hover:text-white hover:border-accent shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-200"
           >
             <a
               href="https://immigrant.justi.guide/jit"
@@ -102,8 +102,8 @@ export default function LandingPage() {
       <nav className="sticky top-0 z-50 bg-chalk/95 backdrop-blur-md border-b border-border shadow-[0_1px_0_0_rgba(0,0,0,0.05)]" id="main-nav">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" style={{ height: '68px' }}>
           <a href="/" className="flex items-center gap-3 font-display text-[1.35rem] text-ink group">
-            <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-accent/10 ring-1 ring-accent/20 group-hover:ring-accent/40 transition-all">
-              <img src={logoImage} alt="JustiGuide" className="w-6 h-6 object-contain" data-testid="logo-image" />
+            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 ring-1 ring-accent/20 group-hover:ring-accent/40 transition-all">
+              <img src={logoImage} alt="JustiGuide" className="w-8 h-8 object-contain" data-testid="logo-image" />
             </span>
             JustiGuide
           </a>
@@ -114,6 +114,7 @@ export default function LandingPage() {
             <a href="#contact" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Contact</a>
           </div>
           <div className="hidden md:flex items-center gap-3">
+            <a href="https://immigrant.justi.guide/login" target="_blank" rel="noopener noreferrer" className="rounded-full font-semibold transition-all duration-200 px-5 py-3 text-sm text-ink border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/30" data-testid="nav-sign-in">Sign In</a>
             <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold transition-all duration-200 px-7 py-3 text-base bg-accent hover:bg-accent-deep shadow-[0_4px_14px_rgba(107,95,207,0.45)] hover:shadow-[0_8px_24px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 ring-2 ring-accent/30 hover:ring-accent/50" style={{ color: '#0B1215' }} data-testid="nav-cta">Free Assessment →</a>
           </div>
         </div>
@@ -163,7 +164,7 @@ export default function LandingPage() {
                   <span key={label} className={`px-4 py-2.5 rounded-full text-sm font-semibold border-[1.5px] cursor-pointer transition-all duration-200 ${i === 0 ? 'border-accent text-accent bg-accent-light' : 'border-border text-warm-gray hover:border-accent hover:text-accent hover:bg-accent-light'}`}>{label}</span>
                 ))}
               </div>
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full bg-accent text-white py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] hover:bg-accent-deep hover:shadow-[0_8px_24px_rgba(107,95,207,0.3)] transition-all duration-200">Get my personalized roadmap →</a>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-chalk text-accent py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-2 border-accent hover:shadow-[0_12px_32px_rgba(107,95,207,0.35)] hover:-translate-y-1 transition-all duration-200 hover:bg-[#0B1215] hover:text-white">Get my personalized roadmap <ArrowRight className="w-4 h-4 shrink-0" /></a>
               <p className="text-center text-[0.78rem] text-warm-gray mt-4 flex items-center justify-center gap-1.5">🔒 Free · No commitment · Results in minutes</p>
             </div>
           </div>
