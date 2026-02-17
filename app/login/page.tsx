@@ -52,14 +52,14 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 p-3 bg-blue-100 dark:bg-blue-900 rounded-full w-fit">
-            <Shield className="h-8 w-8 text-blue-600" />
+    <div className="min-h-screen bg-chalk flex items-center justify-center p-4 font-body">
+      <Card className="w-full max-w-md bg-white border-2 border-border shadow-[0_4px_24px_rgba(0,0,0,0.08),0_12px_48px_rgba(107,95,207,0.12)]">
+        <CardHeader className="text-center pb-2">
+          <div className="mx-auto mb-4 p-4 bg-accent/10 rounded-full w-fit ring-2 ring-accent/20">
+            <Shield className="h-10 w-10 text-accent" />
           </div>
-          <CardTitle className="text-2xl">JustiGuide Admin</CardTitle>
-          <p className="text-gray-600 dark:text-gray-300">
+          <CardTitle className="text-2xl font-display text-ink">JustiGuide Admin</CardTitle>
+          <p className="text-base text-ink/80 mt-2 font-medium">
             Enter password to access dashboard
           </p>
         </CardHeader>
@@ -74,12 +74,13 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 data-testid="input-password"
+                className="border-2 border-border focus:border-accent text-ink placeholder:text-warm-gray"
               />
             </div>
 
             <Button 
               type="submit" 
-              className="w-full"
+              className="w-full bg-accent hover:bg-accent-deep text-white font-bold py-6 text-base"
               disabled={isLoading}
               data-testid="button-login"
             >
@@ -88,9 +89,9 @@ export default function Login() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-ink/70 font-medium">
               Customer services available at{" "}
-              <a href="/" className="text-blue-600 hover:underline">
+              <a href="/" className="text-accent font-semibold hover:underline">
                 home page
               </a>
             </p>

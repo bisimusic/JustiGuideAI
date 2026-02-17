@@ -11,7 +11,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Award, CheckCircle, Clock, Users, MessageCircle, Shield, Zap, Globe, Heart, Star, Mail, MapPin, Phone, ArrowRight, Send } from "lucide-react";
+import { Award, CheckCircle, Clock, Users, MessageCircle, Shield, Zap, Star, Mail, MapPin, Phone, ArrowRight, Send, Menu, X } from "lucide-react";
+import { SocialProofAvatars, PressLogos, PartnerLogos } from "@/components/SocialProofSection";
 
 // Image paths - Next.js serves files from public/ at the root
 const logoImage = "/assets/file-VqtLhVngyJTcoRdkTestqJ-Guarder Icon - Transparent_1759804664573.png";
@@ -34,6 +35,8 @@ type WaitlistForm = z.infer<typeof waitlistSchema>;
 export default function LandingPage() {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedName, setSubmittedName] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const form = useForm<WaitlistForm>({
     resolver: zodResolver(waitlistSchema),
@@ -53,7 +56,8 @@ export default function LandingPage() {
       });
       return response;
     },
-    onSuccess: () => {
+    onSuccess: (_data: WaitlistForm) => {
+      setSubmittedName(_data.name || "");
       setIsSubmitted(true);
       toast({
         title: "Welcome to the waitlist! 🎉",
@@ -81,7 +85,7 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-linear-to-r from-accent/10 to-transparent pointer-events-none" aria-hidden />
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-3 text-sm md:text-base relative z-10">
           <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-chalk text-ink">NEW</span>
-          <span className="font-medium">O1A Jet-Filing for Founders — Just-In-Time, attorney review, 80% cost reduction</span>
+          <span className="font-medium">O-1 JIT-Filing for Founders — Just-In-Time, attorney review, transparent pricing</span>
           <Button
             asChild
             className="px-5 py-2.5 rounded-full font-bold text-sm bg-chalk text-accent border-2 border-chalk whitespace-nowrap hover:bg-accent hover:text-white hover:border-accent shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-200"
@@ -102,22 +106,35 @@ export default function LandingPage() {
       <nav className="sticky top-0 z-50 bg-chalk/95 backdrop-blur-md border-b border-border shadow-[0_1px_0_0_rgba(0,0,0,0.05)]" id="main-nav">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" style={{ height: '68px' }}>
           <a href="/" className="flex items-center gap-3 font-display text-[1.35rem] text-ink group">
-            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 ring-1 ring-accent/20 group-hover:ring-accent/40 transition-all">
+            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 transition-all">
               <img src={logoImage} alt="JustiGuide" className="w-8 h-8 object-contain" data-testid="logo-image" />
             </span>
             JustiGuide
           </a>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Benefits</a>
+            <a href="#how-it-works" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">How We Work</a>
             <a href="#pricing" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Pricing</a>
-            <a href="#testimonials" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Testimonials</a>
-            <a href="#contact" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Contact</a>
+            <a href="/features" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Search Attorneys</a>
+            <a href="#features" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">For Lawyers</a>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <a href="https://immigrant.justi.guide/login" target="_blank" rel="noopener noreferrer" className="rounded-full font-semibold transition-all duration-200 px-5 py-3 text-sm text-ink border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/30" data-testid="nav-sign-in">Sign In</a>
-            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold transition-all duration-200 px-7 py-3 text-base bg-accent hover:bg-accent-deep shadow-[0_4px_14px_rgba(107,95,207,0.45)] hover:shadow-[0_8px_24px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 ring-2 ring-accent/30 hover:ring-accent/50" style={{ color: '#0B1215' }} data-testid="nav-cta">Free Assessment →</a>
+            <a href="https://immigrant.justi.guide/login" target="_blank" rel="noopener noreferrer" className="rounded-full font-semibold transition-all duration-200 px-5 py-3 text-sm text-ink border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/30" data-testid="nav-sign-in">Login</a>
+            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold transition-all duration-200 px-7 py-3 text-base bg-accent hover:bg-accent-deep shadow-[0_4px_14px_rgba(107,95,207,0.45)] hover:shadow-[0_8px_24px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 ring-2 ring-accent/30 hover:ring-accent/50" style={{ color: '#0B1215' }} data-testid="nav-cta">Start Your Journey →</a>
           </div>
+          <button type="button" className="md:hidden p-2 text-ink hover:text-accent" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-border bg-chalk py-4 px-6 flex flex-col gap-4">
+            <a href="#how-it-works" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>How We Work</a>
+            <a href="#pricing" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
+            <a href="/features" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Search Attorneys</a>
+            <a href="#features" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>For Lawyers</a>
+            <a href="https://immigrant.justi.guide/login" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Login</a>
+            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold bg-accent px-6 py-3 text-center" style={{ color: '#0B1215' }} onClick={() => setMobileMenuOpen(false)}>Start Your Journey →</a>
+          </div>
+        )}
       </nav>
 
       {/* Hero — two-column, stronger purple presence, floating card */}
@@ -138,18 +155,17 @@ export default function LandingPage() {
                 Stop wondering. Start moving. JustiGuide&apos;s AI analyzes your profile against thousands of successful cases and pairs you with the right attorney.
               </p>
               <div className="flex gap-4 flex-wrap mb-10">
-                <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-chalk text-accent px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-2 border-accent hover:border-accent hover:shadow-[0_12px_32px_rgba(107,95,207,0.35)] hover:-translate-y-1 transition-all duration-200 hover:bg-[#0B1215] [&:hover]:text-white [&:hover]:[color:#ffffff]" data-testid="button-hero-cta">
-                  See my eligibility score <ArrowRight className="w-4 h-4 shrink-0" />
+                <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:shadow-[0_8px_28px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 transition-all duration-200" data-testid="button-hero-cta" style={{ color: '#0B1215' }}>
+                  Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" />
                 </a>
-                <a href="#how-it-works" className="inline-flex items-center gap-2 bg-transparent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/50 transition-all min-h-[52px] duration-200">How it works</a>
+                <a href="#how-it-works" className="inline-flex items-center gap-2 bg-transparent text-ink px-6 py-3 rounded-[60px] font-semibold text-sm border border-border hover:border-accent hover:text-accent hover:bg-accent-light/30 transition-all duration-200">How it works</a>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="flex">
-                  <span className="w-10 h-10 rounded-full border-[2.5px] border-chalk flex items-center justify-center text-[0.75rem] font-bold text-white ml-[-10px] first:ml-0 shadow-[0_2px_8px_rgba(47,106,91,0.4)] hover:scale-110 hover:shadow-[0_4px_12px_rgba(47,106,91,0.5)] transition-transform duration-300 cursor-default animate-avatar-float animate-avatar-float-1" style={{ backgroundColor: '#2F6A5B' }}>PR</span>
-                  <span className="w-10 h-10 rounded-full border-[2.5px] border-chalk flex items-center justify-center text-[0.75rem] font-bold text-white ml-[-10px] first:ml-0 shadow-[0_2px_8px_rgba(200,162,78,0.4)] hover:scale-110 hover:shadow-[0_4px_12px_rgba(200,162,78,0.5)] transition-transform duration-300 cursor-default animate-avatar-float animate-avatar-float-2" style={{ backgroundColor: '#C8A24E' }}>MC</span>
-                  <span className="w-10 h-10 rounded-full border-[2.5px] border-chalk flex items-center justify-center text-[0.75rem] font-bold text-white ml-[-10px] first:ml-0 shadow-[0_2px_8px_rgba(111,105,102,0.35)] hover:scale-110 hover:shadow-[0_4px_12px_rgba(111,105,102,0.45)] transition-transform duration-300 cursor-default animate-avatar-float animate-avatar-float-3" style={{ backgroundColor: '#6F6966' }}>SK</span>
+              <div className="flex flex-col items-start gap-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 shadow-md border border-border/50">
+                  <Shield className="w-5 h-5 text-accent shrink-0" />
+                  <span className="text-sm font-bold text-ink">100% Money-Back Guarantee</span>
                 </div>
-                <p className="text-[0.8rem] text-warm-gray leading-normal">Join thousands who got their path in minutes</p>
+                <SocialProofAvatars />
               </div>
             </div>
             {/* Right: visa card — float animation, purple shadow */}
@@ -160,15 +176,20 @@ export default function LandingPage() {
               <h3 className="font-display text-2xl md:text-[1.75rem] text-ink mb-2">Find your path in 60 seconds</h3>
               <p className="text-[0.9rem] text-warm-gray mb-6">Select the visa you&apos;re exploring — or let our AI figure it out.</p>
               <div className="flex flex-wrap gap-2 mb-7">
-                {['O-1A / O-1B', 'EB-1A', 'EB-2 NIW', 'H-1B', 'Green Card', 'N-400', 'I\'m not sure'].map((label, i) => (
-                  <span key={label} className={`px-4 py-2.5 rounded-full text-sm font-semibold border-[1.5px] cursor-pointer transition-all duration-200 ${i === 0 ? 'border-accent text-accent bg-accent-light' : 'border-border text-warm-gray hover:border-accent hover:text-accent hover:bg-accent-light'}`}>{label}</span>
+                {['O-1', 'EB-1', 'EB-2 NIW', 'H-1B', 'Green Card', 'N-400', 'I\'m not sure'].map((label, i) => (
+                  <a key={label} href="#waitlist" className={`px-4 py-2.5 rounded-full text-sm font-semibold border-[1.5px] cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${i === 0 ? 'border-accent text-accent bg-accent-light hover:bg-accent-light' : 'border-border text-warm-gray hover:border-accent hover:text-accent hover:bg-accent-light'}`}>{label}</a>
                 ))}
               </div>
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-chalk text-accent py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-2 border-accent hover:shadow-[0_12px_32px_rgba(107,95,207,0.35)] hover:-translate-y-1 transition-all duration-200 hover:bg-[#0B1215] hover:text-white">Get my personalized roadmap <ArrowRight className="w-4 h-4 shrink-0" /></a>
+              <a href="#waitlist" className="flex items-center justify-center gap-2 w-full bg-accent py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_16px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all duration-200" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
               <p className="text-center text-[0.78rem] text-warm-gray mt-4 flex items-center justify-center gap-1.5">🔒 Free · No commitment · Results in minutes</p>
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Press logos — TechCrunch, TIME, CBS News, The Guardian */}
+      <section className="bg-white border-b border-border">
+        <PressLogos />
       </section>
 
       {/* Trust bar — dark strip with stats (inline styles for visibility) */}
@@ -178,17 +199,20 @@ export default function LandingPage() {
           <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
           <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>95%</span> Success Rate</div>
           <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
-          <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>180+</span> Countries Served</div>
+          <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>150+</span> Countries Served</div>
           <div className="hidden sm:block w-px h-8" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
           <div className="flex items-center gap-2.5 text-[0.82rem] font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}><span style={{ color: '#ffffff', fontSize: '1.1rem' }}>99.7%</span> AI Accuracy</div>
         </div>
       </section>
 
+      {/* Trusted by Companies — HetDynamics & Shirah logos from investor deck */}
+      <PartnerLogos />
+
       {/* How it works — keep 3 steps, use tokens */}
-      <section id="how-it-works" className="py-24 bg-chalk">
+      <section id="how-it-works" className="py-[80px] md:py-[100px] bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Simple, fast, certain</p>
-          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-tight text-ink mb-3">Four steps to your new life</h2>
+          <h2 className="font-display text-[clamp(2.25rem,4vw,2.5rem)] leading-tight text-ink mb-3">Four steps to your new life</h2>
           <p className="text-[1.05rem] text-warm-gray max-w-[560px] mt-3 leading-[1.7]">No guesswork. No endless waiting. Just a clear path from assessment to approval.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
             {[
@@ -198,12 +222,15 @@ export default function LandingPage() {
               { num: '4', title: 'We file. You live.', desc: 'AI prepares your application, your attorney reviews it, and we file — often in under 3 hours.', time: '~3 hours' },
             ].map((step) => (
               <div key={step.num} className="text-center">
-                <div className="w-20 h-20 rounded-full bg-white border-2 border-accent flex items-center justify-center font-display text-2xl text-accent mx-auto mb-6 shadow-[0_4px_16px_rgba(107,95,207,0.1)]">{step.num}</div>
-                <h4 className="font-bold text-base mb-2 text-ink">{step.title}</h4>
-                <p className="text-sm text-warm-gray leading-relaxed max-w-[240px] mx-auto">{step.desc}</p>
+                <div className="w-14 h-14 rounded-full bg-white border-2 border-accent flex items-center justify-center font-display text-2xl text-accent mx-auto mb-6 shadow-[0_4px_16px_rgba(107,95,207,0.1)]">{step.num}</div>
+                <h4 className="font-bold text-lg mb-2 text-ink">{step.title}</h4>
+                <p className="text-[15px] text-warm-gray leading-relaxed max-w-[240px] mx-auto">{step.desc}</p>
                 <span className="inline-block mt-3 px-3 py-1 bg-accent-light rounded-full text-xs font-bold text-accent">{step.time}</span>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-[60px] font-bold text-base min-h-[52px] hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
           </div>
         </div>
       </section>
@@ -290,18 +317,21 @@ export default function LandingPage() {
                     <Zap className="w-5 h-5 text-[#E8E5FF]" />
                   </div>
                   <div>
-                    <span className="font-semibold" style={{ color: '#ffffff' }}>80% Cost Reduction</span>
-                    <span className="ml-2" style={{ color: '#B0B0B0' }}>— Premium service, fraction of the price</span>
+                    <span className="font-semibold" style={{ color: '#ffffff' }}>Transparent Pricing</span>
+                    <span className="ml-2" style={{ color: '#B0B0B0' }}>— Premium service, affordable flat fee</span>
                   </div>
                 </div>
               </div>
 
               <a
-                href="mailto:o1a@justiguide.com?subject=O1A Beta Access Request"
+                href="https://immigrant.justi.guide/assessment"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all"
-                data-testid="button-o1a-beta-access"
+                data-testid="button-o1a-cta"
               >
-                Request Beta Access
+                Start Your Journey
+                <ArrowRight className="w-5 h-5 shrink-0" />
               </a>
             </div>
 
@@ -309,25 +339,21 @@ export default function LandingPage() {
               <div className="rounded-3xl p-10 backdrop-blur-sm" style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
                 <div className="text-center mb-10">
                   <p className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: '#F5EDD4' }}>OUR BIGGEST LAUNCH YET</p>
-                  <h3 className="text-3xl font-bold mb-2" style={{ color: '#ffffff' }}>O1A Jet-Filing</h3>
-                  <p style={{ color: '#B0B0B0' }}>Just-In-Time · 80% cost reduction</p>
+                  <h3 className="text-3xl font-bold mb-2" style={{ color: '#ffffff' }}>O-1 Jet-Filing</h3>
+                  <p style={{ color: '#B0B0B0' }}>Just-In-Time · Transparent pricing</p>
                 </div>
                 <div className="grid grid-cols-2 gap-6 mb-10">
                   <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
                     <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>JIT</div>
-                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Just-In-Time</div>
+                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Just-In-Time Filing</div>
                   </div>
                   <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
-                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>80%</div>
-                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Cost Savings</div>
+                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>24/7</div>
+                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Availability</div>
                   </div>
                   <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
                     <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>100%</div>
                     <div className="text-sm" style={{ color: '#B0B0B0' }}>Attorney Reviewed</div>
-                  </div>
-                  <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
-                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>10</div>
-                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Beta Spots</div>
                   </div>
                 </div>
                 <div className="pt-8 border-t border-white/10">
@@ -344,66 +370,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* EU Residency Section */}
-      <section className="py-[80px] bg-linear-to-br from-sage to-chalk relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px]"></div>
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="bg-white rounded-3xl p-10 shadow-xl border border-border">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-accent-light border border-accent/20 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  <Globe className="w-4 h-4" />
-                  <span>European Residency</span>
-                </div>
-                
-                <h2 className="font-display text-[36px] md:text-[42px] font-bold text-ink mb-4 leading-[1.1]">
-                  Earn a Highly Qualified Talent Residency in Europe
-                </h2>
-                
-                <p className="text-lg text-ink mb-6 leading-relaxed">
-                  Fast-track your path to European residency with university-backed support. Residency granted in 4-6 months — faster than most EU residency paths.
-                </p>
-
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent shrink-0" />
-                    <span className="text-ink">Faster than most EU residency/citizenship paths</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent shrink-0" />
-                    <span className="text-ink">Supporting University backs your application</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent shrink-0" />
-                    <span className="text-ink">Residency granted in 4-6 months</span>
-                  </div>
-                </div>
-
-                <a
-                  href="/eu"
-                  className="inline-flex items-center gap-3 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-lg shadow-[0_4px_20px_rgba(107,95,207,0.15)] hover:bg-accent hover:text-white hover:border-accent hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
-                >
-                  Learn More About EU Residency
-                  <ArrowRight className="w-5 h-5 shrink-0" />
-                </a>
-              </div>
-
-              <div className="relative">
-                <div className="bg-accent-light rounded-2xl p-8 border border-accent/20">
-                  <div className="text-center">
-                    <Globe className="w-20 h-20 text-accent mx-auto mb-6" />
-                    <h3 className="font-display text-2xl font-bold text-ink mb-4">European Access</h3>
-                    <p className="text-ink leading-relaxed">
-                      Gain residency rights in Europe, opening doors to work, study, and live across EU member states.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Visual separator between dark sections */}
+      <div className="h-px w-full" style={{ backgroundColor: 'rgba(107,95,207,0.3)' }} aria-hidden />
 
       {/* Dolores AI Section — two-column: intro + metric cards left, chat mockup right */}
       <section className="py-[100px] relative" style={{ backgroundColor: "#0B1215" }}>
@@ -441,7 +409,7 @@ export default function LandingPage() {
               <div className="p-5 space-y-4 min-h-[320px]">
                 <div className="flex justify-end">
                   <div className="rounded-2xl px-4 py-3 max-w-[85%]" style={{ backgroundColor: "#2D5A5A", color: "#ffffff" }}>
-                    <p className="text-sm">I&apos;m a startup founder from Nigeria on an F-1. What are my best visa options?</p>
+                    <p className="text-sm">I&apos;m a startup founder from Nigeria. What are my best visa options?</p>
                   </div>
                 </div>
                 <div className="flex justify-start">
@@ -493,7 +461,7 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h3 className="font-display text-[40px] font-bold text-ink mb-8">For Lawyers: 10x Your Practice</h3>
+              <h3 className="font-display text-[40px] font-bold text-ink mb-8">Earn More With JustiGuide</h3>
 
               <div className="space-y-8">
                 <div className="flex gap-5">
@@ -501,7 +469,7 @@ export default function LandingPage() {
                     <Users className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-ink mb-1">50% More Cases</h4>
+                    <h4 className="text-lg font-semibold text-ink mb-1">10x More Cases</h4>
                     <p className="text-base text-warm-gray leading-relaxed">
                       Handle 40 cases/month instead of 20 - with the same team
                     </p>
@@ -544,7 +512,46 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+              <div className="flex justify-center mt-8">
+              <a href="/lawyer-faq" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-full font-bold hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>
+                Join Our Attorney Network <ArrowRight className="w-5 h-5 shrink-0" />
+              </a>
             </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How We Compare — comparison table */}
+      <section className="py-20 bg-chalk">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-ink text-center mb-12">How We Compare</h2>
+          <div className="overflow-x-auto rounded-2xl border border-border">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="p-4 font-semibold text-ink">Feature</th>
+                  <th className="p-4 font-semibold text-ink bg-accent">JustiGuide</th>
+                  <th className="p-4 font-semibold text-ink bg-light-gray">Others</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { feature: 'Processing Time', jg: 'A few days', other: 'Months' },
+                  { feature: 'Form Accuracy', jg: '100%', other: 'Not guaranteed' },
+                  { feature: 'Cost', jg: 'From $5,994', other: '$10,000–15,000' },
+                  { feature: 'Licensed Attorney Review', jg: 'Always included', other: 'Sometimes' },
+                  { feature: 'AI Trained On', jg: '80,000+ cases', other: 'Hundreds of cases' },
+                  { feature: 'Money-Back Guarantee', jg: '100%', other: 'No' },
+                ].map((row) => (
+                  <tr key={row.feature} className="border-b border-border last:border-0">
+                    <td className="p-4 text-warm-gray">{row.feature}</td>
+                    <td className="p-4 text-ink bg-accent/90"><CheckCircle className="w-5 h-5 inline mr-2" />{row.jg}</td>
+                    <td className="p-4 text-warm-gray bg-light-gray">{row.other}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -564,6 +571,10 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-2xl border border-border shadow-sm">
+              <div className="flex items-center gap-2 mb-4">
+                <CheckCircle className="w-5 h-5 text-green-600 shrink-0" />
+                <span className="text-sm font-semibold text-green-600">Verified</span>
+              </div>
               <div className="flex text-gold mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
@@ -580,6 +591,10 @@ export default function LandingPage() {
             </div>
 
             <div className="bg-white p-8 rounded-2xl border border-border shadow-sm">
+              <div className="flex items-center gap-2 mb-4">
+                <CheckCircle className="w-5 h-5 text-green-600 shrink-0" />
+                <span className="text-sm font-semibold text-green-600">Verified</span>
+              </div>
               <div className="flex text-gold mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
@@ -596,20 +611,27 @@ export default function LandingPage() {
             </div>
 
             <div className="bg-white p-8 rounded-2xl border border-border shadow-sm">
+              <div className="flex items-center gap-2 mb-4">
+                <CheckCircle className="w-5 h-5 text-green-600 shrink-0" />
+                <span className="text-sm font-semibold text-green-600">Verified</span>
+              </div>
               <div className="flex text-gold mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
               <p className="text-base text-warm-gray mb-6 leading-relaxed">
-                "Dolores AI answered all my questions instantly. Best immigration platform I've used!"
+                "JustiGuide made the immigration process easy and human."
               </p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#6F6966' }}>SK</div>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#6F6966' }}>EM</div>
                 <div>
-                  <h4 className="font-semibold text-ink">Sarah Kim</h4>
-                  <p className="text-sm text-warm-gray">Medical Resident</p>
+                  <h4 className="font-semibold text-ink">Elizabeth Murayama</h4>
+                  <p className="text-sm text-warm-gray">Verified Client</p>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-center mt-10">
+            <a href="#testimonials" className="text-accent font-semibold hover:underline inline-flex items-center gap-1">See more reviews →</a>
           </div>
         </div>
       </section>
@@ -684,10 +706,15 @@ export default function LandingPage() {
             No hidden fees. Know your investment before you start.
           </p>
           <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <div className="bg-white rounded-2xl p-6 border border-border shadow-sm">
-              <p className="text-accent font-semibold mb-1">O-1A Just-In-Time Filing</p>
-              <p className="font-display text-2xl font-bold text-ink">$9,499</p>
-              <p className="text-sm text-warm-gray mt-2">Attorney-reviewed · Full petition · 80% vs traditional counsel</p>
+            <div className="bg-white rounded-2xl p-6 border border-border shadow-sm relative">
+              <div className="flex justify-center items-center gap-1 text-green-600 text-xs font-bold mb-4">
+                <Shield className="w-4 h-4" /> 100% Money-Back Guarantee
+              </div>
+              <p className="text-accent font-semibold mb-1">O-1 Just-In-Time Filing</p>
+              <p className="text-lg text-warm-gray line-through">$9,500</p>
+              <p className="font-display text-3xl font-bold text-ink">$5,994</p>
+              <p className="text-xs text-accent font-semibold mt-1">Early access pricing — limited time</p>
+              <p className="text-sm text-warm-gray mt-2">Attorney-reviewed · Full petition · Transparent pricing</p>
               <p className="text-xs text-warm-gray mt-2">E-signature ready · Review &amp; sign online</p>
               <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent font-semibold text-sm hover:underline">Get started →</a>
             </div>
@@ -699,19 +726,24 @@ export default function LandingPage() {
               <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent font-semibold text-sm hover:underline">See options →</a>
             </div>
           </div>
-          <p className="text-warm-gray text-sm mt-6">Financing and pay-over-time options available. <a href="/pricing" className="text-accent font-semibold hover:underline">Full pricing →</a></p>
+          <p className="text-warm-gray text-sm mt-6">Financing and pay-over-time options available. <a href="/pricing" className="text-accent font-semibold hover:underline">View Details</a></p>
+          <p className="text-sm text-warm-gray mt-4">Secure payments powered by Stripe</p>
+          <div className="mt-8">
+            <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-full font-bold hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
+          </div>
         </div>
       </section>
 
       {/* Guarantee strip — HTML layout */}
       <section className="py-14 bg-accent-light">
         <div className="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-center gap-6 text-center">
-          <div className="w-[72px] h-[72px] rounded-full bg-accent text-white flex items-center justify-center shrink-0">
-            <Shield className="w-8 h-8" />
+          <div className="w-[80px] h-[80px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(107,95,207,0.2)] ring-2 ring-accent border-2 border-accent/20">
+            <Shield className="w-10 h-10 text-accent" />
           </div>
           <div>
-            <h3 className="font-display text-2xl text-ink">100% Satisfaction Guarantee</h3>
-            <p className="text-warm-gray text-[0.9rem] mt-1 max-w-[480px]">If your application is denied due to a JustiGuide error, we refund your full service fee. Your trust is non-negotiable.</p>
+            <h3 className="font-display text-2xl text-ink font-bold">100% Money-Back Guarantee</h3>
+            <p className="text-warm-gray text-[0.9rem] mt-1 max-w-[480px]">If you&apos;re not satisfied with our service, we&apos;ll refund your money. No questions asked.</p>
+            <a href="/terms-of-service#guarantee" className="inline-block mt-2 text-accent font-semibold text-sm hover:underline">See how our guarantee works →</a>
           </div>
         </div>
       </section>
@@ -728,21 +760,16 @@ export default function LandingPage() {
               Get your personalized roadmap
             </h2>
             <p className="text-lg text-warm-gray">
-              Free assessment · See your best path in minutes · No commitment
+              Free assessment · No commitment · Takes 2 minutes
             </p>
-          </div>
-
-          <div className="mb-10 p-6 rounded-2xl text-center bg-white border border-border">
-            <h3 className="text-lg font-bold text-ink mb-2">What happens next</h3>
-            <p className="text-sm text-warm-gray mb-2">15-minute discovery call to understand your background and goals.</p>
-            <p className="text-sm text-warm-gray">Get your <strong className="text-ink">Success Probability score</strong>—AI analyzes thousands of cases to show your likelihood of approval.</p>
           </div>
 
           {isSubmitted ? (
             <div className="rounded-2xl p-12 text-center bg-white border border-border">
               <CheckCircle className="w-16 h-16 text-accent mx-auto mb-4" />
-              <h3 className="font-display text-2xl font-bold text-ink mb-2">You're on the list! 🎉</h3>
-              <p className="text-warm-gray">We'll be in touch within 1 hour to schedule your discovery call.</p>
+              <h3 className="font-display text-2xl font-bold text-ink mb-2">Thank you, {submittedName || "there"}!</h3>
+              <p className="text-warm-gray">We&apos;re preparing your personalized roadmap. Check your email for next steps.</p>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-6 px-8 py-4 bg-accent text-white font-bold rounded-full hover:bg-accent-deep transition-colors">Continue to Assessment →</a>
             </div>
           ) : (
             <div className="rounded-2xl p-8 bg-chalk border border-border shadow-xl">
@@ -847,11 +874,13 @@ export default function LandingPage() {
                   <Button
                     type="submit"
                     disabled={waitlistMutation.isPending}
-                    className="w-full min-h-[48px] bg-chalk text-accent hover:bg-white font-bold py-6 text-lg rounded-full border-0 shadow-lg"
+                    className="w-full min-h-[52px] bg-accent hover:bg-accent-deep font-bold py-6 text-lg rounded-full border-0 shadow-[0_4px_20px_rgba(107,95,207,0.4)]"
                     data-testid="button-submit-waitlist"
+                    style={{ color: '#0B1215' }}
                   >
-                    {waitlistMutation.isPending ? "Sending..." : "Get my roadmap →"}
+                    {waitlistMutation.isPending ? "Sending..." : "Get My Roadmap"}
                   </Button>
+                  <p className="text-center text-sm text-warm-gray mt-4">Free assessment · No commitment · Takes 2 minutes</p>
                 </form>
               </Form>
             </div>
@@ -896,11 +925,21 @@ export default function LandingPage() {
                 <MapPin className="w-8 h-8 text-accent" />
               </div>
               <h3 className="text-lg font-semibold text-ink mb-2">Visit Us</h3>
-              <p className="text-warm-gray">
-                San Francisco, CA<br />United States
+              <p className="text-warm-gray mb-2">
+                Ferry Building, San Francisco, CA 94111
               </p>
+              <a href="https://maps.google.com/?q=Ferry+Building+San+Francisco+CA+94111" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold text-sm hover:underline">View on Google Maps →</a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* European Immigration — Coming Soon */}
+      <section className="py-10 bg-light-gray">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <h3 className="font-display text-xl font-bold text-ink mb-2">European Immigration — Coming Soon</h3>
+          <p className="text-warm-gray text-sm mb-4">Be the first to know when we expand.</p>
+          <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-accent-deep transition-colors">Notify Me</a>
         </div>
       </section>
 
@@ -912,13 +951,11 @@ export default function LandingPage() {
           </div>
           <nav className="mb-6" aria-label="Footer navigation">
             <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[11px] font-semibold uppercase tracking-wider">
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }} data-testid="link-o1a-footer">Free Assessment</a>
-              <a href="#features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Benefits</a>
+              <a href="#how-it-works" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>How We Work</a>
               <a href="#pricing" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Pricing</a>
-              <a href="/features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }} data-testid="link-features-footer">Feature Videos</a>
-              <a href="#testimonials" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Testimonials</a>
-              <a href="/lawyer-faq" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }} data-testid="link-lawyer-faq-footer">Attorney FAQ</a>
-              <a href="/press" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }} data-testid="link-press-footer">Press</a>
+              <a href="#features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>For Lawyers</a>
+              <a href="/privacy-policy" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Privacy</a>
+              <a href="/terms-of-service" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Terms</a>
               <a href="#contact" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Contact</a>
             </div>
           </nav>
@@ -928,8 +965,11 @@ export default function LandingPage() {
             <a href="/refund-policy" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.7)' }}>Refund Policy</a>
             <a href="/pricing" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.7)' }}>Pricing</a>
           </div>
+          <p className="text-[12px] max-w-[800px] mx-auto mb-6" style={{ color: '#9CA3AF' }}>
+            JustiGuide is a technology services entity. The information on this website is for general informational purposes only and does not constitute legal advice. Every immigration situation is unique. Please consult with a licensed attorney before making any legal decisions. Use of this website does not create an attorney-client relationship.
+          </p>
           <p className="text-[11px]" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            © 2026 JustiGuide. Built by immigrants, for immigrants.
+            © 2026 JustiGuide. All rights reserved.
           </p>
         </div>
       </footer>

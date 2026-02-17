@@ -21,7 +21,7 @@ export default function PricingPage() {
             <ul className="space-y-2 text-[#475569] text-sm mb-6">
               <li>✓ Attorney-reviewed full petition</li>
               <li>✓ E-signature ready · Review & sign online</li>
-              <li>✓ ~80% cost reduction vs traditional counsel</li>
+              <li>✓ Transparent flat-fee pricing</li>
               <li>✓ Just-In-Time delivery for founders & extraordinary talent</li>
             </ul>
             <a
