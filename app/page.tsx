@@ -11,18 +11,11 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { Award, CheckCircle, Clock, Users, MessageCircle, Shield, Zap, Star, Mail, MapPin, Phone, ArrowRight, Send, Menu, X } from "lucide-react";
-import { SocialProofAvatars, PressLogos, PartnerLogos } from "@/components/SocialProofSection";
+import { Award, CheckCircle, Shield, Star, ArrowRight, Send, Menu, X } from "lucide-react";
+import { SocialProofAvatars, PressLogos } from "@/components/SocialProofSection";
 
 // Image paths - Next.js serves files from public/ at the root
 const logoImage = "/assets/file-VqtLhVngyJTcoRdkTestqJ-Guarder Icon - Transparent_1759804664573.png";
-const aiFormImage = "/assets/Frame 427320568 (2)_1759856888209.png";
-const multilingualImage = "/assets/Frame 427320569 (1)_1759856912314.png";
-const caseManagementImage = "/assets/Frame 427320570 (2)_1759856937135.png";
-const realTimeUpdatesImage = "/assets/Frame 427320571 (1)_1759856974396.png";
-const legalResearchImage = "/assets/Frame 427320570 (1)_1759856321668.png";
-const documentVerificationImage = "/assets/Frame 427320572 (1)_1759857033022.png";
-
 const waitlistSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
@@ -106,8 +99,8 @@ export default function LandingPage() {
       <nav className="sticky top-0 z-50 bg-chalk/95 backdrop-blur-md border-b border-border shadow-[0_1px_0_0_rgba(0,0,0,0.05)]" id="main-nav">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" style={{ height: '68px' }}>
           <a href="/" className="flex items-center gap-3 font-display text-[1.35rem] text-ink group">
-            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 transition-all">
-              <img src={logoImage} alt="JustiGuide" className="w-8 h-8 object-contain" data-testid="logo-image" />
+            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-white ring-2 ring-border shadow-sm transition-all group-hover:ring-accent/40">
+              <img src={logoImage} alt="JustiGuide" className="w-7 h-7 object-contain" data-testid="logo-image" />
             </span>
             JustiGuide
           </a>
@@ -145,9 +138,18 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: copy */}
             <div>
-              <a href="https://time.com/collections/best-inventions-2025/7318500/justiguide-relo/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold text-gold bg-gold-light/80 border border-gold/20 mb-6 hover:bg-gold-light transition-colors" data-testid="badge-time-inventions">
-                <Award className="w-4 h-4" /> Tech Disrupt Pitch Showcase Winner &apos;25
-              </a>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <a href="https://time.com/collections/best-inventions-2025/7318500/justiguide-relo/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold text-gold bg-gold-light/80 border border-gold/20 hover:bg-gold-light transition-colors" data-testid="badge-time-inventions">
+                  <Award className="w-4 h-4" /> TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25
+                </a>
+                <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold bg-[#76B900]/10 text-[#4a7200] border border-[#76B900]/20">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden className="shrink-0">
+                    <path d="M12.444 6.27c-.592 0-1.072.48-1.072 1.073v9.314c0 .592.48 1.073 1.072 1.073h5.226c.593 0 1.073-.48 1.073-1.073V7.343c0-.593-.48-1.073-1.073-1.073h-5.226z" fill="#76B900"/>
+                    <path d="M6.33 9.843c-.592 0-1.073.48-1.073 1.073v5.741c0 .593.481 1.073 1.073 1.073h3.461c.593 0 1.073-.48 1.073-1.073v-5.74c0-.594-.48-1.074-1.073-1.074H6.33z" fill="#76B900"/>
+                  </svg>
+                  NVIDIA Inception 2026
+                </span>
+              </div>
               <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-ink mb-5">
                 Your <em className="italic text-accent font-display">new life</em> in America starts here.
               </h1>
@@ -205,9 +207,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Trusted by Companies — HetDynamics & Shirah logos from investor deck */}
-      <PartnerLogos />
-
       {/* How it works — keep 3 steps, use tokens */}
       <section id="how-it-works" className="py-[80px] md:py-[100px] bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -234,144 +233,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Why choose — two pillars, no duplicate guarantee */}
-      <section className="py-14 bg-chalk border-t border-border">
-        <div className="max-w-5xl mx-auto px-6">
-          <p className="text-center text-accent text-sm font-bold uppercase tracking-wider mb-8 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Built on trust</p>
-          <h2 className="font-display text-center text-[clamp(2rem,4vw,3.2rem)] text-ink mb-3">Why immigrants trust us</h2>
-          <p className="text-center text-warm-gray text-[1.05rem] max-w-[560px] mx-auto mt-2">Immigration is high-stakes. We built every feature to eliminate your risk.</p>
-          <div className="grid md:grid-cols-2 gap-10 text-center mt-14 max-w-2xl mx-auto">
-            <div>
-              <p className="text-lg font-bold text-ink mb-2">95% success rate</p>
-              <p className="text-warm-gray text-sm leading-relaxed">Transparency and quality at every step. Proven results so you can move with confidence.</p>
-            </div>
-            <div>
-              <p className="text-lg font-bold text-ink mb-2">U.S. licensed attorneys</p>
-              <p className="text-warm-gray text-sm leading-relaxed">Every case is reviewed by vetted, U.S.-licensed immigration attorneys from assessment to submission.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Achievements — design system: accent bg, label + bar, font-display */}
-      <section className="py-12 bg-accent" data-testid="section-achievements" style={{ backgroundColor: '#0B1215' }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-[0.7rem] font-bold tracking-widest uppercase mb-4 flex items-center justify-center gap-2" style={{ color: '#ffffff' }}>
-            <span className="w-5 h-0.5 shrink-0" style={{ backgroundColor: 'rgba(255,255,255,0.8)' }} aria-hidden /> Recognition
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-            <Award className="w-8 h-8 shrink-0" style={{ color: '#ffffff' }} />
-            <span className="font-display text-lg md:text-xl text-center" style={{ color: '#ffffff' }}>TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Extraordinary Talent Section - O1A (dark bg + white text via inline styles) */}
-      <section id="extraordinary-talent" className="py-[100px] relative overflow-hidden" style={{ backgroundColor: '#0B1215' }} data-testid="section-extraordinary-talent">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#ffffff' }}>
-                <Zap className="w-4 h-4" style={{ color: '#F5EDD4' }} />
-                <span>For Founders & Extraordinary Talent</span>
-              </div>
-              
-              <h2 className="text-[42px] md:text-[52px] font-bold mb-6 leading-[1.1]" style={{ color: '#ffffff' }}>
-                Immigration<br />
-                <span className="italic" style={{ color: '#F5EDD4' }}>Done For You</span>
-              </h2>
-              
-              <p className="text-xl mb-8 leading-relaxed" style={{ color: '#E5E5E5' }}>
-                We handle your immigration while you build your legacy.
-              </p>
-              
-              <p className="text-base mb-10 leading-relaxed" style={{ color: '#B0B0B0' }}>
-                O1A Jet-Filing is about to change everything. We're launching a done-for-you service for founders who qualify — Just-In-Time delivery with attorney review included.
-              </p>
-
-              <div className="space-y-4 mb-10">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-accent/30 rounded-xl flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-[#E8E5FF]" />
-                  </div>
-                  <div>
-                    <span className="font-semibold" style={{ color: '#ffffff' }}>Just-In-Time Delivery</span>
-                    <span className="ml-2" style={{ color: '#B0B0B0' }}>— Full application when you need it</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-accent/30 rounded-xl flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-[#E8E5FF]" />
-                  </div>
-                  <div>
-                    <span className="font-semibold" style={{ color: '#ffffff' }}>Attorney Review Included</span>
-                    <span className="ml-2" style={{ color: '#B0B0B0' }}>— Expert eyes on every detail</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-accent/30 rounded-xl flex items-center justify-center">
-                    <Zap className="w-5 h-5 text-[#E8E5FF]" />
-                  </div>
-                  <div>
-                    <span className="font-semibold" style={{ color: '#ffffff' }}>Transparent Pricing</span>
-                    <span className="ml-2" style={{ color: '#B0B0B0' }}>— Premium service, affordable flat fee</span>
-                  </div>
-                </div>
-              </div>
-
-              <a
-                href="https://immigrant.justi.guide/assessment"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all"
-                data-testid="button-o1a-cta"
-              >
-                Start Your Journey
-                <ArrowRight className="w-5 h-5 shrink-0" />
-              </a>
-            </div>
-
-            <div className="relative">
-              <div className="rounded-3xl p-10 backdrop-blur-sm" style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div className="text-center mb-10">
-                  <p className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: '#F5EDD4' }}>OUR BIGGEST LAUNCH YET</p>
-                  <h3 className="text-3xl font-bold mb-2" style={{ color: '#ffffff' }}>O-1 Jet-Filing</h3>
-                  <p style={{ color: '#B0B0B0' }}>Just-In-Time · Transparent pricing</p>
-                </div>
-                <div className="grid grid-cols-2 gap-6 mb-10">
-                  <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
-                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>JIT</div>
-                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Just-In-Time Filing</div>
-                  </div>
-                  <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
-                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>24/7</div>
-                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Availability</div>
-                  </div>
-                  <div className="rounded-2xl p-6 text-center" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
-                    <div className="text-3xl font-bold mb-1" style={{ color: '#ffffff' }}>100%</div>
-                    <div className="text-sm" style={{ color: '#B0B0B0' }}>Attorney Reviewed</div>
-                  </div>
-                </div>
-                <div className="pt-8 border-t border-white/10">
-                  <p className="text-center text-sm mb-4" style={{ color: '#B0B0B0' }}>Perfect for</p>
-                  <div className="flex flex-wrap justify-center gap-3">
-                    {['Startup Founders', 'Tech Leaders', 'Researchers', 'Artists', 'Athletes'].map((label) => (
-                      <span key={label} className="px-4 py-2 rounded-full text-sm" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff' }}>{label}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Visual separator between dark sections */}
-      <div className="h-px w-full" style={{ backgroundColor: 'rgba(107,95,207,0.3)' }} aria-hidden />
 
       {/* Dolores AI Section — two-column: intro + metric cards left, chat mockup right */}
       <section className="py-[100px] relative" style={{ backgroundColor: "#0B1215" }}>
@@ -445,117 +306,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section id="features" className="py-[100px] bg-sage">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Why JustiGuide</p>
-            <h2 className="font-display text-[48px] font-bold text-ink mb-5">
-              From Months to Hours
-            </h2>
-            <p className="text-xl text-warm-gray max-w-3xl mx-auto leading-relaxed">
-              JustiGuide delivers completed applications in just 3 hours.<br className="hidden md:block"/>
-              Here's how we make immigration simple:
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <h3 className="font-display text-[40px] font-bold text-ink mb-8">Earn More With JustiGuide</h3>
-
-              <div className="space-y-8">
-                <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
-                    <Users className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-ink mb-1">10x More Cases</h4>
-                    <p className="text-base text-warm-gray leading-relaxed">
-                      Handle 40 cases/month instead of 20 - with the same team
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
-                    <Clock className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-ink mb-1">93% Time Reduction</h4>
-                    <p className="text-base text-warm-gray leading-relaxed">
-                      From 40+ hours to 3 hours per case - verified by 500+ lawyers
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
-                    <Shield className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-ink mb-1">Zero Errors Guaranteed</h4>
-                    <p className="text-base text-warm-gray leading-relaxed">
-                      AI triple-checks every form - 100% RFE prevention rate
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-5">
-                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center shrink-0">
-                    <Zap className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-ink mb-1">$300K+ Additional Revenue</h4>
-                    <p className="text-base text-warm-gray leading-relaxed">
-                      Average lawyer adds $25K/month with our efficiency gains
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-center mt-8">
-              <a href="/lawyer-faq" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-full font-bold hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>
-                Join Our Attorney Network <ArrowRight className="w-5 h-5 shrink-0" />
-              </a>
-            </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How We Compare — comparison table */}
-      <section className="py-20 bg-chalk">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-ink text-center mb-12">How We Compare</h2>
-          <div className="overflow-x-auto rounded-2xl border border-border">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="p-4 font-semibold text-ink">Feature</th>
-                  <th className="p-4 font-semibold text-ink bg-accent">JustiGuide</th>
-                  <th className="p-4 font-semibold text-ink bg-light-gray">Others</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  { feature: 'Processing Time', jg: 'A few days', other: 'Months' },
-                  { feature: 'Form Accuracy', jg: '100%', other: 'Not guaranteed' },
-                  { feature: 'Cost', jg: 'From $5,994', other: '$10,000–15,000' },
-                  { feature: 'Licensed Attorney Review', jg: 'Always included', other: 'Sometimes' },
-                  { feature: 'AI Trained On', jg: '80,000+ cases', other: 'Hundreds of cases' },
-                  { feature: 'Money-Back Guarantee', jg: '100%', other: 'No' },
-                ].map((row) => (
-                  <tr key={row.feature} className="border-b border-border last:border-0">
-                    <td className="p-4 text-warm-gray">{row.feature}</td>
-                    <td className="p-4 text-ink bg-accent/90"><CheckCircle className="w-5 h-5 inline mr-2" />{row.jg}</td>
-                    <td className="p-4 text-warm-gray bg-light-gray">{row.other}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <section id="testimonials" className="py-[100px] bg-chalk">
         <div className="max-w-7xl mx-auto px-6">
@@ -579,7 +329,7 @@ export default function LandingPage() {
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
               <p className="text-base text-warm-gray mb-6 leading-relaxed">
-                "JustiGuide made my H1B process incredibly smooth. What used to take months took just 3 hours!"
+                &quot;JustiGuide made my H1B process incredibly smooth. What used to take months took just 3 hours!&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#2F6A5B' }}>PR</div>
@@ -599,7 +349,7 @@ export default function LandingPage() {
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
               <p className="text-base text-warm-gray mb-6 leading-relaxed">
-                "Finally got my Green Card! The lawyer matching was perfect. Highly recommend JustiGuide."
+                &quot;Finally got my Green Card! The lawyer matching was perfect. Highly recommend JustiGuide.&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#C8A24E' }}>MC</div>
@@ -619,7 +369,7 @@ export default function LandingPage() {
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
               </div>
               <p className="text-base text-warm-gray mb-6 leading-relaxed">
-                "JustiGuide made the immigration process easy and human."
+                &quot;JustiGuide made the immigration process easy and human.&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm" style={{ backgroundColor: '#6F6966' }}>EM</div>
@@ -636,64 +386,36 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Grid Section */}
-      <section className="py-[100px] bg-chalk">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Platform features</p>
-            <h2 className="font-display text-[48px] font-bold text-ink mb-5">
-              Everything You Need in One Platform
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-white">
-                <img src={aiFormImage} alt="AI-Assisted Form Filling Interface" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-xl font-semibold text-ink mb-3">AI-Assisted Form Filling</h3>
-              <p className="text-warm-gray leading-relaxed">Reduce errors and save time across multiple immigration applications</p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
-                <img src={multilingualImage} alt="Multilingual Support Interface" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-xl font-semibold text-ink mb-3">Multilingual Support</h3>
-              <p className="text-warm-gray leading-relaxed">Break language barriers effortlessly for diverse client bases</p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
-                <img src={caseManagementImage} alt="Case Management Dashboard Interface" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-xl font-semibold text-ink mb-3">Case Management Dashboard</h3>
-              <p className="text-warm-gray leading-relaxed">Stay organized and on top of every immigration case</p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
-                <img src={realTimeUpdatesImage} alt="Real-Time Updates Interface" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-xl font-semibold text-ink mb-3">Real-Time Updates</h3>
-              <p className="text-warm-gray leading-relaxed">Keep clients informed at every step of their immigration journey</p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
-                <img src={legalResearchImage} alt="Legal Research Assistant Interface" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-xl font-semibold text-ink mb-3">Legal Research Assistant</h3>
-              <p className="text-warm-gray leading-relaxed">Access comprehensive immigration law resources instantly</p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl border border-border hover:shadow-xl hover:-translate-y-2 transition-all">
-              <div className="w-full h-[200px] rounded-xl mb-6 overflow-hidden flex items-center justify-center bg-light-gray">
-                <img src={documentVerificationImage} alt="Document Verification Interface" className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-xl font-semibold text-ink mb-3">Document Verification</h3>
-              <p className="text-warm-gray leading-relaxed">Automated checks ensure accuracy and compliance</p>
-            </div>
+      {/* How We Compare */}
+      <section className="py-20 bg-chalk">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="font-display text-[clamp(2rem,4vw,2.5rem)] font-bold text-ink text-center mb-12">How We Compare</h2>
+          <div className="overflow-x-auto rounded-2xl border border-border">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="p-4 font-semibold text-ink">Feature</th>
+                  <th className="p-4 font-semibold text-ink bg-accent">JustiGuide</th>
+                  <th className="p-4 font-semibold text-ink bg-light-gray">Others</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { feature: 'Processing Time', jg: 'A few days', other: 'Months' },
+                  { feature: 'Form Accuracy', jg: '100%', other: 'Not guaranteed' },
+                  { feature: 'Cost', jg: 'From $9,499', other: '$10,000–15,000' },
+                  { feature: 'Licensed Attorney Review', jg: 'Always included', other: 'Sometimes' },
+                  { feature: 'AI Trained On', jg: '80,000+ cases', other: 'Hundreds of cases' },
+                  { feature: 'Money-Back Guarantee', jg: '100%', other: 'No' },
+                ].map((row) => (
+                  <tr key={row.feature} className="border-b border-border last:border-0">
+                    <td className="p-4 text-warm-gray">{row.feature}</td>
+                    <td className="p-4 text-ink bg-accent/90"><CheckCircle className="w-5 h-5 inline mr-2" />{row.jg}</td>
+                    <td className="p-4 text-warm-gray bg-light-gray">{row.other}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -711,8 +433,8 @@ export default function LandingPage() {
                 <Shield className="w-4 h-4" /> 100% Money-Back Guarantee
               </div>
               <p className="text-accent font-semibold mb-1">O-1 Just-In-Time Filing</p>
-              <p className="text-lg text-warm-gray line-through">$9,500</p>
-              <p className="font-display text-3xl font-bold text-ink">$5,994</p>
+              <p className="text-lg text-warm-gray line-through">$14,000</p>
+              <p className="font-display text-3xl font-bold text-ink">$9,499</p>
               <p className="text-xs text-accent font-semibold mt-1">Early access pricing — limited time</p>
               <p className="text-sm text-warm-gray mt-2">Attorney-reviewed · Full petition · Transparent pricing</p>
               <p className="text-xs text-warm-gray mt-2">E-signature ready · Review &amp; sign online</p>
@@ -730,20 +452,6 @@ export default function LandingPage() {
           <p className="text-sm text-warm-gray mt-4">Secure payments powered by Stripe</p>
           <div className="mt-8">
             <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-full font-bold hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
-          </div>
-        </div>
-      </section>
-
-      {/* Guarantee strip — HTML layout */}
-      <section className="py-14 bg-accent-light">
-        <div className="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-center gap-6 text-center">
-          <div className="w-[80px] h-[80px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(107,95,207,0.2)] ring-2 ring-accent border-2 border-accent/20">
-            <Shield className="w-10 h-10 text-accent" />
-          </div>
-          <div>
-            <h3 className="font-display text-2xl text-ink font-bold">100% Money-Back Guarantee</h3>
-            <p className="text-warm-gray text-[0.9rem] mt-1 max-w-[480px]">If you&apos;re not satisfied with our service, we&apos;ll refund your money. No questions asked.</p>
-            <a href="/terms-of-service#guarantee" className="inline-block mt-2 text-accent font-semibold text-sm hover:underline">See how our guarantee works →</a>
           </div>
         </div>
       </section>
@@ -885,61 +593,6 @@ export default function LandingPage() {
               </Form>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-[100px] bg-chalk">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-[0.7rem] font-bold tracking-widest uppercase text-accent mb-4 flex items-center justify-center gap-2"><span className="w-5 h-0.5 bg-accent" /> Get in touch</p>
-            <h2 className="font-display text-[48px] font-bold text-ink mb-5">Contact Us</h2>
-            <p className="text-lg text-warm-gray max-w-2xl mx-auto leading-relaxed">
-              Have questions? We're here to help you navigate your immigration journey.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center p-8 bg-white rounded-2xl border border-border">
-              <div className="w-16 h-16 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-8 h-8 text-accent" />
-              </div>
-              <h3 className="text-lg font-semibold text-ink mb-2">Email Us</h3>
-              <a href="mailto:info@justiguide.com" className="text-accent hover:underline" data-testid="link-email">
-                info@justiguide.com
-              </a>
-            </div>
-
-            <div className="text-center p-8 bg-white rounded-2xl border border-border">
-              <div className="w-16 h-16 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-8 h-8 text-accent" />
-              </div>
-              <h3 className="text-lg font-semibold text-ink mb-2">Call Us</h3>
-              <a href="tel:+18667795127" className="text-accent hover:underline" data-testid="link-phone">
-                +1 (866) 779-5127
-              </a>
-            </div>
-
-            <div className="text-center p-8 bg-white rounded-2xl border border-border">
-              <div className="w-16 h-16 bg-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-8 h-8 text-accent" />
-              </div>
-              <h3 className="text-lg font-semibold text-ink mb-2">Visit Us</h3>
-              <p className="text-warm-gray mb-2">
-                Ferry Building, San Francisco, CA 94111
-              </p>
-              <a href="https://maps.google.com/?q=Ferry+Building+San+Francisco+CA+94111" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold text-sm hover:underline">View on Google Maps →</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* European Immigration — Coming Soon */}
-      <section className="py-10 bg-light-gray">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <h3 className="font-display text-xl font-bold text-ink mb-2">European Immigration — Coming Soon</h3>
-          <p className="text-warm-gray text-sm mb-4">Be the first to know when we expand.</p>
-          <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-accent-deep transition-colors">Notify Me</a>
         </div>
       </section>
 
