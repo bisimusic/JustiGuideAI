@@ -99,8 +99,8 @@ export default function LandingPage() {
       <nav className="sticky top-0 z-50 bg-chalk/95 backdrop-blur-md border-b border-border shadow-[0_1px_0_0_rgba(0,0,0,0.05)]" id="main-nav">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between" style={{ height: '68px' }}>
           <a href="/" className="flex items-center gap-3 font-display text-[1.35rem] text-ink group">
-            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-white ring-2 ring-border shadow-sm transition-all group-hover:ring-accent/40">
-              <img src={logoImage} alt="JustiGuide" className="w-7 h-7 object-contain" data-testid="logo-image" />
+            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-white ring-1 ring-border shadow-sm transition-all group-hover:ring-accent/40">
+              <img src={logoImage} alt="JustiGuide" className="w-8 h-8 object-contain" data-testid="logo-image" />
             </span>
             JustiGuide
           </a>
