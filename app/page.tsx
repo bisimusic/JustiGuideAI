@@ -403,7 +403,7 @@ export default function LandingPage() {
                 {[
                   { feature: 'Processing Time', jg: 'A few days', other: 'Months' },
                   { feature: 'Form Accuracy', jg: '100%', other: 'Not guaranteed' },
-                  { feature: 'Cost', jg: 'From $9,499', other: '$10,000–15,000' },
+                  { feature: 'Cost', jg: '$5,994', other: '$10,000–15,000' },
                   { feature: 'Licensed Attorney Review', jg: 'Always included', other: 'Sometimes' },
                   { feature: 'AI Trained On', jg: '80,000+ cases', other: 'Hundreds of cases' },
                   { feature: 'Money-Back Guarantee', jg: '100%', other: 'No' },
@@ -434,7 +434,7 @@ export default function LandingPage() {
               </div>
               <p className="text-accent font-semibold mb-1">O-1 Just-In-Time Filing</p>
               <p className="text-lg text-warm-gray line-through">$14,000</p>
-              <p className="font-display text-3xl font-bold text-ink">$9,499</p>
+              <p className="font-display text-3xl font-bold text-ink">$5,994</p>
               <p className="text-xs text-accent font-semibold mt-1">Early access pricing — limited time</p>
               <p className="text-sm text-warm-gray mt-2">Attorney-reviewed · Full petition · Transparent pricing</p>
               <p className="text-xs text-warm-gray mt-2">E-signature ready · Review &amp; sign online</p>
