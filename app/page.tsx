@@ -157,7 +157,7 @@ export default function LandingPage() {
                 Stop wondering. Start moving. JustiGuide&apos;s AI analyzes your profile against thousands of successful cases and pairs you with the right attorney.
               </p>
               <div className="flex gap-4 flex-wrap mb-10">
-                <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:shadow-[0_8px_28px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 transition-all duration-200" data-testid="button-hero-cta" style={{ color: '#0B1215' }}>
+                <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:shadow-[0_8px_28px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 transition-all duration-200" data-testid="button-hero-cta" style={{ color: '#0B1215' }}>
                   Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" />
                 </a>
                 <a href="#how-it-works" className="inline-flex items-center gap-2 bg-transparent text-ink px-6 py-3 rounded-[60px] font-semibold text-sm border border-border hover:border-accent hover:text-accent hover:bg-accent-light/30 transition-all duration-200">How it works</a>
@@ -182,7 +182,7 @@ export default function LandingPage() {
                   <a key={label} href="#waitlist" className={`px-4 py-2.5 rounded-full text-sm font-semibold border-[1.5px] cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${i === 0 ? 'border-accent text-accent bg-accent-light hover:bg-accent-light' : 'border-border text-warm-gray hover:border-accent hover:text-accent hover:bg-accent-light'}`}>{label}</a>
                 ))}
               </div>
-              <a href="#waitlist" className="flex items-center justify-center gap-2 w-full bg-accent py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_16px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all duration-200" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
+              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-accent py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_16px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all duration-200" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
               <p className="text-center text-[0.78rem] text-warm-gray mt-4 flex items-center justify-center gap-1.5">🔒 Free · No commitment · Results in minutes</p>
             </div>
           </div>
@@ -229,7 +229,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-[60px] font-bold text-base min-h-[52px] hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
+            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-[60px] font-bold text-base min-h-[52px] hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
           </div>
         </div>
       </section>
@@ -451,7 +451,7 @@ export default function LandingPage() {
           <p className="text-warm-gray text-sm mt-6">Financing and pay-over-time options available. <a href="/pricing" className="text-accent font-semibold hover:underline">View Details</a></p>
           <p className="text-sm text-warm-gray mt-4">Secure payments powered by Stripe</p>
           <div className="mt-8">
-            <a href="#waitlist" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-full font-bold hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
+            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-full font-bold hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
           </div>
         </div>
       </section>
