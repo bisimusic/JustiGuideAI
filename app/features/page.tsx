@@ -100,7 +100,9 @@ export default function AppFeatures() {
             <a href="/#contact" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Contact</a>
           </div>
           <a
-            href="/#waitlist"
+            href="https://immigrant.justi.guide/assessment"
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full font-bold transition-all duration-200 px-7 py-3 text-base bg-accent hover:bg-accent-deep shadow-[0_4px_14px_rgba(107,95,207,0.45)] hover:shadow-[0_8px_24px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 ring-2 ring-accent/30 hover:ring-accent/50"
             style={{ color: "#0B1215" }}
             data-testid="nav-cta"
@@ -125,10 +127,10 @@ export default function AppFeatures() {
               Watch how our AI-powered platform transforms immigration services and connects immigrant communities with qualified lawyers.
             </p>
             <a
-              href="https://calendly.com/bisivc/justiguide-demo"
+              href="https://immigrant.justi.guide/demo/dashboard"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-white hover:border-accent shadow-[0_4px_20px_rgba(107,95,207,0.15)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-ink hover:border-accent shadow-[0_4px_20px_rgba(107,95,207,0.15)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
               data-testid="button-schedule-demo"
             >
               Schedule a demo <ArrowRight className="w-5 h-5 shrink-0" />
@@ -265,17 +267,19 @@ export default function AppFeatures() {
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <a
-                href="https://calendly.com/bisivc/justiguide-demo"
+                href="https://immigrant.justi.guide/demo/dashboard"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-white hover:border-accent shadow-[0_4px_20px_rgba(107,95,207,0.15)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
+                className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-ink hover:border-accent shadow-[0_4px_20px_rgba(107,95,207,0.15)] hover:shadow-[0_8px_30px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all"
                 data-testid="button-cta-demo"
               >
                 Schedule a demo <ArrowRight className="w-5 h-5 shrink-0" />
               </a>
               <a
-                href="/#waitlist"
-                className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-white hover:border-accent transition-all"
+                href="https://immigrant.justi.guide/assessment"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-chalk text-accent border-2 border-accent px-8 py-4 rounded-full font-semibold text-base hover:bg-accent hover:text-ink hover:border-accent transition-all"
                 data-testid="button-cta-waitlist"
               >
                 Get my roadmap →

@@ -108,7 +108,7 @@ export default function LandingPage() {
             <a href="#how-it-works" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">How We Work</a>
             <a href="#pricing" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Pricing</a>
             <a href="/features" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Search Attorneys</a>
-            <a href="#features" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">For Lawyers</a>
+            <a href="https://justi.guide/lawyer/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">For Lawyers</a>
           </div>
           <div className="hidden md:flex items-center gap-3">
             <a href="https://immigrant.justi.guide/login" target="_blank" rel="noopener noreferrer" className="rounded-full font-semibold transition-all duration-200 px-5 py-3 text-sm text-ink border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/30" data-testid="nav-sign-in">Login</a>
@@ -123,7 +123,7 @@ export default function LandingPage() {
             <a href="#how-it-works" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>How We Work</a>
             <a href="#pricing" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
             <a href="/features" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Search Attorneys</a>
-            <a href="#features" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>For Lawyers</a>
+            <a href="https://justi.guide/lawyer/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>For Lawyers</a>
             <a href="https://immigrant.justi.guide/login" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Login</a>
             <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold bg-accent px-6 py-3 text-center" style={{ color: '#0B1215' }} onClick={() => setMobileMenuOpen(false)}>Start Your Journey →</a>
           </div>
@@ -606,7 +606,7 @@ export default function LandingPage() {
             <div className="flex flex-wrap justify-center gap-6 md:gap-8 text-[11px] font-semibold uppercase tracking-wider">
               <a href="#how-it-works" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>How We Work</a>
               <a href="#pricing" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Pricing</a>
-              <a href="#features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>For Lawyers</a>
+              <a href="https://justi.guide/lawyer/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>For Lawyers</a>
               <a href="/privacy-policy" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Privacy</a>
               <a href="/terms-of-service" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Terms</a>
               <a href="#contact" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Contact</a>
