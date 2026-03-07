@@ -65,12 +65,7 @@ const PRESS_OUTLETS = [
   "Forbes",
 ];
 
-const NVIDIA_ICON = (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden className="shrink-0">
-    <path d="M12.444 6.27c-.592 0-1.072.48-1.072 1.073v9.314c0 .592.48 1.073 1.072 1.073h5.226c.593 0 1.073-.48 1.073-1.073V7.343c0-.593-.48-1.073-1.073-1.073h-5.226z" fill="#76B900" />
-    <path d="M6.33 9.843c-.592 0-1.073.48-1.073 1.073v5.741c0 .593.481 1.073 1.073 1.073h3.461c.593 0 1.073-.48 1.073-1.073v-5.74c0-.594-.48-1.074-1.073-1.074H6.33z" fill="#76B900" />
-  </svg>
-);
+const NVIDIA_BADGE_SRC = "/assets/nvidia-inception-badge.png";
 
 export function PressLogos() {
   return (
@@ -114,9 +109,8 @@ export function PressLogos() {
             <span className="font-serif font-bold text-[#b72221]">TIME</span>
             <span className="text-[#1a1a1a]">Best Inventions 2025</span>
           </a>
-          <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold bg-[#f7f7f7] text-[#333] border border-border/60">
-            {NVIDIA_ICON}
-            <span className="tracking-wide uppercase">NVIDIA Inception 2026</span>
+          <span className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-[#f7f7f7] border border-border/60 min-h-[40px]">
+            <img src={NVIDIA_BADGE_SRC} alt="NVIDIA Inception Program" className="h-6 w-auto object-contain" />
           </span>
         </div>
       </div>

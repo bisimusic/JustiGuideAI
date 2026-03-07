@@ -142,12 +142,8 @@ export default function LandingPage() {
                 <a href="https://time.com/collections/best-inventions-2025/7318500/justiguide-relo/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold text-gold bg-gold-light/80 border border-gold/20 hover:bg-gold-light transition-colors" data-testid="badge-time-inventions">
                   <Award className="w-4 h-4" /> TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25
                 </a>
-                <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold bg-[#76B900]/10 text-[#4a7200] border border-[#76B900]/20">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden className="shrink-0">
-                    <path d="M12.444 6.27c-.592 0-1.072.48-1.072 1.073v9.314c0 .592.48 1.073 1.072 1.073h5.226c.593 0 1.073-.48 1.073-1.073V7.343c0-.593-.48-1.073-1.073-1.073h-5.226z" fill="#76B900"/>
-                    <path d="M6.33 9.843c-.592 0-1.073.48-1.073 1.073v5.741c0 .593.481 1.073 1.073 1.073h3.461c.593 0 1.073-.48 1.073-1.073v-5.74c0-.594-.48-1.074-1.073-1.074H6.33z" fill="#76B900"/>
-                  </svg>
-                  NVIDIA Inception 2026
+                <span className="inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-white border border-border/60 shadow-sm">
+                  <img src="/assets/nvidia-inception-badge.png" alt="NVIDIA Inception Program" className="h-6 w-auto object-contain" />
                 </span>
               </div>
               <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-ink mb-5">
