@@ -122,8 +122,8 @@ export function PressLogos() {
               className="h-6 w-auto shrink-0 mix-blend-darken"
             />
           </a>
-          <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold bg-[#f7f7f7] text-[#333] border border-border/60">
-            <img src="/assets/nvidia-inception-badge.png" alt="" role="presentation" className="h-6 w-auto shrink-0 object-contain" />
+          <span className="inline-flex items-center gap-2 px-1.5 py-1 rounded-lg text-xs font-bold bg-[#f7f7f7] text-[#333] border border-border/60">
+            <img src="/assets/nvidia-inception-badge.png" alt="" role="presentation" className="h-8 w-auto shrink-0 object-contain" />
             <span className="tracking-wide uppercase">NVIDIA Inception 2026</span>
           </span>
         </div>

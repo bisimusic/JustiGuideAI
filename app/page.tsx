@@ -142,8 +142,8 @@ export default function LandingPage() {
                 <a href="https://time.com/collections/best-inventions-2025/7318500/justiguide-relo/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-bold text-gold bg-gold-light/80 border border-gold/20 hover:bg-gold-light transition-colors" data-testid="badge-time-inventions">
                   <Award className="w-4 h-4" /> TIME Best Inventions 2025 · Tech Disrupt Pitch Showcase Winner &apos;25
                 </a>
-                <span className="inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-white border border-border/60 shadow-sm">
-                  <img src="/assets/nvidia-inception-badge.png" alt="NVIDIA Inception Program" className="h-6 w-auto object-contain" />
+                <span className="inline-flex items-center justify-center px-1.5 py-1 rounded-full bg-white border border-border/60 shadow-sm">
+                  <img src="/assets/nvidia-inception-badge.png" alt="NVIDIA Inception Program" className="h-8 w-auto object-contain" />
                 </span>
               </div>
               <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-ink mb-5">
