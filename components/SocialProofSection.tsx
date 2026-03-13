@@ -65,10 +65,11 @@ const PRESS_OUTLETS = [
   "Forbes",
 ];
 
-const NVIDIA_ICON = (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden className="shrink-0">
-    <path d="M12.444 6.27c-.592 0-1.072.48-1.072 1.073v9.314c0 .592.48 1.073 1.072 1.073h5.226c.593 0 1.073-.48 1.073-1.073V7.343c0-.593-.48-1.073-1.073-1.073h-5.226z" fill="#76B900" />
-    <path d="M6.33 9.843c-.592 0-1.073.48-1.073 1.073v5.741c0 .593.481 1.073 1.073 1.073h3.461c.593 0 1.073-.48 1.073-1.073v-5.74c0-.594-.48-1.074-1.073-1.074H6.33z" fill="#76B900" />
+const TECHCRUNCH_LOCKUP = (
+  <svg width="63" height="32" viewBox="0 0 63 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden className="h-6 w-auto shrink-0">
+    <path d="M31.5 0V10.6573H21V32H10.5V10.6573H0V0H31.5Z" fill="#0AA43E" />
+    <path d="M63 21.3823V31.9998H31.5V10.7427H42V21.3823H63Z" fill="#0AA43E" />
+    <path d="M62.9991 0H41.9219V10.7429H62.9991V0Z" fill="#0AA43E" />
   </svg>
 );
 
@@ -102,6 +103,7 @@ export function PressLogos() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold bg-[#f0f0f0] text-[#1a1a1a] border border-border/60 hover:bg-[#e8e8e8] transition-colors"
           >
+            {TECHCRUNCH_LOCKUP}
             <span className="font-bold text-[#1a1a1a]">TechCrunch</span>
             <span className="text-warm-gray">Battlefield 200</span>
           </a>
@@ -113,9 +115,15 @@ export function PressLogos() {
           >
             <span className="font-serif font-bold text-[#b72221]">TIME</span>
             <span className="text-[#1a1a1a]">Best Inventions 2025</span>
+            <img
+              src="/assets/time-best-inventions-2025.png"
+              alt=""
+              role="presentation"
+              className="h-6 w-auto shrink-0 mix-blend-darken"
+            />
           </a>
           <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold bg-[#f7f7f7] text-[#333] border border-border/60">
-            {NVIDIA_ICON}
+            <img src="/assets/nvidia-inception-badge.png" alt="" role="presentation" className="h-6 w-auto shrink-0 object-contain" />
             <span className="tracking-wide uppercase">NVIDIA Inception 2026</span>
           </span>
         </div>
