@@ -96,7 +96,7 @@ export function PressLogos() {
         <p className="text-center text-[0.65rem] font-bold tracking-widest uppercase text-warm-gray/70 mb-4">
           Awards &amp; recognition
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 -ml-16">
           <a
             href="https://techcrunch.com/"
             target="_blank"
@@ -122,7 +122,9 @@ export function PressLogos() {
               className="h-6 w-auto shrink-0 mix-blend-darken"
             />
           </a>
-          <img src="/assets/nvidia-inception-badge.png" alt="NVIDIA Inception Program" className="h-14 w-auto object-contain" />
+          <span className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg">
+            <img src="/assets/nvidia-inception-badge.png" alt="NVIDIA Inception Program" className="h-14 w-auto object-contain" />
+          </span>
         </div>
       </div>
     </section>
