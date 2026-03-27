@@ -84,7 +84,7 @@ export default function LandingPage() {
             className="px-5 py-2.5 rounded-full font-bold text-sm bg-chalk text-accent border-2 border-chalk whitespace-nowrap hover:bg-accent hover:text-white hover:border-accent shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-200"
           >
             <a
-              href="https://immigrant.justi.guide/jit"
+              href="https://immigrant.justiguide.com/jit"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="link-o1a-early-access"
@@ -108,11 +108,11 @@ export default function LandingPage() {
             <a href="#how-it-works" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">How We Work</a>
             <a href="#pricing" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Pricing</a>
             <a href="https://immigrant.justiguide.com" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">Search Attorneys</a>
-            <a href="https://justi.guide/lawyer/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">For Lawyers</a>
+            <a href="https://justiguide.com/lawyer/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-warm-gray hover:text-accent transition-colors">For Lawyers</a>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <a href="https://immigrant.justi.guide/login" target="_blank" rel="noopener noreferrer" className="rounded-full font-semibold transition-all duration-200 px-5 py-3 text-sm text-ink border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/30" data-testid="nav-sign-in">Login</a>
-            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold transition-all duration-200 px-7 py-3 text-base bg-accent hover:bg-accent-deep shadow-[0_4px_14px_rgba(107,95,207,0.45)] hover:shadow-[0_8px_24px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 ring-2 ring-accent/30 hover:ring-accent/50" style={{ color: '#0B1215' }} data-testid="nav-cta">Start Your Journey →</a>
+            <a href="https://immigrant.justiguide.com/login" target="_blank" rel="noopener noreferrer" className="rounded-full font-semibold transition-all duration-200 px-5 py-3 text-sm text-ink border-2 border-border hover:border-accent hover:text-accent hover:bg-accent-light/30" data-testid="nav-sign-in">Login</a>
+            <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold transition-all duration-200 px-7 py-3 text-base bg-accent hover:bg-accent-deep shadow-[0_4px_14px_rgba(107,95,207,0.45)] hover:shadow-[0_8px_24px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 ring-2 ring-accent/30 hover:ring-accent/50" style={{ color: '#0B1215' }} data-testid="nav-cta">Start Your Journey →</a>
           </div>
           <button type="button" className="md:hidden p-2 text-ink hover:text-accent" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -123,9 +123,9 @@ export default function LandingPage() {
             <a href="#how-it-works" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>How We Work</a>
             <a href="#pricing" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
             <a href="https://immigrant.justiguide.com" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Search Attorneys</a>
-            <a href="https://justi.guide/lawyer/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>For Lawyers</a>
-            <a href="https://immigrant.justi.guide/login" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Login</a>
-            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold bg-accent px-6 py-3 text-center" style={{ color: '#0B1215' }} onClick={() => setMobileMenuOpen(false)}>Start Your Journey →</a>
+            <a href="https://justiguide.com/lawyer/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>For Lawyers</a>
+            <a href="https://immigrant.justiguide.com/login" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-ink hover:text-accent py-2" onClick={() => setMobileMenuOpen(false)}>Login</a>
+            <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="rounded-full font-bold bg-accent px-6 py-3 text-center" style={{ color: '#0B1215' }} onClick={() => setMobileMenuOpen(false)}>Start Your Journey →</a>
           </div>
         )}
       </nav>
@@ -151,7 +151,7 @@ export default function LandingPage() {
                 Stop wondering. Start moving. JustiGuide&apos;s AI analyzes your profile against thousands of successful cases and pairs you with the right attorney.
               </p>
               <div className="flex gap-4 flex-wrap mb-10">
-                <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:shadow-[0_8px_28px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 transition-all duration-200" data-testid="button-hero-cta" style={{ color: '#0B1215' }}>
+                <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent text-ink px-8 py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:shadow-[0_8px_28px_rgba(107,95,207,0.5)] hover:-translate-y-0.5 transition-all duration-200" data-testid="button-hero-cta" style={{ color: '#0B1215' }}>
                   Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" />
                 </a>
                 <a href="#how-it-works" className="inline-flex items-center gap-2 bg-transparent text-ink px-6 py-3 rounded-[60px] font-semibold text-sm border border-border hover:border-accent hover:text-accent hover:bg-accent-light/30 transition-all duration-200">How it works</a>
@@ -176,7 +176,7 @@ export default function LandingPage() {
                   <a key={label} href="#waitlist" className={`px-4 py-2.5 rounded-full text-sm font-semibold border-[1.5px] cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 ${i === 0 ? 'border-accent text-accent bg-accent-light hover:bg-accent-light' : 'border-border text-warm-gray hover:border-accent hover:text-accent hover:bg-accent-light'}`}>{label}</a>
                 ))}
               </div>
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-accent py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_16px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all duration-200" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
+              <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-accent py-4 rounded-[60px] font-bold text-[0.95rem] min-h-[52px] border-0 hover:bg-accent-deep shadow-[0_4px_16px_rgba(107,95,207,0.35)] hover:-translate-y-0.5 transition-all duration-200" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
               <p className="text-center text-[0.78rem] text-warm-gray mt-4 flex items-center justify-center gap-1.5">🔒 Free · No commitment · Results in minutes</p>
             </div>
           </div>
@@ -223,7 +223,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-[60px] font-bold text-base min-h-[52px] hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
+            <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-[60px] font-bold text-base min-h-[52px] hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
           </div>
         </div>
       </section>
@@ -432,20 +432,20 @@ export default function LandingPage() {
               <p className="text-xs text-accent font-semibold mt-1">Early access pricing — limited time</p>
               <p className="text-sm text-warm-gray mt-2">Attorney-reviewed · Full petition · Transparent pricing</p>
               <p className="text-xs text-warm-gray mt-2">E-signature ready · Review &amp; sign online</p>
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent font-semibold text-sm hover:underline">Get started →</a>
+              <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent font-semibold text-sm hover:underline">Get started →</a>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-border shadow-sm">
               <p className="text-accent font-semibold mb-1">Other visas &amp; green card</p>
               <p className="font-display text-2xl font-bold text-ink">Starting from</p>
               <p className="text-sm text-warm-gray mt-2">Free assessment · Tiered packages · Clear fee breakdown</p>
               <p className="text-xs text-warm-gray mt-2">Pay per phase available · No large upfront retainer</p>
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent font-semibold text-sm hover:underline">See options →</a>
+              <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-accent font-semibold text-sm hover:underline">See options →</a>
             </div>
           </div>
           <p className="text-warm-gray text-sm mt-6">Financing and pay-over-time options available. <a href="/pricing" className="text-accent font-semibold hover:underline">View Details</a></p>
           <p className="text-sm text-warm-gray mt-4">Secure payments powered by Stripe</p>
           <div className="mt-8">
-            <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-full font-bold hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
+            <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-accent px-8 py-4 rounded-full font-bold hover:bg-accent-deep shadow-[0_4px_20px_rgba(107,95,207,0.4)] hover:-translate-y-0.5 transition-all" style={{ color: '#0B1215' }}>Start Your Journey <ArrowRight className="w-4 h-4 shrink-0" /></a>
           </div>
         </div>
       </section>
@@ -471,7 +471,7 @@ export default function LandingPage() {
               <CheckCircle className="w-16 h-16 text-accent mx-auto mb-4" />
               <h3 className="font-display text-2xl font-bold text-ink mb-2">Thank you, {submittedName || "there"}!</h3>
               <p className="text-warm-gray">We&apos;re preparing your personalized roadmap. Check your email for next steps.</p>
-              <a href="https://immigrant.justi.guide/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-6 px-8 py-4 bg-accent text-white font-bold rounded-full hover:bg-accent-deep transition-colors">Continue to Assessment →</a>
+              <a href="https://immigrant.justiguide.com/assessment" target="_blank" rel="noopener noreferrer" className="inline-block mt-6 px-8 py-4 bg-accent text-white font-bold rounded-full hover:bg-accent-deep transition-colors">Continue to Assessment →</a>
             </div>
           ) : (
             <div className="rounded-2xl p-8 bg-chalk border border-border shadow-xl">
@@ -601,7 +601,7 @@ export default function LandingPage() {
               <a href="#how-it-works" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>How We Work</a>
               <a href="#pricing" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Pricing</a>
               <a href="/features" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Features</a>
-              <a href="https://justi.guide/lawyer/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>For Lawyers</a>
+              <a href="https://justiguide.com/lawyer/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>For Lawyers</a>
               <a href="/privacy-policy" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Privacy</a>
               <a href="/terms-of-service" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Terms</a>
               <a href="#contact" className="transition-colors hover:opacity-100" style={{ color: 'rgba(255,255,255,0.85)' }}>Contact</a>
